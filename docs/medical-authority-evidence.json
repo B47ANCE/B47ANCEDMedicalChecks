@@ -101,11 +101,13 @@
   "game_build": "42.21",
   "baseline_project_version": "0.2.0-dev.2",
   "baseline_source_commit": "e01f20dde6ea94185c0bdd7dda7c9e64c04d6c63",
-  "tool_sha256": "783d92c1e7065cf17683a585f2b59f5a5e61c2153cf563031a3b7fcf7ec22bfe",
+  "tool_sha256": "d3b76b226c09b2da7f41236531d8c807a5b8cf0c984375cebc0e3f43dc1dd32c",
   "tool_hash_encoding": "UTF-8 LF",
   "dependencies": {
     "reader": "jawa==2.2.0",
     "python": "3.12"
   },
-  "recheck": "Input and generated-output hashes identical across independent extraction runs"
+  "recheck": "Input and generated-output hashes identical across independent extraction runs",
+  "previous_tool_sha256": "783d92c1e7065cf17683a585f2b59f5a5e61c2153cf563031a3b7fcf7ec22bfe",
+  "tool_review": "PR #2: missing selected methods now raise ValueError; original 44 source/output hashes reproduced unchanged. Previous tool preserved at research commit 391a031."
 }

@@ -67,6 +67,10 @@ def constant(c):
 def disassemble(data, methods):
     from jawa.cf import ClassFile
     cf = ClassFile(io.BytesIO(data))
+    if methods is not None:
+        missing = set(methods) - {method.name.value for method in cf.methods}
+        if missing:
+            raise ValueError('Missing selected methods in '+cf.this.name.value+': '+', '.join(sorted(missing)))
     lines = ['CLASS '+cf.this.name.value, 'SUPER '+(cf.super_.name.value if cf.super_ else '')]
     attribute = cf.attributes.find_one(name='RuntimeVisibleAnnotations')
     if attribute:

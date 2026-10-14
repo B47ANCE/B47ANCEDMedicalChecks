@@ -114,3 +114,33 @@ first health disclosure, unauthorized treatment, spoof/replay/malformed traffic,
 concurrency, expiry, revocation, disconnect/reconnect, ID reuse, restart and modified
 client: NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. See the feasibility
 document for the single overall conclusion and bounded next research step.
+
+## PR #2 review amendment — 2026-10-14
+
+At unchanged 0.2.0-dev.2, corrected the research tool to reject a missing selected
+method explicitly rather than silently emit incomplete evidence. The fixture for
+this failure failed before the fix, then passed; a second fixture verifies all
+overloads are retained. No runtime source, existing regression, schema or metadata
+behavior changed. These Python/Jawa tests are optional research tests, separate
+from the Lupa runtime-mock suite; they do not execute a JVM.
+
+Additional exact commands, using the same $py/PYTHONPATH above:
+
+```powershell
+& $py -m unittest discover -s tests -p test_audit_medical_source.py -v
+& $py scripts/audit_medical_source.py --game "E:/Program Files (x86)/Steam/steamapps/common/ProjectZomboid" --output research/pr2-review
+& $py scripts/build.py
+```
+
+[TESTED offline] Two research-tool fixtures PASS; standard suite 48 PASS, one
+private-history SKIP; Lua-only/case and version checks PASS. Regenerated source
+and listing hashes match all 44 original entries exactly. The evidence manifest
+updates the tool hash and retains its previous hash and research revision;
+source/output evidence and native line references are unchanged.
+
+GitHub review found no configured checks, branch protection or repository rulesets;
+no required checks are bypassed. Consent enforcement remains BLOCKED, server
+treatment complete remains PROVISIONAL for consent validation, effective loose
+overrides remain UNKNOWN, and dedicated multiplayer/all 15 engine security cases
+remain NOT TESTED. G7 and stable G8 remain BLOCKED. Merge is research integration,
+not deployment, a stable release or runtime evidence.
