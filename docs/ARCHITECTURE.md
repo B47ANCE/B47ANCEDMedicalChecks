@@ -63,3 +63,18 @@ single deduplicated status/settings context entry adds no medical interaction.
 Inactive status is always visible. Source medical callbacks and events are untouched.
 All 29 installed vanilla locales receive matching English fallback JSON tables.
 Actual font/resolution/controller use remains a runtime gate, not mock verification.
+
+## Research clarification — 2026-10-14 (no runtime change)
+
+The extended audit in MEDICAL_AUTHORITY_AUDIT.md separates disclosure from
+treatment. Original 42.21 NetTimedAction executes shared Lua complete() on the
+server and honors its Boolean result. This is a PROVISIONAL treatment-validation
+candidate, not proof that every medical action is client-only, nor proof of
+authenticated consent. Constructors/serverStart precede complete, and actor,
+patient/body-part binding and alternate health commands still need coverage.
+
+Health START and updater sends remain native paths with no verified Lua consent
+veto. Therefore the combined enforcement requirement remains BLOCKED. No wrapper,
+grant activation, persistence change or treatment interception was implemented.
+Historical decisions above and their prior evidence are preserved. Dedicated
+multiplayer remains NOT TESTED; G7 and stable G8 remain BLOCKED.

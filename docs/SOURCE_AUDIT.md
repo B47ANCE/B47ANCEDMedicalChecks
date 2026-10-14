@@ -45,3 +45,11 @@ A future vanilla exposed server veto would require a new source audit and tests.
 
 [RUNTIME GATE] No current PZ, SP, hosted or dedicated execution occurred. Historic
 Java-era successes/failures are historical only, not Lua-only runtime evidence.
+
+Extended research at unchanged 0.2.0-dev.2: see MEDICAL_AUTHORITY_AUDIT.md,
+LUA_ENFORCEMENT_FEASIBILITY.md and MEDICAL_SECURITY_MATRIX.md. The extended
+original-JAR audit proves server-side shared Lua complete callbacks for treatment,
+without establishing complete consent authority. Native health subscription/send
+veto remains absent from the audited Lua boundary. Larger class selection also
+detects differing loose IsoPlayer and Event, in addition to LuaEventManager;
+effective runtime remains UNKNOWN. No gameplay code or historical evidence changed.
