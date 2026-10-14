@@ -143,6 +143,26 @@ function specs.rate_limited_and_no_per_tick_scan()
  local f=fixture();f:command(f.p,"Snapshot");local count=#f.messages
  f.engine:command(f.p,"Snapshot",{protocol=2});assert(#f.messages==count)
 end
+function specs.rapid_mutation_has_explicit_rejection()
+ local f=fixture();f:command(f.p,"Snapshot");local count=#f.messages
+ f.engine:command(f.p,"Preference",{protocol=2,preference=2})
+ assert(#f.messages==count+1 and f:last().reason=="RateLimited")
+ assert(not f.store.db.accounts.patient and f:last().preference==1)
+ f:command(f.p,"Preference",{preference=2});assert(f:last().reason=="Saved")
+end
+function specs.floating_point_preference_roundtrips()
+ local f=fixture();f:command(f.p,"Preference",{preference=2.0})
+ assert(f:last().reason=="Saved")
+ assert(Store.open(f.io,"test-server").db.accounts.patient.preference==2)
+end
+function specs.readback_failure_is_an_uncertain_write()
+ local f=fixture();f:command(f.p,"Preference",{preference=1});f.readError=true
+ f:command(f.p,"Preference",{preference=2})
+ assert(f:last().reason=="StorageFailed" and f.store.db.accounts.patient.preference==1)
+ f.readError=false
+ -- A complete write can survive despite failed verification: no durable rollback claim.
+ assert(Store.open(f.io,"test-server").db.accounts.patient.preference==2)
+end
 function specs.missing_store_refuses_mutations()
  local f=fixture();f.engine=Engine.new(f.a,nil);f:command(f.p,"Preference",{preference=2})
  assert(f:last().reason=="StorageFailed" and f:last().settingsReady==false)

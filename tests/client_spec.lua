@@ -88,6 +88,12 @@ function specs.forced_policy_disables_editor()
  local f=setup();B47MC.Client.open(f.player);local s=snapshot();s.policy=3;f:server("Snapshot",s)
  assert(B47MC.Client.windows[1].preference.enabled==false)
 end
+function specs.rate_rejection_restores_saved_selection_and_explains_retry()
+ local f=setup();B47MC.Client.open(f.player);f:server("Snapshot",snapshot())
+ local w=B47MC.Client.windows[1];w.preference.selected=2;w:onPreference()
+ local s=snapshot(2);s.reason="RateLimited";f:server("Snapshot",s)
+ assert(w.preference.selected==1 and w.status.name=="UI_B47MC_RateLimited")
+end
 function specs.approval_record_revoke_is_owner_intent_only()
  local f=setup();B47MC.Client.open(f.player);local s=snapshot();s.grants={{key="examiner",label="Examiner"}};f:server("Snapshot",s)
  B47MC.Client.windows[1]:onRevoke();local last=f.sent[#f.sent]

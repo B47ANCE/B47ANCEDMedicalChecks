@@ -14,6 +14,7 @@ UI={
  'Blocked':'Server consent enforcement is blocked; vanilla examinations remain unchanged.',
  'Saved':'Settings saved. This does not change vanilla examination permission.',
  'Invalid':'Invalid setting or saved record; no change was made.',
+ 'RateLimited':'Changes are too fast; no change was made. Wait briefly and try again.',
  'StorageFailed':'Server settings storage unavailable; changes disabled. Vanilla remains unchanged.',
  'ProtocolMismatch':'Update the client mod. Consent enforcement is unavailable.',
  'Policy1':'Configured policy: Player Choice (enforcement inactive)',

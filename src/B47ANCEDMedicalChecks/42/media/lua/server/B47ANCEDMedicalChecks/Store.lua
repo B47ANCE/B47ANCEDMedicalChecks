@@ -20,7 +20,7 @@ local function encode(db,generation)
         assert(C.validString(key),"account")
         local r=db.accounts[key]
         assert(r.preference==1 or r.preference==2,"preference")
-        lines[#lines+1]="P\t"..hex(key).."\t"..r.preference
+        lines[#lines+1]="P\t"..hex(key).."\t"..string.format("%.0f",r.preference)
         local grants=sorted(r.grants);assert(#grants<=C.maxGrants,"grant limit")
         for _,examiner in ipairs(grants) do
             assert(C.validString(examiner) and C.validString(r.grants[examiner]),"grant")

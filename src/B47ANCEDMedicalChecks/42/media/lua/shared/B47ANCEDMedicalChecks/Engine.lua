@@ -25,7 +25,12 @@ function Engine:command(player,command,args)
     if args==nil then args={} end
     if type(args)~="table" then return end
     local now=self.a.now();local last=self.last[player]
-    if last and now>=last and now-last<0.25 then return end
+    if last and now>=last and now-last<0.25 then
+        -- Never silently leave the editor showing an uncommitted selection.
+        -- Reads remain suppressed; rejected mutations only return private metadata.
+        if command=="Preference" or command=="Revoke" then return self:snapshot(player,key,"RateLimited") end
+        return
+    end
     self.last[player]=now
     if args.protocol~=C.protocol then return self:snapshot(player,key,"ProtocolMismatch") end
     if command=="Snapshot" then return self:snapshot(player,key) end

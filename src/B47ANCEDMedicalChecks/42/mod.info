@@ -2,6 +2,6 @@ name=B47ANCE'd Medical Checks
 id=B47ANCEDMedicalChecks
 author=B47ANCE
 description=Lua-only settings and consent-status scaffold. Vanilla examinations remain unchanged; server-authoritative consent enforcement is BLOCKED. Dedicated multiplayer NOT TESTED.
-modversion=0.2.0-dev.1
+modversion=0.2.0-dev.2
 versionMin=42.21
 versionMax=42.21

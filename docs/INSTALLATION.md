@@ -1,6 +1,6 @@
 # Installation and migration limits
 
-Project Version: 0.2.0-dev.1
+Project Version: 0.2.0-dev.2
 
 This is a settings/status scaffold, not a functioning consent-security mod.
 Do not deploy or publish it as examination protection. No deployment or launch was

@@ -1,6 +1,6 @@
 # B47ANCE'd Medical Checks
 
-Project Version: 0.2.0-dev.1
+Project Version: 0.2.0-dev.2
 
 Lua-only development scaffold for Build 42.21, canonical Mod ID
 `B47ANCEDMedicalChecks`. **Examination consent enforcement is BLOCKED.**

@@ -46,7 +46,7 @@ function Window:apply(snapshot)
     self.list:clear()
     if not snapshot then self.status:setName(text("Loading")); return end
     local reason=snapshot.reason
-    if reason~="Saved" and reason~="Invalid" and reason~="ProtocolMismatch" and reason~="StorageFailed" then reason="Blocked" end
+    if reason~="Saved" and reason~="Invalid" and reason~="ProtocolMismatch" and reason~="StorageFailed" and reason~="RateLimited" then reason="Blocked" end
     self.status:setName(text(snapshot.settingsReady and reason or "StorageFailed"))
     self.policy:setName(text("Policy"..snapshot.policy))
     self.preference.selected=snapshot.policy==2 and 1 or (snapshot.policy==3 and 2 or snapshot.preference)

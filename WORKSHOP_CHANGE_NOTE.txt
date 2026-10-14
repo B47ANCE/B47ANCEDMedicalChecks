@@ -1,6 +1,8 @@
-[b]Version 0.2.0-dev.1[/b]
+[b]Version 0.2.0-dev.2[/b]
 
 [h2]Development[/h2]
+• PR review fixes: explicit retry feedback for rapid settings changes and canonical numeric preference storage.
+• Failed write verification has an uncertain persistence outcome; durable rollback is not claimed.
 • Converted active runtime/build inputs to Lua-only.
 • Retained server-owned settings; examination consent enforcement is blocked.
 • Vanilla medical examinations and treatments remain unchanged.

@@ -1,8 +1,10 @@
 # Version and artifact inventory
 
-Project Version: 0.2.0-dev.1
+Project Version: 0.2.0-dev.2
 
-Root VERSION remains authoritative. This is an initial 0.x MINOR development
+Root VERSION remains authoritative. PR review advances 0.2.0-dev.1 to
+0.2.0-dev.2 for PATCH-compatible fixes within the existing development scope;
+no schema or protocol change, stable release, or runtime validation is implied. This is an initial 0.x MINOR development
 iteration with explicitly incompatible scope: the agent dependency and active
 examination protocol are withdrawn; old properties are not automatically migrated.
 Metadata schema/protocol 2 are separate from project SemVer and PZ 42.21.
@@ -20,6 +22,6 @@ members, per-file SHA-256, versions and exact source parity. No ZIP is built by 
 normal build command. --release must check actual authorized artifacts before G8.
 
 GitHub iteration source is on feature/lua-only-conversion in the verified public
-B47ANCE/B47ANCEDMedicalChecks repository. Main remains the governance bootstrap
-until reviewed/explicitly merged. Commit/push verification is reported with the
+B47ANCE/B47ANCEDMedicalChecks repository. PR #1 is reviewed and merged only after applicable checks pass under explicit
+user authorization. Commit/push verification is reported with the
 final iteration SHA; no stable tag, force push or deployment is authorized.

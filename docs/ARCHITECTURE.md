@@ -1,6 +1,6 @@
 # Lua-only architecture
 
-Project Version: 0.2.0-dev.1
+Project Version: 0.2.0-dev.2
 
 Scope is server-owned settings metadata, not examination authorization. The client
 submits protocol-2 Snapshot, Preference or Revoke intent. Vanilla OnClientCommand
@@ -16,7 +16,9 @@ preference, configured/effective policy diagnostics and inactive metadata record
 Every snapshot has enforcement=false. Request/Answer/Grant intents cannot create
 authorization or a new record; no tickets, leases, sessions or medical hooks exist.
 Malformed/old protocols cannot mutate metadata. Per-player weak-key throttling
-bounds repeated commands. There are no per-tick player/world scans.
+bounds disk mutations and repeated reads. Throttled Preference/Revoke intents return
+a private RateLimited snapshot so the UI restores the saved value and asks for retry;
+these replies are not a network bandwidth limiter. There are no per-tick player/world scans.
 
 Store.lua uses only exposed getFileReader/getFileWriter, readLine/write/close.
 Two private ASCII snapshot files live in the server Lua cache, named
@@ -39,7 +41,10 @@ can recover from the valid slot with a console diagnostic. Both invalid/unreadab
 slots or a future schema disable mutations rather than resetting records. Equal
 generation conflicts are rejected. Checksums detect incomplete writes, not hostile
 server filesystem edits. No fsync/atomic-rename or sudden power-loss guarantee is
-claimed for these exposed APIs. Java-era properties and real player saves are untouched.
+claimed for these exposed APIs. A complete disk write followed by a read-back failure
+returns StorageFailed and retains the previous in-memory value, but restart can select
+the newer complete slot. This is an uncertain outcome, not guaranteed rollback;
+refresh after restart before retrying. Only inactive metadata is affected. Java-era properties and real player saves are untouched.
 
 Policy (four enum values) and DefaultPreference (two) affect saved-settings
 interpretation/presentation only. Forced choices disable the editor, but never
