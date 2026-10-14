@@ -1,0 +1,20 @@
+{
+  "UI_B47MC_Settings": "Medical consent status and saved preferences",
+  "UI_B47MC_Loading": "Loading server settings; consent enforcement is unavailable.",
+  "UI_B47MC_AlwaysAsk": "Always Ask (saved preference; inactive)",
+  "UI_B47MC_OnlyOnce": "Only Ask Once Per Player (saved preference; inactive)",
+  "UI_B47MC_Draft": "Saved preferences and approvals are inactive; vanilla examinations remain unchanged.",
+  "UI_B47MC_Revoke": "Revoke selected saved record",
+  "UI_B47MC_Refresh": "Refresh",
+  "UI_B47MC_NoApprovals": "No saved approval records",
+  "UI_B47MC_Blocked": "Server consent enforcement is blocked; vanilla examinations remain unchanged.",
+  "UI_B47MC_Saved": "Settings saved. This does not change vanilla examination permission.",
+  "UI_B47MC_Invalid": "Invalid setting or saved record; no change was made.",
+  "UI_B47MC_RateLimited": "Changes are too fast; no change was made. Wait briefly and try again.",
+  "UI_B47MC_StorageFailed": "Server settings storage unavailable; changes disabled. Vanilla remains unchanged.",
+  "UI_B47MC_ProtocolMismatch": "Update the client mod. Consent enforcement is unavailable.",
+  "UI_B47MC_Policy1": "Configured policy: Player Choice (enforcement inactive)",
+  "UI_B47MC_Policy2": "Configured policy: Force Always Ask (enforcement inactive)",
+  "UI_B47MC_Policy3": "Configured policy: Force Only Ask Once (enforcement inactive)",
+  "UI_B47MC_Policy4": "Configured policy: No Examination Requests (enforcement inactive)"
+}

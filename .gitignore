@@ -4,9 +4,11 @@
 /research/
 /dist/
 /history/
+/handoff/
 __pycache__/
 *.pyc
 .venv/
+/.venv-test/
 *.log
 *.pem
 *.key
