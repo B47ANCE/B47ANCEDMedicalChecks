@@ -1,0 +1,16 @@
+/.agents/
+/.codex/
+/native/
+/research/
+/dist/
+/history/
+__pycache__/
+*.pyc
+.venv/
+*.log
+*.pem
+*.key
+.env
+local.settings*.json
+/docs/source-evidence.json
+/docs/current-api-evidence.json
