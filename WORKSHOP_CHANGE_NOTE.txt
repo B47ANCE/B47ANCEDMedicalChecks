@@ -1,0 +1,7 @@
+[b]Version 0.2.0-dev.1[/b]
+
+[h2]Development[/h2]
+• Converted active runtime/build inputs to Lua-only.
+• Retained server-owned settings; examination consent enforcement is blocked.
+• Vanilla medical examinations and treatments remain unchanged.
+• Dedicated multiplayer NOT TESTED. Not a publishable gameplay release.

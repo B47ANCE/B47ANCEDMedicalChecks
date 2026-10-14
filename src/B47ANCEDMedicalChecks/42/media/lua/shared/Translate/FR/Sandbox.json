@@ -1,0 +1,23 @@
+{
+  "Sandbox_B47ANCEDMedicalChecks": "B47ANCE'd Medical Checks (consent enforcement blocked)",
+  "Sandbox_B47MC_Policy": "Configured consent policy",
+  "Sandbox_B47MC_Policy_tooltip": "Consent enforcement is BLOCKED in this Lua-only build. Vanilla medical requests and health data remain unchanged. Only Policy and DefaultPreference affect saved-settings presentation; retention, request timing and decision diagnostics are reserved and inactive.",
+  "Sandbox_B47MC_Policy_option1": "Player Choice",
+  "Sandbox_B47MC_Policy_option2": "Force Always Ask",
+  "Sandbox_B47MC_Policy_option3": "Force Only Ask Once",
+  "Sandbox_B47MC_Policy_option4": "No Examination Requests",
+  "Sandbox_B47MC_DefaultPreference": "Default saved preference",
+  "Sandbox_B47MC_DefaultPreference_tooltip": "Consent enforcement is BLOCKED in this Lua-only build. Vanilla medical requests and health data remain unchanged. Only Policy and DefaultPreference affect saved-settings presentation; retention, request timing and decision diagnostics are reserved and inactive.",
+  "Sandbox_B47MC_DefaultPreference_option1": "Always Ask",
+  "Sandbox_B47MC_DefaultPreference_option2": "Only Ask Once Per Player",
+  "Sandbox_B47MC_Retention": "Reserved approval retention",
+  "Sandbox_B47MC_Retention_tooltip": "Consent enforcement is BLOCKED in this Lua-only build. Vanilla medical requests and health data remain unchanged. Only Policy and DefaultPreference affect saved-settings presentation; retention, request timing and decision diagnostics are reserved and inactive.",
+  "Sandbox_B47MC_Retention_option1": "Persistent Until Revoked",
+  "Sandbox_B47MC_Retention_option2": "Until Patient Disconnects",
+  "Sandbox_B47MC_RequestCooldown": "Reserved denial cooldown (seconds)",
+  "Sandbox_B47MC_RequestCooldown_tooltip": "Consent enforcement is BLOCKED in this Lua-only build. Vanilla medical requests and health data remain unchanged. Only Policy and DefaultPreference affect saved-settings presentation; retention, request timing and decision diagnostics are reserved and inactive.",
+  "Sandbox_B47MC_RequestTimeout": "Reserved request timeout (seconds)",
+  "Sandbox_B47MC_RequestTimeout_tooltip": "Consent enforcement is BLOCKED in this Lua-only build. Vanilla medical requests and health data remain unchanged. Only Policy and DefaultPreference affect saved-settings presentation; retention, request timing and decision diagnostics are reserved and inactive.",
+  "Sandbox_B47MC_DebugLogging": "Reserved decision diagnostics",
+  "Sandbox_B47MC_DebugLogging_tooltip": "Consent enforcement is BLOCKED in this Lua-only build. Vanilla medical requests and health data remain unchanged. Only Policy and DefaultPreference affect saved-settings presentation; retention, request timing and decision diagnostics are reserved and inactive."
+}

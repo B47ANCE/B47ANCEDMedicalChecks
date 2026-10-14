@@ -1,0 +1,17 @@
+{
+  "game_build": "42.21",
+  "source_record": "Original vanilla JAR and installed Lua fingerprints recorded 2026-10-10; rechecked 2026-10-14, not runtime proof",
+  "sha256": {
+    "zombie/core/Core.class": "8f5c69740c8bf2181123a831ab68d1dfb047453687cca6dc62c77816d76ab360",
+    "zombie/network/GameServer.class": "308ee5247dc8bba4df2283d40d753c6839497767b9342a4adeea60e7c08cfacc",
+    "zombie/network/packets/RequestMedicalCheckPacket.class": "ac64b51749f48a8431b776e20ba1b9097c8630c51eb0ffac8030cef845425b2e",
+    "zombie/network/packets/BodyDamageUpdatePacket.class": "2e37ca1add6b8696464285bd498e7c97cd9712c9094c51d1d57daac688145c8c",
+    "zombie/Lua/LuaManager$GlobalObject.class": "80ecbd3bd702db2f992db6cba7cb09c32d775fa6f2a3297e0460874ff5ba20c7",
+    "zombie/Lua/LuaEventManager.class": "9706f17e9b5e095a0e24230dc944de5d552fa62c997214636c4deb4957cf354b",
+    "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua": "8138f094a76f73f275e8c65a8991fd501cdc3502547f4d08e52b122c1f9f2a10",
+    "media/lua/client/TimedActions/ISMedicalCheckAction.lua": "42bc6afe0a75ad466979b28c9239f63a36022991696c8e3d846f552b8bacb7cf",
+    "media/lua/client/ISUI/ISWorldObjectContextMenu.lua": "980e67622e34422983cd33d64ea4f6dbff5cdf151a6dd9aef6acb669261fb47f",
+    "media/lua/shared/Translate/EN/UI.json": "1c28635da4551016132710c9b907ae330db6ad6e8aa69c79e9dda78f59e8a838",
+    "media/lua/shared/Translate/EN/Sandbox.json": "b22e2d5a3237d3c81741c5c3dba48a318c9149221b01892cfbfec1edbe01668c"
+  }
+}

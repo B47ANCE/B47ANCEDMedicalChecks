@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "canonical": "VERSION",
+  "mirrors": [
+    {
+      "path": "README.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "src/B47ANCEDMedicalChecks/42/mod.info",
+      "pattern": "^modversion=(?P<version>\\S+)$"
+    },
+    {
+      "path": "src/B47ANCEDMedicalChecks/42/media/lua/shared/B47ANCEDMedicalChecks/Config.lua",
+      "pattern": "version\\s*=\\s*\"(?P<version>[^\"]+)\""
+    },
+    {
+      "path": "WORKSHOP_CHANGE_NOTE.txt",
+      "pattern": "^\\[b\\]Version (?P<version>[^\\[]+)\\[/b\\]$"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/INSTALLATION.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/VERSIONING.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/TESTING.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_REPORT.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
+    }
+  ],
+  "changelog": {
+    "path": "CHANGELOG.md",
+    "pattern": "^## \\[(?P<version>[^\\]]+)\\]$"
+  },
+  "packaging": {
+    "artifacts": [
+      {
+        "glob": "dist/lua-only-current/*.zip",
+        "pattern": "B47ANCEDMedicalChecks-development-(?P<version>.+)\\.zip",
+        "zip_members": [
+          {
+            "member": "B47ANCEDMedicalChecks/VERSION",
+            "pattern": "^(?P<version>\\S+)$"
+          },
+          {
+            "member": "B47ANCEDMedicalChecks/Contents/mods/B47ANCEDMedicalChecks/42/mod.info",
+            "pattern": "^modversion=(?P<version>\\S+)$"
+          }
+        ]
+      }
+    ]
+  },
+  "other_versions": [
+    {
+      "category": "pz",
+      "reference": "mod.info versionMin/versionMax and SOURCE_AUDIT",
+      "reason": "Supported upstream build, independent of project SemVer"
+    },
+    {
+      "category": "framework",
+      "reference": "docs/VERSION_POLICY.md and scripts/check_versions.py",
+      "reason": "Framework provenance, not a mod dependency"
+    },
+    {
+      "category": "inventory-schema",
+      "reference": "version-inventory.json schema",
+      "reason": "Version-check inventory format"
+    },
+    {
+      "category": "compatibility",
+      "reference": "Config.lua protocol and schema",
+      "reason": "Lua-only metadata schema/protocol, independent of project version"
+    }
+  ],
+  "historical": [
+    {
+      "reference": "handoff/",
+      "reason": "Immutable extracted user design specification"
+    },
+    {
+      "reference": "research/",
+      "reason": "Dated source evidence; not current project metadata"
+    },
+    {
+      "reference": "history/, native/, research/, dist/current/",
+      "reason": "Immutable/local Java-era evidence and artifacts; not active dependencies or current version mirrors"
+    }
+  ]
+}
