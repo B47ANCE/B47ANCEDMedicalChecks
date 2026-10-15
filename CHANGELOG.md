@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.0-dev.3]
+- Add user-supplied fallback icon/thumbnail; preserve manually supplied artwork. Asset-only iteration; gameplay unchanged.
+- Offline branding/version checks only; earlier validation remains historical at 0.2.0-dev.2. No new SP/dedicated MP evidence.
+
 ## [0.2.0-dev.2]
 
 Research amendment (2026-10-14, no version increment): expanded original 42.21 medical authority audit, separate disclosure/treatment threat matrix, and read-only Python bytecode evidence tool. Server Lua complete callbacks are confirmed execution points; complete consent enforcement remains blocked, dedicated multiplayer NOT TESTED. Runtime source and persistence semantics unchanged.

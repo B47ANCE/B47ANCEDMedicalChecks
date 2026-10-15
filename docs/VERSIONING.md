@@ -1,6 +1,6 @@
 # Version and artifact inventory
 
-Project Version: 0.2.0-dev.2
+Project Version: 0.2.0-dev.3
 
 Root VERSION remains authoritative. PR review advances 0.2.0-dev.1 to
 0.2.0-dev.2 for PATCH-compatible fixes within the existing development scope;

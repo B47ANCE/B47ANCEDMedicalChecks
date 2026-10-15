@@ -1,6 +1,6 @@
 # Lua-only roadmap
 
-Project Version: 0.2.0-dev.2
+Project Version: 0.2.0-dev.3
 
 - G0 requirements and G1 source audit: documented for the bounded Lua-only scope.
 - G2 server consent authority: BLOCKED; no verified exposed pre-subscription veto.

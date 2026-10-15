@@ -1,6 +1,6 @@
 # Lua-only architecture
 
-Project Version: 0.2.0-dev.2
+Project Version: 0.2.0-dev.3
 
 Scope is server-owned settings metadata, not examination authorization. The client
 submits protocol-2 Snapshot, Preference or Revoke intent. Vanilla OnClientCommand
