@@ -1,4 +1,4 @@
--- Settings authority only. No medical requests, tickets, leases or approval creation.
+-- Settings authority. Cooperative workflow state is delegated; native access stays unprotected.
 local C=require "B47ANCEDMedicalChecks/Config"
 local Engine={};Engine.__index=Engine
 function Engine.new(adapter,store)
@@ -15,15 +15,18 @@ end
 function Engine:snapshot(player,key,reason)
     local o=C.options();local r=self:record(key);local grants={}
     for examiner,label in pairs(r.grants) do grants[#grants+1]={key=examiner,label=label} end
+    if self.coop then for _,grant in ipairs(self.coop:list(player)) do grants[#grants+1]=grant end end
     table.sort(grants,function(a,b) return a.key<b.key end)
     self:reply(player,"Snapshot",{settingsReady=self.store~=nil,enforcement=false,reason=reason or "Blocked",
-        preference=r.preference,effective=C.effective(r.preference,o.policy),policy=o.policy,retention=o.retention,grants=grants})
+        preference=r.preference,effective=C.effective(r.preference,o.policy),policy=o.policy,retention=o.retention,
+        cooperative=o.cooperative,approvalStorageReady=self.coop and self.coop.store~=nil or false,grants=grants})
 end
 function Engine:command(player,command,args)
     local key=self.a.identity(player)
     if not C.validString(key) then return end
     if args==nil then args={} end
     if type(args)~="table" then return end
+    if self.coop and self.coop:command(player,command,args) then return end
     local now=self.a.now();local last=self.last[player]
     if last and now>=last and now-last<0.25 then
         -- Never silently leave the editor showing an uncommitted selection.

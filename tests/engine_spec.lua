@@ -29,7 +29,7 @@ local function fixture()
  f.a={identity=function(p) return p and p.name end,now=function() return f.time end,
   send=function(p,command,args) f.messages[#f.messages+1]={player=p,command=command,args=args} end}
  f.engine=Engine.new(f.a,f.store)
- function f:command(p,c,args) self.time=self.time+1;args=args or {};args.protocol=2;self.engine:command(p,c,args) end
+ function f:command(p,c,args) self.time=self.time+1;args=args or {};args.protocol=3;self.engine:command(p,c,args) end
  function f:last() return self.messages[#self.messages].args end
  function f:grantFixture()
   -- Trusted disposable metadata fixture, never a production grant API.
@@ -116,7 +116,7 @@ function specs.profiles_isolated_and_encoded()
  for name in pairs(f.files) do assert(not name:find("/",1,true) and not name:find("..",1,true)) end
 end
 function specs.unicode_accounts_roundtrip()
- local f=fixture();f.p.name="patient_病人";f:command(f.p,"Preference",{preference=2})
+ local f=fixture();f.p.name="patient_ç—…äºº";f:command(f.p,"Preference",{preference=2})
  assert(Store.open(f.io,"test-server").db.accounts[f.p.name].preference==2)
 end
 function specs.invalid_and_duplicate_records_rejected()
@@ -141,11 +141,11 @@ function specs.malformed_inputs_ignored_or_rejected()
 end
 function specs.rate_limited_and_no_per_tick_scan()
  local f=fixture();f:command(f.p,"Snapshot");local count=#f.messages
- f.engine:command(f.p,"Snapshot",{protocol=2});assert(#f.messages==count)
+ f.engine:command(f.p,"Snapshot",{protocol=3});assert(#f.messages==count)
 end
 function specs.rapid_mutation_has_explicit_rejection()
  local f=fixture();f:command(f.p,"Snapshot");local count=#f.messages
- f.engine:command(f.p,"Preference",{protocol=2,preference=2})
+ f.engine:command(f.p,"Preference",{protocol=3,preference=2})
  assert(#f.messages==count+1 and f:last().reason=="RateLimited")
  assert(not f.store.db.accounts.patient and f:last().preference==1)
  f:command(f.p,"Preference",{preference=2});assert(f:last().reason=="Saved")

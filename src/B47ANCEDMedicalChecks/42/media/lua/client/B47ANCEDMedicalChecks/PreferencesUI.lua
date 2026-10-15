@@ -47,12 +47,17 @@ function Window:apply(snapshot)
     if not snapshot then self.status:setName(text("Loading")); return end
     local reason=snapshot.reason
     if reason~="Saved" and reason~="Invalid" and reason~="ProtocolMismatch" and reason~="StorageFailed" and reason~="RateLimited" then reason="Blocked" end
-    self.status:setName(text(snapshot.settingsReady and reason or "StorageFailed"))
+    local status=reason
+    if snapshot.cooperative==false then status="WorkflowDisabled"
+    elseif snapshot.approvalStorageReady==false then status="ApprovalStorageFailed" end
+    self.status:setName(text(snapshot.settingsReady and status or "StorageFailed"))
     self.policy:setName(text("Policy"..snapshot.policy))
     self.preference.selected=snapshot.policy==2 and 1 or (snapshot.policy==3 and 2 or snapshot.preference)
     self.preference:setEnabled(snapshot.settingsReady==true and snapshot.policy==1)
     self.revoke:setEnable(snapshot.settingsReady==true and #(snapshot.grants or {})>0)
-    for _,grant in ipairs(snapshot.grants or {}) do self.list:addItem(grant.label,grant) end
+    for _,grant in ipairs(snapshot.grants or {}) do
+        self.list:addItem(grant.cooperative and grant.label or getText("UI_B47MC_InactiveRecord",grant.label),grant)
+    end
     if #self.list.items==0 then self.list:addItem(text("NoApprovals"),{empty=true}) end
 end
 function Window:onPreference()
@@ -62,12 +67,13 @@ function Window:onPreference()
 end
 function Window:onRevoke()
     local row=self.list.items[self.list.selected]
-    if row and not row.item.empty then Client.send(self.player,"Revoke",{key=row.item.key}) end
+    if row and not row.item.empty then Client.send(self.player,row.item.cooperative and "RevokeApproval" or "Revoke",{key=row.item.key}) end
 end
 function Window:onRefresh() Client.send(self.player,"Snapshot") end
 function Window:new(player)
-    local width=math.max(620,getTextManager():MeasureStringX(UIFont.Small,text("Draft"))+32)
-    local height=430
+    local n=player:getPlayerNum()
+    local width=math.min(math.max(620,getTextManager():MeasureStringX(UIFont.Small,text("Draft"))+32),math.max(280,getPlayerScreenWidth(n)-40))
+    local height=math.min(math.max(430,(getTextManager():getFontHeight(UIFont.Small)+8)*4+200),math.max(320,getPlayerScreenHeight(n)-40))
     local n=ISCollapsableWindow.new(self,getPlayerScreenLeft(player:getPlayerNum())+60,getPlayerScreenTop(player:getPlayerNum())+60,width,height)
     n.player=player; n.title=text("Settings"); n.resizable=false
     return n

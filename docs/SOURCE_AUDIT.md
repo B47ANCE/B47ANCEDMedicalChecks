@@ -1,5 +1,9 @@
 # Lua authority audit - 2026-10-14
 
+Scope note: the findings below are historical 0.2.0-dev.2 source research.
+The user later explicitly selected the cooperative UI-only workflow in 0.3.0-dev.1;
+see ARCHITECTURE.md. Native authorization conclusions remain unchanged.
+
 [VERIFIED source] scripts/audit_source.py rechecks the installed original vanilla
 JAR/Lua fingerprints against docs/api-baseline.json. Core's audited initializer is
 GameVersion(42,21,""); this is exact 42.21 source evidence. The hash manifest separates

@@ -76,9 +76,10 @@ local function read(io,name,create)
     assert(ok and closed,"read failed")
     return text
 end
-function Store.open(io,profile)
+function Store.open(io,profile,domain)
     assert(C.validString(profile),"invalid server profile")
-    local self=setmetatable({io=io,base="B47MC_"..hex(profile),generation=0},Store)
+    assert(domain==nil or domain=="cooperative","invalid storage domain")
+    local self=setmetatable({io=io,base=(domain=="cooperative" and "B47MCCoop_" or "B47MC_")..hex(profile),generation=0},Store)
     local valid,missing,invalid={},0,0
     for _,slot in ipairs({"a","b"}) do
         local name=self.base.."_"..slot..".txt"

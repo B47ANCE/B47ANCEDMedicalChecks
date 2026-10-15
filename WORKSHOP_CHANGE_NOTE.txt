@@ -1,9 +1,7 @@
-[b]Version 0.2.0-dev.3[/b]
+[b]Version 0.3.0-dev.1[/b]
 
-[h2]Development[/h2]
-• PR review fixes: explicit retry feedback for rapid settings changes and canonical numeric preference storage.
-• Failed write verification has an uncertain persistence outcome; durable rollback is not claimed.
-• Converted active runtime/build inputs to Lua-only.
-• Retained server-owned settings; examination consent enforcement is blocked.
-• Vanilla medical examinations and treatments remain unchanged.
-• Dedicated multiplayer NOT TESTED. Not a publishable gameplay release.
+[h2]Cooperative development build[/h2]
+Approval prompts, per-examiner remembered choices and revocation for ordinary clients.
+Policies, timing and retention apply to this cooperative workflow only.
+Modified clients/native packets can bypass it; native server consent enforcement remains BLOCKED.
+Treatment validation remains PROVISIONAL; dedicated multiplayer NOT TESTED.

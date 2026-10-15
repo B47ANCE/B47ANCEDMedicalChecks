@@ -1,0 +1,23 @@
+{
+  "status": "VERIFIED SOURCE ONLY; actual MP NOT TESTED",
+  "game_build": "42.21",
+  "sha256": {
+    "media/lua/client/ISUI/ISModalRichText.lua": "ef25cda5a02a298019f8b0a13ed13c0d989e13b4e5c12469a441da0e88c80e4c",
+    "media/lua/client/XpSystem/ISUI/ISHealthPanel.lua": "8138f094a76f73f275e8c65a8991fd501cdc3502547f4d08e52b122c1f9f2a10",
+    "media/lua/client/ISUI/ISWorldObjectContextMenu.lua": "980e67622e34422983cd33d64ea4f6dbff5cdf151a6dd9aef6acb669261fb47f",
+    "media/lua/client/TimedActions/ISMedicalCheckAction.lua": "42bc6afe0a75ad466979b28c9239f63a36022991696c8e3d846f552b8bacb7cf",
+    "media/lua/server/ClientCommands.lua": "c9de3d3024a46e2b3ab1670c11f98885647bfb6d73114ff7896bf41e263923fd"
+  },
+  "references": {
+    "ISModalRichText": "new:162; destroy:70; onClick:87; caller supplies player index for joypad focus",
+    "ISHealthPanel": "AcceptedMedicalCheck:1958-1961; canPerformMedicalCheck:1972; isDead use:853",
+    "ISWorldObjectContextMenu": "onMedicalCheck:883-887",
+    "getPlayerByOnlineID": "LuaManager$GlobalObject (original JAR baseline fingerprint); historical CFR:1420-1430 checks GameServer.server before IDToPlayerMap lookup",
+    "OnTick": "LuaEventManager original baseline; historical CFR:650 event registration; bounded mod-state work only"
+  },
+  "limitations": [
+    "Native medical authorization still BLOCKED",
+    "Treatment candidate remains PROVISIONAL, not implemented",
+    "Known differing loose engine classes: effective runtime UNKNOWN"
+  ]
+}
