@@ -1,6 +1,6 @@
 # B47ANCE'd Medical Checks
 
-Project Version: 0.3.0-dev.2
+Project Version: 0.3.0-dev.3
 
 Lua-only cooperative examination convenience for Project Zomboid 42.21.
 Canonical Mod ID: `B47ANCEDMedicalChecks`.

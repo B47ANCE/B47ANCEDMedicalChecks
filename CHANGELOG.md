@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0-dev.3]
+
+Replace the cooperative fresh-store next() dependency with a local pairs-based emptiness check. Preserve slot seeding, recovered/incomplete-store rejection and fail-closed writes. Add a missing-next host regression; PZ SP/dedicated runtime NOT TESTED, G7/stable G8 BLOCKED.
+
 ## [0.3.0-dev.2]
 
 PR #4 review: reject incomplete cooperative approval storage after a missing slot, preventing older revoked grants from being reused. Recheck the patient object and vanilla eligibility before disabled-mode fallback. Added regression fixtures; cooperative-only scope and untested multiplayer remain explicit.

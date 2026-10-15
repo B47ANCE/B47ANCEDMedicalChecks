@@ -1,6 +1,6 @@
 # Version and artifact inventory
 
-Project Version: 0.3.0-dev.2
+Project Version: 0.3.0-dev.3
 
 Root VERSION is canonical. Baseline main 85e29ca is 0.2.0-dev.3. This additive
 cooperative feature is a 0.x MINOR development iteration to 0.3.0-dev.2. PR #4 review advances 0.3.0-dev.1 to 0.3.0-dev.2 for PATCH-compatible

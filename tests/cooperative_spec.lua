@@ -168,4 +168,28 @@ function t.missing_latest_revocation_slot_never_reactivates_older_grant()
  local before=f:count("CoopOffer");f:request()
  assert(f.coop.store==nil and f:count("CoopOffer")==before)
 end
+function t.store_initialization_without_global_next()
+ local originalNext=next
+ local ok,err=pcall(function()
+  _G.next=nil -- Inspected Kahlua bootstrap does not register this global.
+  local f=fixture()
+  assert(f.coop.store and not Store.open(f.io,"test","cooperative").recovered)
+  local function store(accounts,options)
+   local s={generation=1,db={accounts=accounts},calls=0}
+   for key,value in pairs(options or {}) do s[key]=value end
+   function s:save(db) self.calls=self.calls+1;assert(db==self.db);return not self.fail end
+   return s
+  end
+  local populated=store({patient={grants={examiner="examiner"}}})
+  assert(Coop.new(f.engine,populated).store==populated and populated.calls==0)
+  local failed=store({},{fail=true})
+  assert(Coop.new(f.engine,failed).store==nil and failed.calls==1)
+  local recovered=store({},{recovered=true})
+  assert(Coop.new(f.engine,recovered).store==nil and recovered.calls==0)
+  local incomplete=store({},{missingSlots=1,fresh=false})
+  assert(Coop.new(f.engine,incomplete).store==nil and incomplete.calls==0)
+ end)
+ _G.next=originalNext
+ assert(ok,err)
+end
 return t
