@@ -1,6 +1,6 @@
 # Cooperative installation and migration
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.3.0-dev.2
 
 For a future authorized isolated test, the installable source is
 src/B47ANCEDMedicalChecks with common/ and 42/. Mod ID B47ANCEDMedicalChecks;
@@ -19,7 +19,7 @@ the same server Lua cache, per server profile, and start with no approvals. Back
 both pairs together with server configuration. There is no properties import or
 upgrade of inactive grants. An older-version downgrade will ignore cooperative files;
 keep backups and restore matching source/configuration rather than delete newer data.
-Unreadable/corrupt cooperative storage or prior-slot recovery disables this workflow
+Unreadable/corrupt/incomplete cooperative storage or prior-slot recovery disables this workflow
 for review; preserve files. Never copy real player saves into destructive fixtures.
 Read-back failures are uncertain writes, not promised durable rollback.
 

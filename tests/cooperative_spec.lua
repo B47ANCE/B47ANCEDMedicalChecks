@@ -160,4 +160,12 @@ function t.revoking_own_record_does_not_reset_examiner_request_cooldown()
  f:command(f.e,"RevokeApproval",{key="other"});f:request()
  assert(f:count("CoopPrompt")==2)
 end
+function t.missing_latest_revocation_slot_never_reactivates_older_grant()
+ local f=fixture();f:onlyOnce();f:request();f:confirm(f:yes());f:command(f.p,"RevokeApproval",{key="examiner"})
+ local name=f.approvals.base.."_"..f.approvals.slot..".txt";f.files[name]=nil
+ local recovered=Store.open(f.io,"test","cooperative")
+ f.coop=Coop.new(f.engine,recovered);f.engine.coop=f.coop
+ local before=f:count("CoopOffer");f:request()
+ assert(f.coop.store==nil and f:count("CoopOffer")==before)
+end
 return t

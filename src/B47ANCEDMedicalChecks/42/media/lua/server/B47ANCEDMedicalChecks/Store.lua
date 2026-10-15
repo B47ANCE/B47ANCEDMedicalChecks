@@ -97,6 +97,8 @@ function Store.open(io,profile,domain)
         elseif missing==0 then invalid=invalid+1 end
     end
     table.sort(valid,function(a,b) return a.generation>b.generation end)
+    self.missingSlots=missing
+    self.fresh=false
     if #valid>0 then
         if #valid==2 and valid[1].generation==valid[2].generation and valid[1].text~=valid[2].text then error("conflicting generations") end
         self.db,self.generation,self.slot=valid[1].db,valid[1].generation,valid[1].slot
@@ -104,6 +106,7 @@ function Store.open(io,profile,domain)
     else
         assert(missing==2 and invalid==0,"no valid consent metadata; preserve files for recovery")
         self.db={schema=2,accounts={}}
+        self.fresh=true
         assert(self:save(self.db),"initial storage write failed")
     end
     return self

@@ -1,6 +1,6 @@
 # Cooperative workflow architecture
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.3.0-dev.2
 
 This implements the user's explicitly selected cooperative convenience. It does
 not implement secure medical consent, a packet firewall, treatment validation or
@@ -44,7 +44,7 @@ Storage: existing B47MC_<hex profile>_a/b.txt retains schema 2 preferences and l
 inactive grants. New B47MCCoop_<hex profile>_a/b.txt uses the same validated two-slot
 codec solely for cooperative records. There is no legacy/property import or grant
 activation. Fresh cooperative profiles seed both slots. Recovery of an older approval
-slot disables cooperative requests for operator review instead of reusing potentially
+slot, including a missing slot on an existing profile, disables cooperative requests for operator review instead of reusing potentially
 revoked approvals. Files are preserved. Legacy settings prior-slot recovery is unchanged.
 A complete write followed by failed read-back is still an uncertain result; restart may
 load that complete write. No durable rollback, fsync or sudden-power-loss claim is made.

@@ -1,6 +1,6 @@
 # Cooperative dedicated-server test handoff
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.3.0-dev.2
 
 Offline: python scripts/build.py with requirements-dev.txt; optional research-tool
 fixtures use python -m unittest discover -s tests -p test_audit_medical_source.py with
@@ -29,7 +29,7 @@ protocol 3. Preserve a vanilla comparison run. Do not enable historical Java age
    and session retention clearing on patient OR examiner disconnect and restart.
    Changing retention back to Persistent exposes the old stored records until revoked.
 7. Back up both slot pairs; use disposable fixtures for unwritable storage, torn writes,
-   corrupted newest/older/both slots, schema rejection and profile isolation. Prior-slot
+   missing newest/older slots, corrupted newest/older/both slots, schema rejection and profile isolation. Prior-slot
    recovery of approval data must disable requests for review, never reuse a possibly
    revoked older grant. New healthy profiles must restart normally. Confirm uncertain
    read-back failure handling; do not claim durable rollback.

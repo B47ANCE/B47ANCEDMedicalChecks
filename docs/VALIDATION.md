@@ -1,9 +1,9 @@
 # Cooperative validation â€” 2026-10-14
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.3.0-dev.2
 
 Baseline: main 85e29ca811ae70ed08bb75613cf4892837a3c867 (0.2.0-dev.3).
-Target 0.3.0-dev.1: additive MINOR cooperative feature; protocol 3, storage schema 2.
+Target 0.3.0-dev.2: MINOR cooperative feature plus PATCH-compatible PR review fixes; protocol 3, storage schema 2.
 Prior reports are preserved in Git at the baseline and locally in
 history/pre-cooperative-0.2.0-dev.3 with SHA-256. Prior medical research remains
 pinned to its actual source revision, not upgraded to current runtime evidence.
@@ -26,7 +26,7 @@ $env:PYTHONPATH = (Resolve-Path ../B47ANCEDMedicalChecks/.venv-test).Path
  git diff --cached --check
 ```
 
-[TESTED offline] Main suite: 81 discovered, 80 PASS, one SKIP because private
+[TESTED offline] Main suite: 83 discovered, 82 PASS, one SKIP because private
 historical fixture files are not distributed into the clean worktree. Two optional
 research-tool tests PASS separately. Lua-only/case, syntax, 29-locale fallback/key
 parity, version consistency and package-input planning PASS. No ZIP generated.
@@ -59,3 +59,17 @@ No automatic game/server launch, deployment, package, Workshop upload, stable ta
 or merge. Current source belongs on a public feature branch/draft PR for review;
 final commit/push receipt is reported separately. Public-file scans exclude private
 cache data/logs, historical full source listings, generated dependencies and artifacts.
+
+PR #4 review: missing-slot recovery could reuse an older cooperative grant after a
+newer revocation slot disappeared, and disabled-mode fallback could call vanilla
+with a stale patient object. Both new fixtures failed before the fixes and pass
+afterward. Store exposes fresh/missing-slot diagnostics without changing schema,
+legacy settings recovery, or the two-slot codec. Cooperative existing profiles
+with a missing slot are disabled for review; fresh empty profiles still seed both
+slots. Fallback now rechecks object identity and vanilla eligibility.
+
+GitHub has no configured status checks, branch protection or rulesets at review
+time; no required checks are bypassed. Merge authorization is for PR #4 integration
+only, not release readiness. Cooperative-only limitations, provisional treatment
+finding and NOT TESTED multiplayer remain unchanged. Prior 80-pass results belong
+to 0.3.0-dev.1; the 82-pass result above is the post-review run.

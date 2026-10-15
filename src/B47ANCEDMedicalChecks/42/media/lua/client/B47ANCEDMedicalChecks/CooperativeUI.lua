@@ -72,7 +72,12 @@ function UI.receive(command,args)
         if command=="CoopResult" then
             UI.awaiting[args.player]=nil
             close(r.window)
-            if args.reason=="Disabled" and UI.original then UI.original(r.worldobjects,player,r.patient) else notice(player,args.reason) end
+            if args.reason=="Disabled" and UI.original then
+                local patient=getPlayerByOnlineID(r.target)
+                if patient==r.patient and ISHealthPanel.canPerformMedicalCheck(patient,player) then
+                    UI.original(r.worldobjects,player,patient)
+                else notice(player,"Unavailable") end
+            else notice(player,args.reason) end
         elseif integer(args.id) and args.target==r.target then
             if command=="CoopOffer" and not r.id then
                 r.id=args.id;Client.send(player,"CoopConfirm",{id=args.id})

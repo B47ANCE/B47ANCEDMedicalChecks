@@ -1,6 +1,6 @@
 # Cooperative implementation report
 
-Project Version: 0.3.0-dev.1
+Project Version: 0.3.0-dev.2
 
 Implemented the user-authorized cooperative convenience: ordinary-client approval
 prompts, Always Ask and per-examiner Only Ask Once, four cooperative server policies,
@@ -22,6 +22,8 @@ for uncertain write/recovery behavior and the exact cooperative trust boundary.
 
 Offline checks and exact commands are in VALIDATION.md. Source identity is verified
 against original 42.21; differing loose classes mean effective runtime is UNKNOWN.
-No game/server was started, no deployment/publication/package or merge occurred for
-this implementation. A feature-branch commit/push and draft PR are integration evidence
+No game/server was started, no deployment/publication/package occurred for
+this implementation. PR #4 merge is separately authorized after review and checks. A feature-branch commit/push and draft PR are integration evidence
 only. Historical Java and prior reports remain preserved and excluded from runtime.
+
+PR #4 fixes: incomplete approval slot pairs disable cooperative access for review; disabled-mode fallback rechecks the current patient object and vanilla eligibility. Both regressions failed before correction and pass offline afterward. These fixes do not add native enforcement.

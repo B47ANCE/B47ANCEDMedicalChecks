@@ -183,4 +183,11 @@ function specs.closed_prompt_cannot_reopen_from_reordered_message()
  s.id=6;f:server("CoopPrompt",s);local m=f.modals[1];m.onclick(nil,{internal="NO"})
  f:server("CoopPrompt",s);assert(#f.modals==1)
 end
+function specs.disabled_fallback_rejects_replaced_patient_object()
+ local f=setup();ISWorldObjectContextMenu.onMedicalCheck({},f.player,f.patient)
+ local nonce=f.sent[#f.sent].args.nonce
+ f.patient={id=2,getOnlineID=function() return 2 end}
+ f:server("CoopResult",{protocol=3,nonce=nonce,reason="Disabled"})
+ assert(not f.originalCalled and f.vanillaActions==0)
+end
 return specs
