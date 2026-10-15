@@ -1,43 +1,29 @@
-# Lua-only conversion report - 2026-10-14
+# Cooperative implementation report
 
-Project Version: 0.2.0-dev.3
+Project Version: 0.3.0-dev.2
 
-Completed the safely supported conversion scope. Active runtime is Lua-only; active
-build/test tooling is Python with Lupa. No custom Java was implemented, compiled,
-loaded or packaged during this conversion. Native research/artifacts remain local
-historical evidence with protected hashes. Authoritative source path and Mod ID stay unchanged.
+Implemented the user-authorized cooperative convenience: ordinary-client approval
+prompts, Always Ask and per-examiner Only Ask Once, four cooperative server policies,
+server-owned directional approvals, persistence, individual revocation, request
+cooldown/timeout, protocol 3, live-participant validation and one-time confirmation.
+Settings and prompts explicitly disclose that modified clients can bypass this.
 
-Implemented: authenticated server-owned saved preferences; four-policy diagnostics;
-private schema-2, two-slot metadata persistence with read-back verification and prior-slot recovery; individual
-inactive-record revocation; owner-only snapshots; protocol/malformed-input protection;
-deduplicated vanilla-style settings/status UI; English fallback JSON for all 29
-observed vanilla locales; Lua-only source/package preflight and focused regressions.
+Native medical privacy enforcement remains BLOCKED. Treatment server complete()
+remains PROVISIONAL as a possible separate validation point; no treatment wrapper
+was implemented. Native requests, health data, packets and open panels are not secured.
+All actual SP/dedicated behavior is NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.
 
-IMPORTANT: this is not a functioning examination-consent mod. Saved settings and
-records are inactive. There is no production approval creation, auto-approval, prompt
-bypass, medical callback/event wrapper, timed-action replacement, health-data session
-or post-subscription stop loop. Vanilla examinations and treatment remain active.
+New source: shared/Cooperative.lua, client/CooperativeUI.lua. Updated settings engine,
+server adapter, context integration, settings UI, sandbox/localization and regressions.
+Original treatment actions, native events, First Aid, inactive metadata schema and
+artwork bytes are preserved. Old records do not become approvals. New approval files
+are a separate schema-2 domain; session retention is memory-only. See ARCHITECTURE.md
+for uncertain write/recovery behavior and the exact cooperative trust boundary.
 
-SOURCE BLOCKER: the audited RequestMedicalCheck and BodyDamageUpdate server handlers
-have no verified Lua authorization veto. A client wrapper or reactive stop would
-not establish server authority. Required operational consent, policy enforcement,
-medical session revocation, timing/retention and raw-packet protection are blocked.
-The implemented Lua-only alternative is unchanged vanilla plus honest metadata/status.
-See SOURCE_AUDIT.md for exact methods and evidence distinctions.
+Offline checks and exact commands are in VALIDATION.md. Source identity is verified
+against original 42.21; differing loose classes mean effective runtime is UNKNOWN.
+No game/server was started, no deployment/publication/package occurred for
+this implementation. PR #4 merge is separately authorized after review and checks. A feature-branch commit/push and draft PR are integration evidence
+only. Historical Java and prior reports remain preserved and excluded from runtime.
 
-Migration: the old properties schema is preserved but not imported. New Lua metadata
-is per server profile in the server Lua cache, not world/character data. Actual engine
-restart, durability, cache permissions and account identity behavior remain runtime gates.
-
-GitHub was created PUBLIC at the user's approved B47ANCE/B47ANCEDMedicalChecks identity.
-PR #1 review fixes are recorded in CHANGELOG.md. Merge is authorized after review
-and passing applicable checks. Final merge/commit SHAs are verified through GitHub
-and reported separately; merge grants no stable-release, deployment or runtime claim.
-No stable tag, Workshop upload, deployment or game/server launch is included.
-
-Current offline validation passed 49 tests, Lua-only preflight, version consistency and package-input planning; exact commands/results are in VALIDATION.md. Historical Java-era results were
-preserved, not promoted to current evidence. G6/SP: NOT TESTED. G7 dedicated:
-BLOCKED / NOT TESTED. Stable G8: BLOCKED. No new distribution ZIP was requested for
-this conversion, so the package plan was checked without replacing historical ZIPs.
-
-Persistence limitation: failed read-back after a complete write is an uncertain outcome. The old in-memory value remains, but restart can load the newer disk value; durable rollback is not claimed. See ARCHITECTURE.md and the disposable regression fixture.
+PR #4 fixes: incomplete approval slot pairs disable cooperative access for review; disabled-mode fallback rechecks the current patient object and vanilla eligibility. Both regressions failed before correction and pass offline afterward. These fixes do not add native enforcement.

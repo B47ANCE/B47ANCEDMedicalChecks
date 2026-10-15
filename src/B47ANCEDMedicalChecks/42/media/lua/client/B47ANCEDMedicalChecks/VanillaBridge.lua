@@ -1,9 +1,12 @@
--- Deliberately does not hook/replace vanilla medical callbacks, events or timed actions.
+-- Replaces the ordinary context entry callback only; never a native authorization hook.
 local C=require "B47ANCEDMedicalChecks/Config"
 if B47MC.UIEventsRegistered then return end
 local Client=require "B47ANCEDMedicalChecks/PreferencesUI"
 require "ISUI/ISWorldObjectContextMenu"
+local CooperativeUI=require "B47ANCEDMedicalChecks/CooperativeUI"
+CooperativeUI.install()
 local function onServerCommand(module,command,args)
+    if module==C.module and CooperativeUI.receive(command,args) then return end
     if module~=C.module or command~="Snapshot" or type(args)~="table" or args.protocol~=C.protocol then return end
     if type(args.serial)~="number" or args.serial<1 or args.enforcement~=false or
             type(args.policy)~="number" or args.policy~=math.floor(args.policy) or args.policy<1 or args.policy>4 or
@@ -27,10 +30,16 @@ local function menu(index,context,worldobjects,test)
     option.b47mcSettings=true
 end
 local function disconnect()
+    CooperativeUI.disconnect()
     for _,window in pairs(Client.windows) do window:removeFromUIManager() end
     Client.windows={};Client.snapshots={}
 end
 Events.OnServerCommand.Add(onServerCommand)
 Events.OnFillWorldObjectContextMenu.Add(menu)
 Events.OnDisconnect.Add(disconnect)
+local nextTick=0
+Events.OnTick.Add(function()
+    local now=getTimestampMs()/1000
+    if now>=nextTick or now<nextTick-2 then nextTick=now+1;CooperativeUI.tick() end
+end)
 B47MC.UIEventsRegistered=true

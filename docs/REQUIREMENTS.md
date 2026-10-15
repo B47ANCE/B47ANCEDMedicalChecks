@@ -1,20 +1,20 @@
 # Requirements disposition
 
-The user requested a Lua-only conversion, preservation of historical Java research,
-all safely supported work, and explicit authority blockers. This authorizes source
-changes, not insecure scope substitution, deployment, publication or game launch.
+The user explicitly selected a cooperative convenience for ordinary clients after
+the source audit established the native authority blocker. This scope change is
+not silent substitution of client UI for server security.
 
-Implemented: server-owned saved preference metadata, all four configured-policy
-diagnostics, individual inactive-record revocation, private persistent metadata,
-protocol validation, owner-only synchronization, status/settings UI, localization,
-Lua-only build/package preflight, regression tests and historical retention.
+Implemented: server-managed prompts, directional remembered examiner approvals,
+Always Ask/Only Ask Once, four policies within this workflow, individual revocation,
+request lifetime/cooldown, persistence, session retention, explicit UI limitations,
+versioned intent/confirmation, and separate storage from legacy inactive records.
 
-Blocked: operational Always Ask/Only Ask Once and all policy enforcement, grant
-creation/reuse, medical-data session revocation, actual-exam denial cooldown/timeout,
-session retention and security against raw subscription packets. None is activated.
+Blocked: protection of native health subscriptions/disclosures and modified clients,
+revocation of open native sessions, and authoritative treatment-consent coverage.
+No custom Java or treatment wrapper, legacy import, deployment, launch or publication.
 
-Sandbox candidate assessment: keep the six established identifiers and defaults.
-Policy/default preference affect settings only; retention/cooldown/timeout/debug
-are labelled reserved/inactive. No new micro-settings or hardcoded gameplay rules
-are introduced. Technical storage limits remain internal. Vanilla treatments,
-First Aid gates and interaction restrictions are not changed.
+Sandbox assessment: add one meaningful enable/disable boolean default true; retain
+six prior identifiers and bounds. Timing/retention/diagnostics now affect cooperative
+state. All shared decisions/records belong to the server. Native medical mechanics,
+First Aid and existing artwork are preserved; technical bounds stay internal.
+Dedicated multiplayer and all native security tests remain NOT TESTED.

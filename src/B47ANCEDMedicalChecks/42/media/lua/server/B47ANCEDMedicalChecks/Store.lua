@@ -76,9 +76,10 @@ local function read(io,name,create)
     assert(ok and closed,"read failed")
     return text
 end
-function Store.open(io,profile)
+function Store.open(io,profile,domain)
     assert(C.validString(profile),"invalid server profile")
-    local self=setmetatable({io=io,base="B47MC_"..hex(profile),generation=0},Store)
+    assert(domain==nil or domain=="cooperative","invalid storage domain")
+    local self=setmetatable({io=io,base=(domain=="cooperative" and "B47MCCoop_" or "B47MC_")..hex(profile),generation=0},Store)
     local valid,missing,invalid={},0,0
     for _,slot in ipairs({"a","b"}) do
         local name=self.base.."_"..slot..".txt"
@@ -96,6 +97,8 @@ function Store.open(io,profile)
         elseif missing==0 then invalid=invalid+1 end
     end
     table.sort(valid,function(a,b) return a.generation>b.generation end)
+    self.missingSlots=missing
+    self.fresh=false
     if #valid>0 then
         if #valid==2 and valid[1].generation==valid[2].generation and valid[1].text~=valid[2].text then error("conflicting generations") end
         self.db,self.generation,self.slot=valid[1].db,valid[1].generation,valid[1].slot
@@ -103,6 +106,7 @@ function Store.open(io,profile)
     else
         assert(missing==2 and invalid==0,"no valid consent metadata; preserve files for recovery")
         self.db={schema=2,accounts={}}
+        self.fresh=true
         assert(self:save(self.db),"initial storage write failed")
     end
     return self

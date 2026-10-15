@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0-dev.2]
+
+PR #4 review: reject incomplete cooperative approval storage after a missing slot, preventing older revoked grants from being reused. Recheck the patient object and vanilla eligibility before disabled-mode fallback. Added regression fixtures; cooperative-only scope and untested multiplayer remain explicit.
+
+## [0.3.0-dev.1]
+
+Add cooperative consent prompts, server-owned per-examiner convenience approvals and revocation. This guides ordinary clients only; native server medical authorization remains BLOCKED and dedicated multiplayer NOT TESTED. Approval records are stored separately from legacy inactive metadata.
+
 ## [0.2.0-dev.3]
 - Add user-supplied fallback icon/thumbnail; preserve manually supplied artwork. Asset-only iteration; gameplay unchanged.
 - Offline branding/version checks only; earlier validation remains historical at 0.2.0-dev.2. No new SP/dedicated MP evidence.

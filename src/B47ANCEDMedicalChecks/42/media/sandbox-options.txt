@@ -1,4 +1,9 @@
 VERSION = 1,
+option B47ANCEDMedicalChecks.CooperativeConsent
+{
+    type = boolean, default = true,
+    page = B47ANCEDMedicalChecks, translation = B47MC_CooperativeConsent,
+}
 option B47ANCEDMedicalChecks.Policy
 {
     type = enum, numValues = 4, default = 1,

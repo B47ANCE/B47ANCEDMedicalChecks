@@ -1,80 +1,78 @@
-# Lua-only architecture
+# Cooperative workflow architecture
 
-Project Version: 0.2.0-dev.3
+Project Version: 0.3.0-dev.2
 
-Scope is server-owned settings metadata, not examination authorization. The client
-submits protocol-2 Snapshot, Preference or Revoke intent. Vanilla OnClientCommand
-derives its player argument from the authenticated connection; the server uses only
-that player's unqualified getUsername() as account owner. Client owner, username,
-patient or account fields never select the owner. Character/display renames do not
-change that key. An actual login-account rename is a new identity; no guessed
-migration or case normalization transfers approvals.
+This implements the user's explicitly selected cooperative convenience. It does
+not implement secure medical consent, a packet firewall, treatment validation or
+native-session revocation. The prior native audit and provisional treatment finding
+remain applicable. All snapshots retain enforcement=false.
 
-Snapshots go through targeted sendServerCommand(player,...), never a global
-broadcast or requestable ModData table. They contain only that account's saved
-preference, configured/effective policy diagnostics and inactive metadata records.
-Every snapshot has enforcement=false. Request/Answer/Grant intents cannot create
-authorization or a new record; no tickets, leases, sessions or medical hooks exist.
-Malformed/old protocols cannot mutate metadata. Per-player weak-key throttling
-bounds disk mutations and repeated reads. Throttled Preference/Revoke intents return
-a private RateLimited snapshot so the UI restores the saved value and asks for retry;
-these replies are not a network bandwidth limiter. There are no per-tick player/world scans.
+Server owns saved preferences, cooperative records and short-lived request state.
+OnClientCommand supplies the authenticated sender; untrusted owner/requester fields
+never choose that identity. The patient is resolved through getPlayerByOnlineID;
+responses must come from the exact patient object captured for that request.
+Both participants must still resolve to their original live objects, be alive,
+within two tiles in X/Y and on the same floor. These conservative convenience checks
+do not substitute for the vanilla client eligibility check, or prove native security.
 
-Store.lua uses only exposed getFileReader/getFileWriter, readLine/write/close.
-Two private ASCII snapshot files live in the server Lua cache, named
-B47MC_<hex server profile>_a.txt and _b.txt. This intentionally stores account
-metadata per server profile rather than character or world save. Back up both
-files with server configuration. One process must exclusively own that cache/profile.
-Another profile is isolated; a world reset under the same profile retains metadata.
+Flow: context callback -> CoopRequest(target, client nonce) -> patient CoopPrompt ->
+CoopAnswer -> examiner CoopOffer -> CoopConfirm -> one consumed CoopProceed -> original
+ISHealthPanel.AcceptedMedicalCheck(patient, examiner). The original callback queues
+ISMedicalCheckAction; no timed action, medical event, treatment or native packet is
+replaced. The client only accepts Offer/Proceed for its own outstanding nonce,
+matching target and current patient object; unsolicited/replayed results do not queue
+another action. This is cooperative correctness, not protection against modified clients.
 
-Schema 2 records are P (preference) and G (inactive directional metadata). There
-is no production grant-creation command. Existing record revocation is implemented
-for valid schema-2 records, but the old agent properties are NOT imported and new
-installs have empty lists. Tests use disposable trusted record fixtures, not grants
-created by gameplay. Session retention cannot be represented as operational consent
-and remains blocked, as do automatic reuse and denial/timeout handling.
+Always Ask prompts every time and creates no grant. Only Ask Once creates a directional
+patient-account -> examiner-account record only after YES. NO/timeout create none.
+Policies 2/3 force the effective preference; policy 4 refuses cooperative requests.
+Policy/preference/retention changes invalidate an outstanding response/confirmation.
+Disabling CooperativeConsent explicitly restores the original context callback after
+a server response; missing/incompatible peers time out without a native fallback.
+Unmodified or other-mod entry points still use their vanilla behavior.
 
-Alternating-slot persistence writes only the inactive slot, closes it, reads it
-back and validates a complete checksummed snapshot before acknowledging a change.
-The previous committed slot remains available on partial writes. A damaged slot
-can recover from the valid slot with a console diagnostic. Both invalid/unreadable
-slots or a future schema disable mutations rather than resetting records. Equal
-generation conflicts are rejected. Checksums detect incomplete writes, not hostile
-server filesystem edits. No fsync/atomic-rename or sudden power-loss guarantee is
-claimed for these exposed APIs. A complete disk write followed by a read-back failure
-returns StorageFailed and retains the previous in-memory value, but restart can select
-the newer complete slot. This is an uncertain outcome, not guaranteed rollback;
-refresh after restart before retrying. Only inactive metadata is affected. Java-era properties and real player saves are untouched.
+One request per examiner, eight per patient and 128 total are internal workload
+limits. RequestCooldown bounds sender request cadence; RequestTimeout bounds prompts
+and offers. A one-second OnTick handler scans only bounded mod state, never the world
+or every player. Live object checks discard disconnected/replaced participants.
+After confirmation there is no mod-owned active native session. Approval revocation
+cancels pending requests/offers and affects future cooperative checks only. Request,
+response and confirmation replay/malformed cases have offline coverage, not native
+packet security proof. Vanilla networking remains the connection trust boundary.
 
-Policy (four enum values) and DefaultPreference (two) affect saved-settings
-interpretation/presentation only. Forced choices disable the editor, but never
-enforce health-data access. Retention, RequestCooldown, RequestTimeout and
-DebugLogging keep their stable sandbox identifiers for compatibility and are
-explicitly reserved/inactive. Removing Java also removes their execution paths;
-their tooltips never claim enforcement. Invalid enum values fall back to safe
-defaults rather than clamping to No Requests. Existing metadata retains saved choices.
+Storage: existing B47MC_<hex profile>_a/b.txt retains schema 2 preferences and legacy
+inactive grants. New B47MCCoop_<hex profile>_a/b.txt uses the same validated two-slot
+codec solely for cooperative records. There is no legacy/property import or grant
+activation. Fresh cooperative profiles seed both slots. Recovery of an older approval
+slot, including a missing slot on an existing profile, disables cooperative requests for operator review instead of reusing potentially
+revoked approvals. Files are preserved. Legacy settings prior-slot recovery is unchanged.
+A complete write followed by failed read-back is still an uncertain result; restart may
+load that complete write. No durable rollback, fsync or sudden-power-loss claim is made.
 
-Internal limits bound storage/protocol work: 128-byte identifiers, 4096 accounts,
-128 inactive records per account, 2 MiB snapshots and 250 ms command cadence. These
-are implementation limits, not balance settings. No treatment or skill settings are added.
+Retention 1 persists until revoked, across character/reconnect/restart under the same
+account/profile. Retention 2 uses only memory, invalidated on either participant's
+object disconnect; it ignores persisted grants. Switching back to retention 1 makes
+its stored approvals visible/usable again. Changing Ask preference does not erase
+approvals; Always Ask ignores them. Revoke removes the selected cooperative key from
+both disk and current memory after a successful write. Settings UI labels legacy rows
+inactive and sends their original Revoke command; cooperative rows use RevokeApproval.
+Account rename is a new identity; no case/display-name normalization transfers consent.
 
-The UI uses vanilla collapsing windows, labels, combo box, list and buttons. A
-single deduplicated status/settings context entry adds no medical interaction.
-Inactive status is always visible. Source medical callbacks and events are untouched.
-All 29 installed vanilla locales receive matching English fallback JSON tables.
-Actual font/resolution/controller use remains a runtime gate, not mock verification.
+Server authoritative sandbox settings: CooperativeConsent (new boolean, default true),
+Policy, DefaultPreference, Retention, RequestCooldown, RequestTimeout and DebugLogging.
+Identifiers/defaults/bounds of the six prior settings remain intact. The former reserved
+settings now govern this workflow; debug emits reason codes, not private account data.
+Storage/protocol/workload limits and UI coordinates remain internal technical constants.
+Protocol is 3; on-disk schema remains 2. Mixed protocol clients are unsupported.
 
-## Research clarification — 2026-10-14 (no runtime change)
+Client presentation: one wrapped Medical Check callback, deduplicated settings entry,
+vanilla ISModalRichText YES/NO prompts with cooperative limitation/remembering text,
+vanilla settings controls, timeout/disconnect cleanup and English fallback for 29 locales.
+Both server and client handlers are registered once. Rich-text account labels are
+sanitized for angle-bracket markup. First Aid duration and treatment restrictions
+remain in vanilla. Rendering, controller focus, split-screen, file API behavior and
+actual dedicated synchronization are runtime gates.
 
-The extended audit in MEDICAL_AUTHORITY_AUDIT.md separates disclosure from
-treatment. Original 42.21 NetTimedAction executes shared Lua complete() on the
-server and honors its Boolean result. This is a PROVISIONAL treatment-validation
-candidate, not proof that every medical action is client-only, nor proof of
-authenticated consent. Constructors/serverStart precede complete, and actor,
-patient/body-part binding and alternate health commands still need coverage.
-
-Health START and updater sends remain native paths with no verified Lua consent
-veto. Therefore the combined enforcement requirement remains BLOCKED. No wrapper,
-grant activation, persistence change or treatment interception was implemented.
-Historical decisions above and their prior evidence are preserved. Dedicated
-multiplayer remains NOT TESTED; G7 and stable G8 remain BLOCKED.
+Historical decisions/source findings are retained in Git at 85e29ca and research
+reports pinned to their original revisions; pre-feature reports also have local
+hash-preserved copies. G7 and stable G8 stay BLOCKED; dedicated multiplayer NOT TESTED.

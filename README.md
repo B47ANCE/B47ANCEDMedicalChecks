@@ -1,29 +1,32 @@
 # B47ANCE'd Medical Checks
 
-Project Version: 0.2.0-dev.3
+Project Version: 0.3.0-dev.2
 
-Lua-only development scaffold for Build 42.21, canonical Mod ID
-`B47ANCEDMedicalChecks`. **Examination consent enforcement is BLOCKED.**
+Lua-only cooperative examination convenience for Project Zomboid 42.21.
+Canonical Mod ID: `B47ANCEDMedicalChecks`.
 
-The server can persist each authenticated account's saved preference, report the
-configured policy, and remove individual saved approval metadata records. Settings
-and records are clearly labelled inactive. This build creates no approval grants,
-does not bypass requests, and does not replace vanilla medical events, actions,
-panels, treatment mechanics or First Aid visibility. Vanilla examination requests
-remain unchanged under every configured policy.
+**This is not medical privacy protection. Modified clients and native medical
+packets can bypass the workflow. Native server consent enforcement remains BLOCKED.**
 
-The audited native subscription handler has no verified Lua consent veto. Client
-UI wrappers or stopping updates after subscription cannot provide the required
-server-authoritative protection, so those workarounds are not implemented.
+Ordinary modded clients use the standard Medical Check context action. The patient
+can approve each examination or remember an examiner separately. Server-owned
+sandbox options choose Player Choice, Force Always Ask, Force Only Ask Once or No
+Examination Requests **within this cooperative UI workflow only**. Right-click to
+open settings and revoke individual approvals for future cooperative checks.
 
-Authoritative runtime source: `src/B47ANCEDMedicalChecks/42` (plus `common/`).
-No custom Java, agent, bridge, JAR or native loader is an active dependency.
-Existing Java-era research/artifacts remain local, ignored and excluded from builds.
+The server validates cooperative intents, participant identities, proximity,
+responses, expiration and policy, and persists preferences/approvals. On completion
+the examiner client calls the vanilla examination callback. Treatment, First Aid,
+health panels and native subscriptions remain vanilla. Revocation does not close
+an already-open native health panel or stop native data access.
 
-[Source repository](https://github.com/B47ANCE/B47ANCEDMedicalChecks).
-See [implementation](docs/IMPLEMENTATION_REPORT.md), [authority blocker](docs/SOURCE_AUDIT.md),
-[testing](docs/TESTING.md), [installation limits](docs/INSTALLATION.md), and
-[historical preservation](docs/HISTORY.md).
+Authoritative source: src/B47ANCEDMedicalChecks (common/ and 42/). No Java, agent,
+JAR dependency or injected hook. All participants need the same current protocol.
+Existing schema-2 inactive records are never activated; new cooperative approvals
+use a separate storage domain. Historical Java research/artifacts remain preserved.
 
-Offline checks are not PZ evidence. SP and dedicated runtime are NOT TESTED;
-G7 and stable-release G8 are BLOCKED. No Workshop item is assigned.
+SP and dedicated runtime: **NOT TESTED**. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.
+See [architecture](docs/ARCHITECTURE.md), [implementation report](docs/IMPLEMENTATION_REPORT.md),
+[test instructions](docs/TESTING.md), [validation](docs/VALIDATION.md), and the
+[unchanged native authority audit](docs/MEDICAL_AUTHORITY_AUDIT.md).
+[Public source repository](https://github.com/B47ANCE/B47ANCEDMedicalChecks).
