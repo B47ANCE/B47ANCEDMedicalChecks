@@ -1,6 +1,6 @@
 # Validation and dedicated test handoff
 
-Project Version: 0.2.0-dev.2
+Project Version: 0.2.0-dev.3
 
 From the project root, using a Python environment with requirements-dev.txt:
 

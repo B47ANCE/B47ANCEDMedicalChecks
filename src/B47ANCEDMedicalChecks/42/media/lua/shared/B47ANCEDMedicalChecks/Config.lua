@@ -1,5 +1,5 @@
 B47MC = B47MC or {}
-local C={version="0.2.0-dev.2",module="B47ANCEDMedicalChecks",schema=2,protocol=2,
+local C={version="0.2.0-dev.3",module="B47ANCEDMedicalChecks",schema=2,protocol=2,
     maxIdentifier=128,maxAccounts=4096,maxGrants=128,maxBytes=2097152}
 B47MC.Config=C
 local function enum(v,default,count)

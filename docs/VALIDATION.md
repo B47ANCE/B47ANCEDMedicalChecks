@@ -1,6 +1,6 @@
 # Current evidence - 2026-10-14
 
-Project Version: 0.2.0-dev.2
+Project Version: 0.2.0-dev.3
 
 Environment: Windows offline, Python 3.12 with Lupa 2.6 in an ignored local
 .venv-test dependency directory. The original 42.21 JAR and installed Lua are

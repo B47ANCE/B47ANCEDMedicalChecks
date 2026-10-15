@@ -1,6 +1,6 @@
 # Lua-only conversion report - 2026-10-14
 
-Project Version: 0.2.0-dev.2
+Project Version: 0.2.0-dev.3
 
 Completed the safely supported conversion scope. Active runtime is Lua-only; active
 build/test tooling is Python with Lupa. No custom Java was implemented, compiled,
