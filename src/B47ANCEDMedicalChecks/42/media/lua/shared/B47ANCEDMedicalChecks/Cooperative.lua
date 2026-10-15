@@ -1,11 +1,15 @@
 -- Server-owned cooperative workflow. This NEVER authorizes native health access.
 local C=require "B47ANCEDMedicalChecks/Config"
 local Coop={};Coop.__index=Coop
+local function hasEntries(value)
+    for _ in pairs(value) do return true end
+    return false
+end
 function Coop.new(engine,store)
     -- Never reuse grants recovered from an older slot: a revocation may be missing.
     -- Seed both empty slots on a fresh cooperative profile so its first restart is healthy.
     if store and (store.recovered or ((store.missingSlots or 0)>0 and not store.fresh) or
-            (store.generation==1 and next(store.db.accounts)==nil and not store:save(store.db))) then store=nil end
+            (store.generation==1 and not hasEntries(store.db.accounts) and not store:save(store.db))) then store=nil end
     return setmetatable({e=engine,store=store,pending={},sequence=0,sessions={},
         lastRequest=setmetatable({},{__mode="k"}),lastRevoke=setmetatable({},{__mode="k"})},Coop)
 end

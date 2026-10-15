@@ -1,6 +1,27 @@
 # Cooperative validation â€” 2026-10-14
 
-Project Version: 0.3.0-dev.2
+Project Version: 0.3.0-dev.3
+
+## Current API correction: 0.3.0-dev.3
+
+PATCH-compatible development iteration from ab9363df4b6f0aa7820768503f19cb076f0f6d73.
+Replace only the fresh-store emptiness check with a local pairs loop. No global
+shim, protocol/schema change, grant migration or native medical authority change.
+The inspected Steam build 25485521 Kahlua bootstrap registers pairs and global
+unpack; global next is not registered there or added by the inspected root
+stdlib.lua. This is bounded source evidence, not an observed game failure.
+
+[TESTED offline] The missing-next regression fails against the original module
+and passes with the correction under Windows host Lua 5.1 (Lupa). It exercises
+fresh slot seeding, a populated store, failed writes, recovered and incomplete
+stores. `python scripts/build.py`: 84 discovered, 83 PASS, one historical-fixture
+SKIP. `python -m unittest discover -s tests -p test_audit_medical_source.py -v`
+with the existing ignored Jawa dependencies: two PASS. `python scripts/check_versions.py`:
+PASS. No package was built. SP/dedicated NOT TESTED; G7/stable G8 BLOCKED.
+
+## Historical cooperative validation: 0.3.0-dev.2
+
+The report below records earlier runs; it is not current-version runtime proof.
 
 Baseline: main 85e29ca811ae70ed08bb75613cf4892837a3c867 (0.2.0-dev.3).
 Target 0.3.0-dev.2: MINOR cooperative feature plus PATCH-compatible PR review fixes; protocol 3, storage schema 2.

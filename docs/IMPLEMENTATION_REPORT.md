@@ -1,6 +1,6 @@
 # Cooperative implementation report
 
-Project Version: 0.3.0-dev.2
+Project Version: 0.3.0-dev.3
 
 Implemented the user-authorized cooperative convenience: ordinary-client approval
 prompts, Always Ask and per-examiner Only Ask Once, four cooperative server policies,

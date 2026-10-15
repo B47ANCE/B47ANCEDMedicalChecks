@@ -1,6 +1,6 @@
 # Cooperative installation and migration
 
-Project Version: 0.3.0-dev.2
+Project Version: 0.3.0-dev.3
 
 For a future authorized isolated test, the installable source is
 src/B47ANCEDMedicalChecks with common/ and 42/. Mod ID B47ANCEDMedicalChecks;

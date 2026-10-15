@@ -1,6 +1,6 @@
 # Cooperative workflow architecture
 
-Project Version: 0.3.0-dev.2
+Project Version: 0.3.0-dev.3
 
 This implements the user's explicitly selected cooperative convenience. It does
 not implement secure medical consent, a packet firewall, treatment validation or
