@@ -19,7 +19,7 @@ local function initialise()
     if not approvalOK then approvals=nil;print("[B47MC] Cooperative approval storage unavailable; no persistent approvals can be created/reused") end
     authority.coop=Coop.new(authority,approvals)
     if approvals and not authority.coop.store then print("[B47MC] Cooperative storage requires recovery review; workflow disabled to avoid reusing a possibly revoked approval. Files preserved.") end
-    print("[B47MC] Cooperative workflow loaded. Native server examination consent remains BLOCKED; modified clients can bypass this UI.")
+    print("[B47MC] Medical Checks request service loaded.")
 end
 local function onCommand(module,command,player,args)
     if module~=C.module or not isServer() then return end

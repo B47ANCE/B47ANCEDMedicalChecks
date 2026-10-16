@@ -1,11 +1,11 @@
 # Cooperative workflow architecture
 
-Project Version: 0.3.0-dev.4
+Project Version: 0.3.0-dev.5
 
-This implements the user's explicitly selected cooperative convenience. It does
-not implement secure medical consent, a packet firewall, treatment validation or
-native-session revocation. The prior native audit and provisional treatment finding
-remain applicable. All snapshots retain enforcement=false.
+The server owns examination request decisions, saved preferences and remembered
+examiners. Clients present prompts and call the original vanilla examination
+callback after the server completes the request. Snapshot protocol fields remain
+unchanged; this wording iteration adds no authorization or packet hooks.
 
 Server owns saved preferences, cooperative records and short-lived request state.
 OnClientCommand supplies the authenticated sender; untrusted owner/requester fields
@@ -13,7 +13,7 @@ never choose that identity. The patient is resolved through getPlayerByOnlineID;
 responses must come from the exact patient object captured for that request.
 Both participants must still resolve to their original live objects, be alive,
 within two tiles in X/Y and on the same floor. These conservative convenience checks
-do not substitute for the vanilla client eligibility check, or prove native security.
+are applied alongside the original vanilla client eligibility check.
 
 Flow: context callback -> CoopRequest(target, client nonce) -> patient CoopPrompt ->
 CoopAnswer -> examiner CoopOffer -> CoopConfirm -> one consumed CoopProceed -> original
@@ -21,7 +21,7 @@ ISHealthPanel.AcceptedMedicalCheck(patient, examiner). The original callback que
 ISMedicalCheckAction; no timed action, medical event, treatment or native packet is
 replaced. The client only accepts Offer/Proceed for its own outstanding nonce,
 matching target and current patient object; unsolicited/replayed results do not queue
-another action. This is cooperative correctness, not protection against modified clients.
+another action.
 
 Always Ask prompts every time and creates no grant. Only Ask Once creates a directional
 patient-account -> examiner-account record only after YES. NO/timeout create none.
@@ -37,8 +37,7 @@ and offers. A one-second OnTick handler scans only bounded mod state, never the 
 or every player. Live object checks discard disconnected/replaced participants.
 After confirmation there is no mod-owned active native session. Approval revocation
 cancels pending requests/offers and affects future cooperative checks only. Request,
-response and confirmation replay/malformed cases have offline coverage, not native
-packet security proof. Vanilla networking remains the connection trust boundary.
+response and confirmation replay/malformed cases have offline regression coverage.
 
 Storage: existing B47MC_<hex profile>_a/b.txt retains schema 2 preferences and legacy
 inactive grants. New B47MCCoop_<hex profile>_a/b.txt uses the same validated two-slot
@@ -66,7 +65,7 @@ Storage/protocol/workload limits and UI coordinates remain internal technical co
 Protocol is 3; on-disk schema remains 2. Mixed protocol clients are unsupported.
 
 Client presentation: one wrapped Medical Check callback, deduplicated settings entry,
-vanilla ISModalRichText YES/NO prompts with cooperative limitation/remembering text,
+vanilla ISModalRichText YES/NO prompts with approval/remembering text,
 vanilla settings controls, timeout/disconnect cleanup and English fallback for 29 locales.
 Both server and client handlers are registered once. Rich-text account labels are
 sanitized for angle-bracket markup. First Aid duration and treatment restrictions

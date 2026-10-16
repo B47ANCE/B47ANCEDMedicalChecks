@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0-dev.5]
+
+Simplify player-facing documentation, mod description, prompts and settings text. Replace repeated security warnings with feature descriptions and option-specific tooltips. Keep gameplay behavior, saved data, configuration identifiers and artwork unchanged. Multiplayer runtime remains NOT TESTED.
+
 ## [0.3.0-dev.4]
 
 Use the user-supplied Medical Checks illustration as thumbnail.png, preserving its exact PNG bytes and original dimensions. Keep fallback mod icon/poster unchanged. Include the selected thumbnail in future development package inputs. Artwork-only iteration; cooperative limitations and dedicated multiplayer NOT TESTED remain unchanged.

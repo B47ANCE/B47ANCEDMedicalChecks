@@ -1,6 +1,6 @@
 # Cooperative installation and migration
 
-Project Version: 0.3.0-dev.4
+Project Version: 0.3.0-dev.5
 
 For a future authorized isolated test, the installable source is
 src/B47ANCEDMedicalChecks with common/ and 42/. Mod ID B47ANCEDMedicalChecks;
@@ -28,6 +28,5 @@ The prior six setting identifiers/defaults/bounds are preserved; retention, timi
 and diagnostics now apply to the cooperative workflow. Retention changes do not erase
 persisted records; switching back to Persistent reuses those records unless revoked.
 Disabling CooperativeConsent restores the vanilla context flow after server response.
-No setting can enforce native medical privacy or prevent modified-client access.
 
 No deployment or launch occurred. Dedicated multiplayer NOT TESTED; G7/stable G8 BLOCKED.

@@ -1,31 +1,27 @@
-# Cooperative implementation report
+# Medical Checks implementation report
 
-Project Version: 0.3.0-dev.4
+Project Version: 0.3.0-dev.5
 
-Implemented the user-authorized cooperative convenience: ordinary-client approval
-prompts, Always Ask and per-examiner Only Ask Once, four cooperative server policies,
-server-owned directional approvals, persistence, individual revocation, request
-cooldown/timeout, protocol 3, live-participant validation and one-time confirmation.
-Settings and prompts explicitly disclose that modified clients can bypass this.
+Implemented: examination prompts, Always Ask, per-examiner Only Ask Once, four server
+policies, server-owned directional approvals, persistence, individual revocation,
+request cooldown/timeout, live-participant validation and one-time confirmation.
+Protocol 3 and storage schema 2 are unchanged.
 
-Native medical privacy enforcement remains BLOCKED. Treatment server complete()
-remains PROVISIONAL as a possible separate validation point; no treatment wrapper
-was implemented. Native requests, health data, packets and open panels are not secured.
-All actual SP/dedicated behavior is NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.
+The server validates requests and persists approvals; the examiner client calls the
+original vanilla examination callback after confirmation. Treatment actions, First
+Aid requirements and vanilla interaction eligibility remain unchanged. Revocation
+cancels pending requests and affects future checks; open health panels remain vanilla.
+Legacy inactive records do not become approvals. New approval files use a separate
+storage domain; session retention is memory-only. See ARCHITECTURE.md for details.
 
-New source: shared/Cooperative.lua, client/CooperativeUI.lua. Updated settings engine,
-server adapter, context integration, settings UI, sandbox/localization and regressions.
-Original treatment actions, native events, First Aid, inactive metadata schema and
-artwork bytes are preserved. Old records do not become approvals. New approval files
-are a separate schema-2 domain; session retention is memory-only. See ARCHITECTURE.md
-for uncertain write/recovery behavior and the exact cooperative trust boundary.
+0.3.0-dev.5 is a PATCH-compatible wording iteration. README, current feature overviews,
+mod description, Workshop changenote, UI labels, prompts and sandbox tooltips now
+focus on normal mod use. No policy, approval, request, synchronization or storage
+logic changed. Translation keys, option identifiers, defaults and bounds are preserved.
+The supplied thumbnail, mod icon and poster remain byte-for-byte unchanged.
 
-Offline checks and exact commands are in VALIDATION.md. Source identity is verified
-against original 42.21; differing loose classes mean effective runtime is UNKNOWN.
-No game/server was started, no deployment/publication/package occurred for
-this implementation. PR #4 merge is separately authorized after review and checks. A feature-branch commit/push and draft PR are integration evidence
-only. Historical Java and prior reports remain preserved and excluded from runtime.
-
-PR #4 fixes: incomplete approval slot pairs disable cooperative access for review; disabled-mode fallback rechecks the current patient object and vanilla eligibility. Both regressions failed before correction and pass offline afterward. These fixes do not add native enforcement.
-
-Artwork-only update at 0.3.0-dev.4: root thumbnail.png is now the user-supplied Medical Checks illustration, copied without modification. Branding provenance and package inputs are updated; mod icon, poster and runtime behavior remain unchanged. This does not refresh the earlier gameplay test evidence.
+Validation commands and results are recorded in VALIDATION.md. Current actual
+player-hosted/dedicated behavior and visual rendering are NOT TESTED.
+G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. No packaging, deployment, game/server
+launch or Workshop publication occurred. Historical audits, Java research and prior
+reports retain their original evidence and are not promoted to current runtime proof.

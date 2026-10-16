@@ -1,6 +1,6 @@
 # Current project thumbnail
 
-Current authoring version: 0.3.0-dev.4
+Current authoring version: 0.3.0-dev.5
 
 The user supplied the Medical Checks illustration on 2026-10-15. It is the current
 manual override at root thumbnail.png; future fallback operations must preserve it.

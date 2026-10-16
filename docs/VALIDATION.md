@@ -1,8 +1,26 @@
 # Cooperative validation â€” 2026-10-14
 
-Project Version: 0.3.0-dev.4
+Project Version: 0.3.0-dev.5
 
-## Current API correction: 0.3.0-dev.3
+## Current wording iteration — 2026-10-16
+
+0.3.0-dev.4 -> 0.3.0-dev.5 is PATCH-compatible presentation/documentation work.
+Request handling, server-owned state, persistence, policy, protocol/schema and
+artwork remain unchanged. Historical sections below retain their original findings.
+
+[TESTED - offline Windows/Python/Lupa] `python scripts/build.py` PASS: 84 tests
+run, 83 passed, one skipped because the local historical preservation fixture is
+not distributed. This covers Lua syntax, localization, request behavior, policies,
+storage and package fixtures. `python scripts/package.py` PASS (input plan only).
+`python scripts/check_versions.py` PASS; `git diff --check` PASS. Direct baseline
+comparisons confirm unchanged runtime logic and sandbox configuration, stable
+translation keys/placeholders across 29 fallback locales, unchanged artwork and
+historical audit files, and verified pre-edit snapshot hashes. No new tests were
+added for text replacement.
+Player-hosted/dedicated multiplayer and visual rendering remain NOT TESTED.
+G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. No current artifact was generated.
+
+## Historical API correction: 0.3.0-dev.3
 
 PATCH-compatible development iteration from ab9363df4b6f0aa7820768503f19cb076f0f6d73.
 Replace only the fresh-store emptiness check with a local pairs loop. No global

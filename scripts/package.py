@@ -43,7 +43,7 @@ def main():
  if out.exists(): raise SystemExit('Artifact exists; preserve it. Choose an explicit retention/version plan before replacement.')
  with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
   for name,path in mapping.items(): z.writestr(name,path.read_bytes())
-  z.writestr('B47ANCEDMedicalChecks/PACKAGE_MANIFEST.json',json.dumps({'project_version':version,'status':'consent enforcement BLOCKED; dedicated NOT TESTED','sha256':{n:hashlib.sha256(p.read_bytes()).hexdigest() for n,p in mapping.items()}},indent=2))
+  z.writestr('B47ANCEDMedicalChecks/PACKAGE_MANIFEST.json',json.dumps({'project_version':version,'status':'development build; dedicated multiplayer NOT TESTED','sha256':{n:hashlib.sha256(p.read_bytes()).hexdigest() for n,p in mapping.items()}},indent=2))
  with zipfile.ZipFile(out) as z: verify(z,mapping)
  out.with_suffix('.zip.sha256').write_text(hashlib.sha256(out.read_bytes()).hexdigest()+'  '+out.name+'\n',encoding='utf-8')
  print('OFFLINE package integrity PASS:',out)
