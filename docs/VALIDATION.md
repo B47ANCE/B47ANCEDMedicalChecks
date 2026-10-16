@@ -124,3 +124,23 @@ Native authority/cooperative limitations and all NOT TESTED runtime gates persis
 Exact commands: python scripts/check_versions.py; python scripts/package.py;
 git diff --cached --check. Source-to-thumbnail and planned package thumbnail bytes
 were compared directly in offline Python; no game/Workshop rendering proof is claimed.
+
+## Workshop distribution evidence — 2026-10-16
+
+Published 0.3.0-dev.5 to public item 3820690174 from source commit
+b79913450f70134c5e5545be3de32128c1b54a5f. `python scripts/build.py`: 83 passed and one
+historical-fixture skipped. `python scripts/package.py --development` and
+`python scripts/check_versions.py --release` passed on the exact committed
+snapshot. All 71 staged runtime files matched source hashes.
+
+Initial creation succeeded, then SteamCMD rejected the oversized PNG preview.
+The same assigned item was retried with a JPEG encoding of the supplied artwork;
+SteamCMD exited 0 and reported Committing update...Success. Steam API verified
+App ID 108600, public visibility 0, expected title and exact canonical description.
+The verified Steam desktop executable exited gracefully and restarted; its process
+was observed. See PUBLICATION-0.3.0-dev.5.json for package/preview/source hashes.
+
+No game/server was launched or modified. Subscription/download, rendering and
+actual player-hosted/dedicated behavior remain NOT TESTED. Public-page browser
+rendering was unavailable; public API metadata verification passed. Distribution
+evidence does not change G7 BLOCKED / NOT TESTED or stable G8 BLOCKED.

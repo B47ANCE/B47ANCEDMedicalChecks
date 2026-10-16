@@ -70,6 +70,20 @@
             "pattern": "^modversion=(?P<version>\\S+)$"
           }
         ]
+      },
+      {
+        "glob": "dist/workshop-current/*.zip",
+        "pattern": "B47ANCEDMedicalChecks-development-(?P<version>.+)\\.zip",
+        "zip_members": [
+          {
+            "member": "B47ANCEDMedicalChecks/VERSION",
+            "pattern": "^(?P<version>\\S+)$"
+          },
+          {
+            "member": "B47ANCEDMedicalChecks/Contents/mods/B47ANCEDMedicalChecks/42/mod.info",
+            "pattern": "^modversion=(?P<version>\\S+)$"
+          }
+        ]
       }
     ]
   },
@@ -111,6 +125,10 @@
     {
       "reference": "docs/BRANDING.md historical fallback provenance",
       "reason": "Prior authoring version, original fallback hashes and source provenance remain historical"
+    },
+    {
+      "reference": "docs/PUBLICATION-0.3.0-dev.5.json",
+      "reason": "Immutable actual Workshop distribution receipt pinned to source b799134, version 0.3.0-dev.5 and its package hashes; not current runtime evidence or a future version mirror"
     }
   ]
 }

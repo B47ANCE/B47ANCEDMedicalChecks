@@ -9,9 +9,9 @@ Dimensions: 1254x1254. SHA-256: dce7149de93ae2395422e942ac1e36bd80b823348b809c42
 
 The mod icon and poster remain their existing fallback files; no other image role
 is changed. Generic fallback assets remain under assets/branding as historical/
-authoring inputs. Future development packages include thumbnail.png; this task
-does not build a ZIP, upload to Workshop, deploy or launch PZ. Workshop upload/rendering
-compatibility is not tested by copying the project artwork.
+authoring inputs. Development packages include thumbnail.png. The initial
+thumbnail-selection task did not package, upload, deploy or launch PZ; the later
+Workshop publication and its preview encoding are recorded below.
 
 ## Historical fallback provenance
 
@@ -26,3 +26,9 @@ User-provided art on 2026-10-14. SHA-256 small: 60e2a193a6c1e1190941e6c342ec23c6
 This is asset-only work. Current version headers/mirrors identify this authoring iteration; all prior gameplay/API/runtime evidence remains historical at 0.2.0-dev.2 and its original source commits. No prior PASS is promoted to current evidence. No new game/dedicated tests, packages, deployment or publication. Projects without production mod.info retain these as authoring assets, not a fabricated runtime package.
 
 Workshop thumbnail correction: B47_THUMBNAIL.png is a direct 512x512 resize of the user-supplied B47.png. Its SHA-256 is f775bff1783d59af91f331652740d5279fd5603f66d431c6349f38cbd2d9915b. Preserve custom thumbnails; the mod icon remains 64x64 and poster remains 128x128.
+
+Workshop publication 2026-10-16: SteamCMD rejected the original PNG preview
+because it exceeded its 1 MB limit. Only the upload copy was encoded as JPEG
+quality 95, retaining 1254x1254 dimensions (263,082 bytes). Its SHA-256 is 69723df8ae72c4da413ec28627a27ac3f4c9b5b327484e590f5fd0d1aa9de056.
+The root PNG, mod icon and poster remain unchanged. This is confirmed publication
+evidence for the preview, not in-game rendering or multiplayer evidence.
