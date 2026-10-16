@@ -13,6 +13,7 @@ are retained locally as historical evidence, ignored by Git and excluded from
 active Lua-only build inputs. No historical Java source, binaries or launch
 instructions are an active dependency or authorization. No cleanup is implicit.
 
-No Workshop item is assigned. Public GitHub backup is separate from deployment,
+The owner has authorized first public Workshop publication; the returned item ID
+will be recorded in WORKSHOP_ID.txt. Public GitHub backup is separate from deployment,
 Workshop distribution and runtime validation. G7 dedicated evidence and stable
 G8 remain blocked until actual supported gameplay is established.
