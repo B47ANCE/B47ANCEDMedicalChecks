@@ -119,6 +119,10 @@
     {
       "reference": "docs/PUBLICATION-0.3.0-dev.5.json",
       "reason": "Immutable actual Workshop distribution receipt pinned to source b799134, version 0.3.0-dev.5 and its package hashes; not current runtime evidence or a future version mirror"
+    },
+    {
+      "reference": "docs/WORKSHOP_DESCRIPTION.md",
+      "reason": "Retired Markdown draft; owner-edited live BBCode was adopted as canonical WORKSHOP_DESCRIPTION.txt for the .6 publication without discarding the earlier source"
     }
   ]
 }

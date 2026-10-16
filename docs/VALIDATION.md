@@ -202,3 +202,13 @@ text assertion. No later page edit is copied over or silently overwritten.
 Player-hosted/dedicated multiplayer, subscription/download and in-game rendering
 remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. Source metadata/test
 correction only: published 0.3.0-dev.5 and its immutable package remain unchanged.
+
+## PR #9 publication preparation
+
+Review kept runtime changes intact after 97 offline tests (96 PASS, one historical
+fixture SKIP). Canonical publication text is now WORKSHOP_DESCRIPTION.txt in raw
+Steam BBCode, preserving the current owner-edited live description and formatting.
+Only the No Examination Requests policy phrase is corrected, plus the new Health
+Care note, required MP-testing label and credits. The previous Markdown draft is
+retained, explicitly retired, and is not a publish input. This is source preparation,
+not evidence of an upload. In-game/dedicated gates remain NOT TESTED / BLOCKED.
