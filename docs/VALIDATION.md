@@ -124,3 +124,57 @@ Native authority/cooperative limitations and all NOT TESTED runtime gates persis
 Exact commands: python scripts/check_versions.py; python scripts/package.py;
 git diff --cached --check. Source-to-thumbnail and planned package thumbnail bytes
 were compared directly in offline Python; no game/Workshop rendering proof is claimed.
+
+## Workshop distribution evidence — 2026-10-16
+
+Published 0.3.0-dev.5 to public item 3820690174 from source commit
+b79913450f70134c5e5545be3de32128c1b54a5f. `python scripts/build.py`: 83 passed and one
+historical-fixture skipped. `python scripts/package.py --development` and
+`python scripts/check_versions.py --release` passed on the exact committed
+snapshot. All 71 staged runtime files matched source hashes.
+
+Initial creation succeeded, then SteamCMD rejected the oversized PNG preview.
+The same assigned item was retried with a JPEG encoding of the supplied artwork;
+SteamCMD exited 0 and reported Committing update...Success. Steam API verified
+App ID 108600, public visibility 0, expected title and exact canonical description.
+The verified Steam desktop executable exited gracefully and restarted; its process
+was observed. See PUBLICATION-0.3.0-dev.5.json for package/preview/source hashes.
+
+No game/server was launched or modified. Subscription/download, rendering and
+actual player-hosted/dedicated behavior remain NOT TESTED. Public-page browser
+rendering was unavailable; public API metadata verification passed. Distribution
+evidence does not change G7 BLOCKED / NOT TESTED or stable G8 BLOCKED.
+
+## PR #8 review — 2026-10-16
+
+[TESTED - offline Windows/Python/Lupa] A clean-fixture release check reproduced
+an inventory defect: the documented development package command generated only
+dist/lua-only-current/, but two separate required artifact rules demanded a
+Workshop copy as well. The added regression failed before correction with
+No current package matches dist/workshop-current/*.zip. One current ZIP family,
+dist/*-current/*.zip, now accepts the development output alone and continues to
+reject stale Workshop copies. No archive is moved, replaced or recreated.
+
+Exact checks: `python scripts/test.py Structure.test_release_check_accepts_development_zip_and_rejects_stale_workshop_zip`
+PASS after failure before the inventory fix; `python scripts/build.py` PASS:
+85 run, 84 passed, one historical-preservation fixture skipped.
+`python scripts/check_versions.py --release`, `python scripts/package.py`
+(input plan only), and `git diff --check` PASS. Canonical description rendering
+was checked with Build-WorkshopDescription.py --check. Direct comparisons verify
+all 71 published runtime hashes against both their recorded source commit and
+current Git source, ZIP CRC/member/path/case/hash integrity, package/source-tar/
+preview/description/changenote hashes, and the unchanged immutable receipt.
+No runtime/artwork/version change or Workshop upload occurred during review.
+
+[VERIFIED - current Steam API metadata] Item 3820690174 remains public under
+App ID 108600 with the expected title and recorded content manifest. Its current
+description differs from the exact text verified at publication time. The initial
+all-fields live comparison therefore did not pass description equality; the
+follow-up confirms text drift with unchanged content identity. Those live edits
+are preserved, and future publishing instructions require comparison/reconciliation.
+The original receipt remains an accurate upload-time record, not a current-page
+text assertion. No later page edit is copied over or silently overwritten.
+
+Player-hosted/dedicated multiplayer, subscription/download and in-game rendering
+remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. Source metadata/test
+correction only: published 0.3.0-dev.5 and its immutable package remain unchanged.

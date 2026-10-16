@@ -58,7 +58,7 @@
   "packaging": {
     "artifacts": [
       {
-        "glob": "dist/lua-only-current/*.zip",
+        "glob": "dist/*-current/*.zip",
         "pattern": "B47ANCEDMedicalChecks-development-(?P<version>.+)\\.zip",
         "zip_members": [
           {
@@ -111,6 +111,10 @@
     {
       "reference": "docs/BRANDING.md historical fallback provenance",
       "reason": "Prior authoring version, original fallback hashes and source provenance remain historical"
+    },
+    {
+      "reference": "docs/PUBLICATION-0.3.0-dev.5.json",
+      "reason": "Immutable actual Workshop distribution receipt pinned to source b799134, version 0.3.0-dev.5 and its package hashes; not current runtime evidence or a future version mirror"
     }
   ]
 }

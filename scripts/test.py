@@ -62,6 +62,30 @@ class Structure(unittest.TestCase):
   with zipfile.ZipFile(buffer,'w') as archive: archive.writestr('unexpected.txt','x')
   with zipfile.ZipFile(io.BytesIO(buffer.getvalue())) as archive:
    with self.assertRaises(AssertionError): packaging.verify(archive,{})
+ def test_release_check_accepts_development_zip_and_rejects_stale_workshop_zip(self):
+  import tempfile
+  from check_versions import validate
+  inventory=json.loads((ROOT/'version-inventory.json').read_text(encoding='utf-8'))
+  version=(ROOT/'VERSION').read_text(encoding='utf-8').strip()
+  with tempfile.TemporaryDirectory() as temp:
+   fixture=Path(temp)
+   paths={inventory['canonical'],inventory['changelog']['path'],'version-inventory.json'}
+   paths.update(mirror['path'] for mirror in inventory['mirrors'] if mirror.get('stage','always')!='release')
+   for name in paths:
+    target=fixture/name;target.parent.mkdir(parents=True,exist_ok=True)
+    target.write_text((ROOT/name).read_text(encoding='utf-8'),encoding='utf-8',newline='\n')
+   def artifact(folder,value):
+    target=fixture/folder/('B47ANCEDMedicalChecks-development-'+value+'.zip')
+    target.parent.mkdir(parents=True,exist_ok=True)
+    with zipfile.ZipFile(target,'w') as archive:
+     archive.writestr('B47ANCEDMedicalChecks/VERSION',value+'\n')
+     archive.writestr('B47ANCEDMedicalChecks/Contents/mods/B47ANCEDMedicalChecks/42/mod.info','modversion='+value+'\n')
+   artifact('dist/lua-only-current',version)
+   report=validate(fixture,release=True)
+   self.assertEqual(report['errors'],[],report['errors'])
+   # A second output remains checked whenever present, including stale copies.
+   artifact('dist/workshop-current','0.0.0-test.1')
+   self.assertTrue(validate(fixture,release=True)['errors'])
  def test_historical_files_preserved(self):
   import hashlib
   h=ROOT/'history/java-era-0.1.0-dev.1';manifest=h/'preservation-manifest.json'

@@ -26,3 +26,7 @@ runtime is **NOT TESTED**. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.
 [Public source repository](https://github.com/B47ANCE/B47ANCEDMedicalChecks).
 Project thumbnail: supplied Medical Checks artwork in [thumbnail.png](thumbnail.png).
 See [branding provenance](docs/BRANDING.md); mod icon and poster retain their existing artwork.
+
+[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3820690174)
+— MP testing build - dedicated multiplayer NOT TESTED.
+Workshop ID: 3820690174.
