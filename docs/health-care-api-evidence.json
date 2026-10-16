@@ -1,0 +1,29 @@
+{
+  "game_version": "42.21",
+  "steam_build": "25485521",
+  "mod_identity_source": "Owner supplied Mod ID B47ANCEDHealthCare and Workshop ID 3788592396",
+  "health_care_source": "Not available locally; no Health Care implementation inspected or changed",
+  "runtime_status": "NOT TESTED; server startup and both-mod combinations are runtime gates",
+  "evidence": [
+    {
+      "kind": "vanilla_lua",
+      "path": "media/lua/client/ISUI/ISPauseModListUI.lua",
+      "sha256": "05f83001e8f975c5ee3ea0823ae40384387eceea6d668cda5bbedf22ad72a62c",
+      "lines": [
+        19,
+        21
+      ],
+      "statement": "Vanilla pause mod-list UI calls getActivatedMods and iterates size/get."
+    },
+    {
+      "kind": "native_inspection",
+      "path": "projectzomboid.jar",
+      "sha256": "e1a69eb743ede60b213a0fe7f8b83d4fcab773036d256cc4543a336f3b058a33",
+      "lines": [
+        1,
+        1
+      ],
+      "statement": "LuaManager$GlobalObject.getActivatedMods():java.util.List BCI 0-6 returns ZomboidFileSystem.instance.getModIDs()."
+    }
+  ]
+}

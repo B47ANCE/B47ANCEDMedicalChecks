@@ -1,5 +1,7 @@
 -- Replaces the ordinary context entry callback only; never a native authorization hook.
 local C=require "B47ANCEDMedicalChecks/Config"
+local enabled,reason=C.runtimeEnabled()
+if not enabled then print("[B47MC] Medical Checks inactive: "..reason);return end
 if B47MC.UIEventsRegistered then return end
 local Client=require "B47ANCEDMedicalChecks/PreferencesUI"
 require "ISUI/ISWorldObjectContextMenu"

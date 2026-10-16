@@ -1,4 +1,6 @@
 local C=require "B47ANCEDMedicalChecks/Config"
+local enabled,reason=C.runtimeEnabled()
+if not enabled then print("[B47MC] Medical Checks inactive: "..reason);return end
 if B47MC.AuthorityRegistered then return end
 local Store=require "B47ANCEDMedicalChecks/Store"
 local Engine=require "B47ANCEDMedicalChecks/Engine"

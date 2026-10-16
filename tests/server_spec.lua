@@ -1,4 +1,5 @@
 local function setup()
+ function getActivatedMods() return {size=function() return 0 end} end
  local f={sent={}};local player={getUsername=function() return "account" end,getOnlineID=function() return 1 end}
  f.player=player;Events={}
  for _,name in ipairs({"OnServerStarted","OnClientCommand","OnTick"}) do

@@ -18,7 +18,8 @@ for future updates. Public GitHub backup is separate from deployment,
 Workshop distribution and runtime validation. G7 dedicated evidence and stable
 G8 remain blocked until actual supported gameplay is established.
 
-Publication inputs: docs/WORKSHOP_DESCRIPTION.md and WORKSHOP_CHANGE_NOTE.txt.
+Publication inputs: docs/WORKSHOP_DESCRIPTION.txt (owner-preserved Steam BBCode)
+and WORKSHOP_CHANGE_NOTE.txt.
 Generated publication artifacts: dist/workshop-current/; local staging/logs remain
 ignored. docs/PUBLICATION-0.3.0-dev.5.json records the exact published source and
 hashes. The earlier dist/lua-only-current/ candidate is a separate pre-publication

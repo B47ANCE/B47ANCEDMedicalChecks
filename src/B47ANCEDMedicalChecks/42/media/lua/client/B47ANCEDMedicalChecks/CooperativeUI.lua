@@ -1,5 +1,6 @@
 -- Cooperative client presentation only. Native packets can bypass this workflow.
 local C=require "B47ANCEDMedicalChecks/Config"
+if not C.runtimeEnabled() then return end
 local Client=require "B47ANCEDMedicalChecks/PreferencesUI"
 require "ISUI/ISModalRichText"
 require "XpSystem/ISUI/ISHealthPanel"

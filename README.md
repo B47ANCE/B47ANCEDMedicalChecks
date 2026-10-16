@@ -1,6 +1,6 @@
 # B47ANCE'd Medical Checks
 
-Project Version: 0.3.0-dev.5
+Project Version: 0.3.0-dev.6
 
 Medical examination approval prompts and remembered examiner choices for Project
 Zomboid Build 42.21 multiplayer. Canonical Mod ID: `B47ANCEDMedicalChecks`.
@@ -16,6 +16,12 @@ validates requests and stores directional, account-based preferences and approva
 Treatment, First Aid requirements and the vanilla examination action are unchanged.
 Revocation applies to pending requests and future checks; it does not close an
 already-open health panel.
+
+Medical Checks stays standalone. Its features are planned for inclusion in
+Health Care (B47ANCEDHealthCare, Workshop item 3788592396). When Health Care is
+enabled, Medical Checks automatically leaves its own features inactive. Saved
+Medical Checks data is preserved; no automatic import into Health Care is added.
+See [compatibility](docs/COMPATIBILITY.md).
 
 Authoritative source: src/B47ANCEDMedicalChecks (common/ and 42/). Lua-only runtime.
 Server and clients need matching versions. See [installation](docs/INSTALLATION.md),

@@ -1,8 +1,8 @@
 name=B47ANCE'd Medical Checks
 id=B47ANCEDMedicalChecks
 author=B47ANCE
-description=Medical examination approval prompts, remembered examiner choices and individual revocation. Server-configured policies and retention. Development build: multiplayer NOT TESTED.
-modversion=0.3.0-dev.5
+description=Medical examination approval prompts, remembered examiner choices and individual revocation. Server-configured policies and retention. Development build: multiplayer NOT TESTED. Standalone; inactive when Health Care (B47ANCEDHealthCare) is enabled.
+modversion=0.3.0-dev.6
 versionMin=42.21
 versionMax=42.21
 

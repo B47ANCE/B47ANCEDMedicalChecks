@@ -1,6 +1,6 @@
 # Cooperative installation and migration
 
-Project Version: 0.3.0-dev.5
+Project Version: 0.3.0-dev.6
 
 For a future authorized isolated test, the installable source is
 src/B47ANCEDMedicalChecks with common/ and 42/. Mod ID B47ANCEDMedicalChecks;
@@ -30,3 +30,9 @@ persisted records; switching back to Persistent reuses those records unless revo
 Disabling CooperativeConsent restores the vanilla context flow after server response.
 
 No deployment or launch occurred. Dedicated multiplayer NOT TESTED; G7/stable G8 BLOCKED.
+
+With Health Care: B47ANCEDHealthCare takes priority. Medical Checks is inactive
+when both are enabled; it does not remove either entry from the launcher. Restart
+the game/server after changing the enabled mod set. Existing Medical Checks files
+remain in place. Disable Health Care and restart to return to standalone behavior.
+No automatic approval-data import into Health Care is provided. See COMPATIBILITY.md.

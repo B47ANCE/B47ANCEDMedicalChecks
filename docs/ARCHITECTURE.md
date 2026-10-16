@@ -1,11 +1,16 @@
 # Cooperative workflow architecture
 
-Project Version: 0.3.0-dev.5
+Project Version: 0.3.0-dev.6
 
 The server owns examination request decisions, saved preferences and remembered
 examiners. Clients present prompts and call the original vanilla examination
 callback after the server completes the request. Snapshot protocol fields remain
 unchanged; this wording iteration adds no authorization or packet hooks.
+
+Before any handlers or UI are installed, the shared active-mod-list check defers
+to Health Care (B47ANCEDHealthCare). In that configuration, Medical Checks leaves
+its own storage untouched and does not register the examination workflow. See
+COMPATIBILITY.md for exact detection, startup boundaries and runtime gates.
 
 Server owns saved preferences, cooperative records and short-lived request state.
 OnClientCommand supplies the authenticated sender; untrusted owner/requester fields

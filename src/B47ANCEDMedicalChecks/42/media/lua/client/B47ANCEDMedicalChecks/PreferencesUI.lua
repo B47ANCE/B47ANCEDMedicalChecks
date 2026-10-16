@@ -1,4 +1,5 @@
 local C=require "B47ANCEDMedicalChecks/Config"
+if not C.runtimeEnabled() then return end
 require "ISUI/ISCollapsableWindow"
 require "ISUI/ISComboBox"
 require "ISUI/ISButton"

@@ -1,8 +1,32 @@
 # Cooperative validation â€” 2026-10-14
 
-Project Version: 0.3.0-dev.5
+Project Version: 0.3.0-dev.6
 
-## Current wording iteration — 2026-10-16
+## Current Health Care compatibility iteration — 2026-10-16
+
+Baseline main bb9562a45485e73123e292c64623af809e52eb27, version 0.3.0-dev.5.
+Target 0.3.0-dev.6: PATCH-compatible startup guard for owner-specified Mod ID
+B47ANCEDHealthCare (Workshop identity supplied as 3788592396). Installed source
+API evidence and its client/server limits are in health-care-api-evidence.json and
+COMPATIBILITY.md. Health Care code is not installed/inspected or changed.
+
+[TESTED - offline Windows/Python/Lupa] `python scripts/build.py`: 97 run, 96 passed,
+one historical-fixture skip. Twelve compatibility fixtures cover exact, unrelated,
+near-match and separator IDs, unavailable API/list, and client/server entry points
+before UI/events/storage. Existing standalone request/policy/storage/UI tests pass.
+All 12 compatibility scenarios also PASS on the offline Lupa Lua 5.1 host;
+this is not a native Kahlua/PZ runtime test. Translation keys remain stable across the 29 fallback locales. Script/module
+startup order is represented by no Health Care globals being present in fixtures.
+`python scripts/check_versions.py`, `python scripts/package.py` (plan only),
+and `git diff --check` PASS for this iteration; no package or --release claim is made without artifacts.
+Historical .5 publication, its original package and receipt remain unchanged.
+
+[RUNTIME GATE] Actual standalone/co-enabled player-hosted and dedicated behavior,
+native active-mod-list startup timing, Health Care feature parity, UI and save
+reactivation are NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.
+No game/server launch, deployment, Workshop upload or Health Care data migration.
+
+## Historical wording iteration — 2026-10-16
 
 0.3.0-dev.4 -> 0.3.0-dev.5 is PATCH-compatible presentation/documentation work.
 Request handling, server-owned state, persistence, policy, protocol/schema and
@@ -178,3 +202,13 @@ text assertion. No later page edit is copied over or silently overwritten.
 Player-hosted/dedicated multiplayer, subscription/download and in-game rendering
 remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. Source metadata/test
 correction only: published 0.3.0-dev.5 and its immutable package remain unchanged.
+
+## PR #9 publication preparation
+
+Review kept runtime changes intact after 97 offline tests (96 PASS, one historical
+fixture SKIP). Canonical publication text is now WORKSHOP_DESCRIPTION.txt in raw
+Steam BBCode, preserving the current owner-edited live description and formatting.
+Only the No Examination Requests policy phrase is corrected, plus the new Health
+Care note, required MP-testing label and credits. The previous Markdown draft is
+retained, explicitly retired, and is not a publish input. This is source preparation,
+not evidence of an upload. In-game/dedicated gates remain NOT TESTED / BLOCKED.

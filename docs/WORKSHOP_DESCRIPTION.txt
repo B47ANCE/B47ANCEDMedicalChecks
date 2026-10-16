@@ -1,0 +1,70 @@
+[h1]B47ANCE'd Medical Checks[/h1]
+
+Take control of who can examine your character's medical condition in Project Zomboid multiplayer.
+
+B47ANCE'd Medical Checks adds examination approval requests, allowing you to decide who can view your character's medical information.
+
+[h2]Features[/h2]
+
+[b]Two Permission Modes[/b]
+[list]
+[*][b]Always Ask:[/b] Approve or decline every examination request.
+[*][b]Only Ask Once Per Player:[/b] Approve someone once, and they'll be remembered for future examinations.
+[/list]
+
+Declined requests are never remembered as approvals.
+
+[b]Manage Permissions[/b]
+
+View your previously approved examiners and revoke individual permissions at any time through Medical Checks settings.
+
+Permissions are tied to player accounts, not character names, and are managed by the server.
+
+[h2]Server Settings[/h2]
+
+Server administrators can choose between four examination policies:
+
+[list]
+[*][b]Player Choice:[/b] Players select their preferred permission mode.
+[*][b]Force Always Ask:[/b] Every examination requires approval.
+[*][b]Force Only Ask Once:[/b] Remember approved examiners.
+[*][b]No Examination Requests:[/b] Disable examination requests.
+[/list]
+
+Additional settings control default preferences, approval retention, request cooldowns, response timeouts, and diagnostic logging.
+
+[h2]Compatibility[/h2]
+
+[list]
+[*]Project Zomboid Build 42.21
+[*]Mod ID: B47ANCEDMedicalChecks
+[*]Lua-only, no dependencies
+[*]Install on both server and clients
+[*]Preserves vanilla First Aid, treatments, and examination mechanics
+[/list]
+
+[h2]Development Status[/h2]
+
+[b]⚠ Multiplayer Testing Build[/b]
+
+Dedicated-server multiplayer, player-hosted multiplayer, and in-game UI rendering have not yet been tested.
+
+Offline Python/Lupa tests do not guarantee in-game functionality.
+
+[b]Known Limitations:[/b] Revoking permission does not close an already-open health panel. Switching approval retention back to Persistent may restore previously stored approvals.
+
+Back up server configuration and approval files before testing.
+
+[h2]Source Code & Feedback[/h2]
+
+[url=https://github.com/B47ANCE/B47ANCEDMedicalChecks]GitHub — Source Code & Bug Reports[/url]
+
+[h2]Health Care Compatibility[/h2]
+Medical Checks remains a standalone mod. Its features are planned for inclusion in Health Care (Mod ID: B47ANCEDHealthCare; Workshop ID: 3788592396).
+
+When Health Care is enabled, Medical Checks leaves its own features inactive to avoid duplicate behavior. Existing Medical Checks preferences and approvals are preserved. Fully restart the game/server after changing the enabled mod set.
+
+MP testing build - dedicated multiplayer NOT TESTED
+
+[h2]Credits & Permissions[/h2]
+Developed by B47ANCE'd Workshop. Project artwork supplied by its owner. Project Zomboid is developed by The Indie Stone.

@@ -1,9 +1,12 @@
 # Workshop publishing
 
-The canonical description is docs/WORKSHOP_DESCRIPTION.md. The canonical change
-note is WORKSHOP_CHANGE_NOTE.txt. Use the shared Build-WorkshopDescription.py
-renderer to generate Steam BBCode; preserve real line breaks and the public
-GitHub source link. Generated VDF, staging, upload logs and local credentials
+The canonical description is docs/WORKSHOP_DESCRIPTION.txt, already in Steam
+BBCode to preserve the owner's live formatting. The canonical change note is
+WORKSHOP_CHANGE_NOTE.txt. Normalize real paragraph breaks and copy the canonical
+BBCode directly into generated upload metadata; do not run the Markdown renderer
+on this raw BBCode source. Keep the public GitHub source link. The previous
+WORKSHOP_DESCRIPTION.md is a retired draft retained as historical evidence, not
+an active publish input. Generated VDF, staging, upload logs and local credentials
 are not source files and must not be committed.
 
 Before any future upload, fetch the current Workshop description and compare it

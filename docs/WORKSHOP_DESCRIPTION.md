@@ -17,6 +17,10 @@ Project Zomboid Build 42.21. Mod ID: B47ANCEDMedicalChecks. Lua-only; no additio
 MP testing build - dedicated multiplayer NOT TESTED
 Player-hosted multiplayer and in-game UI rendering are also NOT TESTED. Offline checks use Python/Lupa fixtures; they do not establish runtime behavior.
 
+Medical Checks remains standalone. Health Care is planned to include these
+features; when B47ANCEDHealthCare is enabled, Medical Checks leaves its own
+features inactive to avoid duplicate behavior. Existing saved data is preserved.
+
 ## Configuration
 Server sandbox settings select Player Choice, Force Always Ask, Force Only Ask Once, or No Examination Requests. Configure the default player preference, approval retention, request cooldown, response timeout and diagnostic logging.
 

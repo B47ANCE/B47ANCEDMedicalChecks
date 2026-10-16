@@ -18,7 +18,7 @@ def runtime():
  vm.globals().package.path=';'.join((LUA/s/'?.lua').as_posix() for s in ['shared','server','client'])+';'+vm.globals().package.path
  return vm
 class Scenarios(unittest.TestCase): pass
-for filename in ['engine_spec.lua','client_spec.lua','server_spec.lua','cooperative_spec.lua']:
+for filename in ['engine_spec.lua','client_spec.lua','server_spec.lua','cooperative_spec.lua','compatibility_spec.lua']:
  specs=runtime().execute((ROOT/'tests'/filename).read_text(encoding='utf-8'))
  for name in specs.keys():
   def scenario(self,fn=filename,key=name):
