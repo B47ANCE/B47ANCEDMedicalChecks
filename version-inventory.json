@@ -123,6 +123,10 @@
     {
       "reference": "docs/WORKSHOP_DESCRIPTION.md",
       "reason": "Retired Markdown draft; owner-edited live BBCode was adopted as canonical WORKSHOP_DESCRIPTION.txt for the .6 publication without discarding the earlier source"
+    },
+    {
+      "reference": "docs/PUBLICATION-0.3.0-dev.6.json",
+      "reason": "Immutable actual .6 Workshop distribution receipt, pinned to merged source 10702b7 and recorded hashes; not a future current-version mirror or runtime validation"
     }
   ]
 }

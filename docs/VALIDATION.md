@@ -212,3 +212,26 @@ Only the No Examination Requests policy phrase is corrected, plus the new Health
 Care note, required MP-testing label and credits. The previous Markdown draft is
 retained, explicitly retired, and is not a publish input. This is source preparation,
 not evidence of an upload. In-game/dedicated gates remain NOT TESTED / BLOCKED.
+
+## Version 0.3.0-dev.6 Workshop distribution — 2026-10-16
+
+PR #9 merged as 10702b71fe1ee3ba810cd50e757c9641008b1993. The exact committed
+snapshot passed `python scripts/build.py` (97 run: 96 passed, one historical
+fixture skipped), `python scripts/package.py --development` and
+`python scripts/check_versions.py --release`. Staged/runtime/source hashes,
+archive CRC/member safety, case checks, Lua-only payload and canonical text passed.
+The Windows checkout's CRLF bytes were compared against committed LF text for
+canonical description/change-note parity; no source content was changed.
+
+SteamCMD updated existing public item 3820690174, exited 0 and reported
+Committing update...Success. Steam API confirms App ID 108600, public visibility 0,
+expected title and exact canonical BBCode description. Content manifest changed
+from the .5 value to 6314809169805698450; reported content size is 224421 bytes.
+The same accepted preview encoding was reused; original artwork is unchanged.
+The Steam desktop client exited gracefully and restarted; process startup observed.
+See PUBLICATION-0.3.0-dev.6.json for source/package/staging/preview/text hashes.
+
+This records distribution success. No local mod deployment, game/server launch,
+Health Care modification or cleanup occurred. Actual standalone/co-enabled
+player-hosted/dedicated behavior, subscription/download, Health Care feature parity
+and rendering remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.

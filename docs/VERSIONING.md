@@ -38,5 +38,7 @@ deleted or moved. --release validates package versions, not stable-release G8.
 update for the owner-specified Health Care relationship. Medical Checks remains
 standalone; co-enabling Health Care makes it inactive. Public Mod/Workshop IDs,
 protocol 3, schema 2 and existing sandbox identifiers/defaults/bounds are unchanged.
-No current 0.3.0-dev.6 artifact is generated or published. The immutable .5
-publication receipt remains pinned to its actual .5 source, package and evidence.
+The initial implementation created no .6 artifact; after explicit merge/publish
+authorization, merged source 10702b7 was packaged and published to existing item
+3820690174. PUBLICATION-0.3.0-dev.6.json binds that exact distribution. The immutable
+.5 receipt remains pinned to its original .5 source, package and evidence.
