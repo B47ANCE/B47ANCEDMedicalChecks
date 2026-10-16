@@ -1,6 +1,6 @@
 # Cooperative dedicated-server test handoff
 
-Project Version: 0.3.0-dev.4
+Project Version: 0.3.0-dev.5
 
 Offline: python scripts/build.py with requirements-dev.txt; optional research-tool
 fixtures use python -m unittest discover -s tests -p test_audit_medical_source.py with
@@ -16,15 +16,14 @@ protocol 3. Preserve a vanilla comparison run. Do not enable historical Java age
 2. Only Ask Once: approve examiner A; subsequent requests from A skip the prompt,
    B still prompts. Reverse direction must prompt independently. Denial never remembers.
 3. Force Always Ask ignores stored approval; Force Only Ask Once remembers after
-   YES; No Examination Requests refuses this context workflow. None protects native
-   packets. Disable CooperativeConsent and verify the original vanilla flow returns.
+   YES; No Examination Requests refuses this context workflow. Disable
+   CooperativeConsent and verify the original vanilla flow returns.
 4. Revoke A in settings: cancel A's pending offer/request, require A to ask again,
    retain B. Legacy inactive records remain separate. Already-open health panels
-   remain vanilla; do not interpret this as native-session revocation.
+   remain vanilla.
 5. Repeat clicks, duplicate/reordered responses, forged owner fields, wrong sender
    answers, movement/floor/death, timeout, disconnect/rejoin and object replacement:
-   no extra cooperative Proceed, stale prompt or unintended action. Native adversarial
-   packet tests remain outside this workflow's protection claims.
+   no extra Proceed, stale prompt or unintended action.
 6. Test account/character changes, persistent approvals over reconnect/server restart,
    and session retention clearing on patient OR examiner disconnect and restart.
    Changing retention back to Persistent exposes the old stored records until revoked.
@@ -43,6 +42,6 @@ protocol 3. Preserve a vanilla comparison run. Do not enable historical Java age
    still requires observation. No server treatment wrapper was added.
 
 Every actual row is currently NOT TESTED. Record exact source/package/class hashes,
-roles, settings, results and anonymized logs. A cooperative-flow PASS must not be
-reported as native privacy PASS. MEDICAL_SECURITY_MATRIX.md's 15 security cases
-remain NOT TESTED; G7 and stable G8 remain BLOCKED.
+roles, settings, results and anonymized logs. Repeat the applicable scenarios on
+player-hosted multiplayer and record that result separately from dedicated tests.
+G7 and stable G8 remain BLOCKED until their required runtime evidence exists.

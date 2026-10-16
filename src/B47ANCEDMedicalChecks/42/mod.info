@@ -1,8 +1,8 @@
 name=B47ANCE'd Medical Checks
 id=B47ANCEDMedicalChecks
 author=B47ANCE
-description=Lua-only cooperative approval prompts and remembered examiner choices. Modified clients can bypass consent; native server medical privacy remains BLOCKED. Dedicated multiplayer NOT TESTED.
-modversion=0.3.0-dev.4
+description=Medical examination approval prompts, remembered examiner choices and individual revocation. Server-configured policies and retention. Development build: multiplayer NOT TESTED.
+modversion=0.3.0-dev.5
 versionMin=42.21
 versionMax=42.21
 

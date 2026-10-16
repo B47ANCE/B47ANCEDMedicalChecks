@@ -25,7 +25,7 @@ end
 function Coop:reply(player,command,args) self.e:reply(player,command,args) end
 function Coop:result(player,nonce,reason)
     self:reply(player,"CoopResult",{nonce=nonce,reason=reason})
-    if C.options().debug then print("[B47MC] Cooperative workflow: "..reason.."; native authority BLOCKED") end
+    if C.options().debug then print("[B47MC] Cooperative workflow: "..reason) end
 end
 function Coop:finish(id,reason)
     local r=self.pending[id];if not r then return end

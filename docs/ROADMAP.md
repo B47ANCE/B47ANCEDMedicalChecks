@@ -1,13 +1,13 @@
 # Current disposition
 
-Project Version: 0.3.0-dev.4
+Project Version: 0.3.0-dev.5
 
-Cooperative convenience is implemented for offline validation: prompts, remembered
-examiners, individual revocation, policy, timing and persistence. Native server
-privacy remains BLOCKED. Treatment callback validation remains PROVISIONAL and is
-not implemented. No more client wrappers can establish the missing native boundary.
+Examination requests, remembered examiners, individual revocation, server policies,
+request timing and persistence are implemented for offline validation. Current
+player-facing text describes these features without repeated security warnings.
+No request handling, protocol, storage or treatment behavior changed in this iteration.
 
-Next: separately authorized clean dedicated testing of the cooperative workflow,
-UI/controller/split-screen, storage, reconnect and restart. The native security matrix
-still cannot pass without a supported authorization seam. G7 NOT TESTED / BLOCKED;
-stable G8 BLOCKED. No automatic packaging, deployment, launch or publication.
+Next: separately authorized player-hosted and dedicated multiplayer tests covering
+approval/denial, UI/controller/split-screen, storage, reconnect and restart.
+G7 NOT TESTED / BLOCKED; stable G8 BLOCKED. No automatic packaging, deployment,
+game/server launch or publication.
