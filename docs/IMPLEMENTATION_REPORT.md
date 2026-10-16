@@ -1,6 +1,6 @@
 # Cooperative implementation report
 
-Project Version: 0.3.0-dev.3
+Project Version: 0.3.0-dev.4
 
 Implemented the user-authorized cooperative convenience: ordinary-client approval
 prompts, Always Ask and per-examiner Only Ask Once, four cooperative server policies,
@@ -27,3 +27,5 @@ this implementation. PR #4 merge is separately authorized after review and check
 only. Historical Java and prior reports remain preserved and excluded from runtime.
 
 PR #4 fixes: incomplete approval slot pairs disable cooperative access for review; disabled-mode fallback rechecks the current patient object and vanilla eligibility. Both regressions failed before correction and pass offline afterward. These fixes do not add native enforcement.
+
+Artwork-only update at 0.3.0-dev.4: root thumbnail.png is now the user-supplied Medical Checks illustration, copied without modification. Branding provenance and package inputs are updated; mod icon, poster and runtime behavior remain unchanged. This does not refresh the earlier gameplay test evidence.

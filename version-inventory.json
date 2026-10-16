@@ -45,6 +45,10 @@
     {
       "path": "docs/VALIDATION.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/BRANDING.md",
+      "pattern": "^Current authoring version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {
@@ -103,6 +107,10 @@
     {
       "reference": "history/, native/, research/, dist/current/",
       "reason": "Immutable/local Java-era evidence and artifacts; not active dependencies or current version mirrors"
+    },
+    {
+      "reference": "docs/BRANDING.md historical fallback provenance",
+      "reason": "Prior authoring version, original fallback hashes and source provenance remain historical"
     }
   ]
 }

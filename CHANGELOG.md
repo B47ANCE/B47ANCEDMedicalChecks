@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0-dev.4]
+
+Use the user-supplied Medical Checks illustration as thumbnail.png, preserving its exact PNG bytes and original dimensions. Keep fallback mod icon/poster unchanged. Include the selected thumbnail in future development package inputs. Artwork-only iteration; cooperative limitations and dedicated multiplayer NOT TESTED remain unchanged.
+
 ## [0.3.0-dev.3]
 
 Replace the cooperative fresh-store next() dependency with a local pairs-based emptiness check. Preserve slot seeding, recovered/incomplete-store rejection and fail-closed writes. Add a missing-next host regression; PZ SP/dedicated runtime NOT TESTED, G7/stable G8 BLOCKED.
