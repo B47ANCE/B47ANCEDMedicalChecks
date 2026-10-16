@@ -1,6 +1,6 @@
 # Cooperative validation â€” 2026-10-14
 
-Project Version: 0.3.0-dev.3
+Project Version: 0.3.0-dev.4
 
 ## Current API correction: 0.3.0-dev.3
 
@@ -94,3 +94,15 @@ time; no required checks are bypassed. Merge authorization is for PR #4 integrat
 only, not release readiness. Cooperative-only limitations, provisional treatment
 finding and NOT TESTED multiplayer remain unchanged. Prior 80-pass results belong
 to 0.3.0-dev.1; the 82-pass result above is the post-review run.
+
+## Thumbnail iteration — 2026-10-15
+
+0.3.0-dev.3 -> 0.3.0-dev.4 is a PATCH-compatible artwork/packaging-input iteration.
+The gameplay results above remain historical to their stated versions. Current
+thumbnail checks: supplied PNG signature, all chunk CRCs, dimensions (1254x1254),
+exact byte copy and SHA-256 PASS. Icon/poster and fallback asset hashes remain
+unchanged. Version checks and package-input planning pass; no ZIP is generated.
+Native authority/cooperative limitations and all NOT TESTED runtime gates persist.
+Exact commands: python scripts/check_versions.py; python scripts/package.py;
+git diff --cached --check. Source-to-thumbnail and planned package thumbnail bytes
+were compared directly in offline Python; no game/Workshop rendering proof is claimed.

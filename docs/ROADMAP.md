@@ -1,6 +1,6 @@
 # Current disposition
 
-Project Version: 0.3.0-dev.3
+Project Version: 0.3.0-dev.4
 
 Cooperative convenience is implemented for offline validation: prompts, remembered
 examiners, individual revocation, policy, timing and persistence. Native server

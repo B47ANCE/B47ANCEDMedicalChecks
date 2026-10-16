@@ -1,6 +1,6 @@
 # B47ANCE'd Medical Checks
 
-Project Version: 0.3.0-dev.3
+Project Version: 0.3.0-dev.4
 
 Lua-only cooperative examination convenience for Project Zomboid 42.21.
 Canonical Mod ID: `B47ANCEDMedicalChecks`.
@@ -30,3 +30,6 @@ See [architecture](docs/ARCHITECTURE.md), [implementation report](docs/IMPLEMENT
 [test instructions](docs/TESTING.md), [validation](docs/VALIDATION.md), and the
 [unchanged native authority audit](docs/MEDICAL_AUTHORITY_AUDIT.md).
 [Public source repository](https://github.com/B47ANCE/B47ANCEDMedicalChecks).
+
+Project thumbnail: user-supplied Medical Checks artwork in [thumbnail.png](thumbnail.png).
+See [branding provenance](docs/BRANDING.md); mod icon and poster retain their existing artwork.

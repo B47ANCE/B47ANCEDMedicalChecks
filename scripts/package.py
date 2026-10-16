@@ -12,7 +12,7 @@ def collect():
   for p in sorted((ROOT/folder).rglob('*')):
    if p.is_file() and '__pycache__' not in p.parts and p.name not in {'source-evidence.json','current-api-evidence.json'}:
     mapping[prefix+p.relative_to(ROOT).as_posix()]=p
- for name in ['VERSION','README.md','CHANGELOG.md','WORKSHOP_CHANGE_NOTE.txt','version-inventory.json','REPOSITORY.md','requirements-dev.txt']:
+ for name in ['VERSION','README.md','CHANGELOG.md','WORKSHOP_CHANGE_NOTE.txt','version-inventory.json','REPOSITORY.md','requirements-dev.txt','thumbnail.png']:
   mapping[prefix+name]=ROOT/name
  for p in check():
   mapping[prefix+'Contents/mods/B47ANCEDMedicalChecks/'+p.relative_to(ROOT/'src/B47ANCEDMedicalChecks').as_posix()]=p

@@ -1,6 +1,23 @@
+# Current project thumbnail
+
+Current authoring version: 0.3.0-dev.4
+
+The user supplied the Medical Checks illustration on 2026-10-15. It is the current
+manual override at root thumbnail.png; future fallback operations must preserve it.
+The supplied PNG is copied byte-for-byte, with no resizing, redrawing or regeneration.
+Dimensions: 1254x1254. SHA-256: dce7149de93ae2395422e942ac1e36bd80b823348b809c42cb7c93d563914eb1.
+
+The mod icon and poster remain their existing fallback files; no other image role
+is changed. Generic fallback assets remain under assets/branding as historical/
+authoring inputs. Future development packages include thumbnail.png; this task
+does not build a ZIP, upload to Workshop, deploy or launch PZ. Workshop upload/rendering
+compatibility is not tested by copying the project artwork.
+
+## Historical fallback provenance
+
 # Fallback artwork
 
-Current authoring version: 0.2.0-dev.3
+Historical authoring version: 0.2.0-dev.3
 
 Use manually supplied artwork first, independently for each role. Only missing roles use assets/branding/B47_ICON_SMALL.png (64x64 mod icon) and B47_ICON.png (128x128 poster) and B47_THUMBNAIL.png (512x512 Workshop thumbnail). Copy bytes without resizing or regenerating. Existing Eyewear thumbnail and Buildable Fences poster are custom and preserved. Future custom replacements take precedence. No UI project is included.
 

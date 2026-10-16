@@ -1,6 +1,6 @@
 # Version and artifact inventory
 
-Project Version: 0.3.0-dev.3
+Project Version: 0.3.0-dev.4
 
 Root VERSION is canonical. Baseline main 85e29ca is 0.2.0-dev.3. This additive
 cooperative feature is a 0.x MINOR development iteration to 0.3.0-dev.2. PR #4 review advances 0.3.0-dev.1 to 0.3.0-dev.2 for PATCH-compatible
@@ -19,3 +19,6 @@ deployment, game/server launch or Workshop publication. PR #4 merge is separatel
 authorized after review and applicable checks. No current artifact
 exists for this version. scripts/check_versions.py passes current mirrors; --release
 cannot be claimed without a requested artifact. G7/stable G8 remain BLOCKED.
+
+Artwork iteration 0.3.0-dev.4 advances 0.3.0-dev.3 for the custom thumbnail and
+its package-input selection only. No gameplay behavior, protocol or storage change.

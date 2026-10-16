@@ -1,6 +1,6 @@
 # Cooperative dedicated-server test handoff
 
-Project Version: 0.3.0-dev.3
+Project Version: 0.3.0-dev.4
 
 Offline: python scripts/build.py with requirements-dev.txt; optional research-tool
 fixtures use python -m unittest discover -s tests -p test_audit_medical_source.py with
