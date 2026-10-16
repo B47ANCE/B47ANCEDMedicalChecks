@@ -14,11 +14,10 @@ in Git at 85e29ca before replacement; none of their test evidence becomes curren
 proof. No old artifact is deleted, renamed or rebuilt. Research reports pinned to
 0.2.0-dev.2 remain historical source findings, not current runtime validation.
 
-This task authorizes implementation and feature-branch review, not packaging,
-deployment, game/server launch or Workshop publication. PR #4 merge is separately
-authorized after review and applicable checks. No current artifact
-exists for this version. scripts/check_versions.py passes current mirrors; --release
-cannot be claimed without a requested artifact. G7/stable G8 remain BLOCKED.
+The earlier implementation did not authorize publication. The owner's subsequent
+explicit publish request produced public Workshop item 3820690174. The immutable
+receipt in PUBLICATION-0.3.0-dev.5.json identifies its actual source and package.
+Distribution is separate from runtime verification; G7/stable G8 remain BLOCKED.
 
 Artwork iteration 0.3.0-dev.4 advances 0.3.0-dev.3 for the custom thumbnail and
 its package-input selection only. No gameplay behavior, protocol or storage change.
@@ -26,3 +25,11 @@ its package-input selection only. No gameplay behavior, protocol or storage chan
 Wording iteration 0.3.0-dev.5 advances 0.3.0-dev.4 with PATCH-compatible text
 changes only. UI/localization and package status text change; gameplay, public
 identifiers, protocol 3, storage schema 2, option defaults and artwork stay unchanged.
+
+PR #8 review keeps version 0.3.0-dev.5: this corrects publication metadata and
+its offline gate only; no runtime or published package changes. The single current
+ZIP family uses dist/*-current/*.zip, covering both the developer package and any
+Workshop publication copy. scripts/package.py --development may produce the sole
+current ZIP in a clean checkout. Every additional matched ZIP is still checked for
+canonical version and required members; a stale Workshop copy fails. No output is
+deleted or moved. --release validates package versions, not stable-release G8.

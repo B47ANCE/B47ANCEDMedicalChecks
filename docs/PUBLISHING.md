@@ -6,6 +6,12 @@ renderer to generate Steam BBCode; preserve real line breaks and the public
 GitHub source link. Generated VDF, staging, upload logs and local credentials
 are not source files and must not be committed.
 
+Before any future upload, fetch the current Workshop description and compare it
+with the canonical generated text. The page can be edited outside Git. Preserve
+those edits and reconcile/review any material differences before updating text;
+never treat an old publication receipt as proof that the current description matches.
+PR #8 review observed later page-text edits while the content manifest was unchanged.
+
 The owner explicitly authorized creation of a new public item for this project.
 The created public item is 3820690174. WORKSHOP_ID.txt is the canonical destination
 for later updates. Never recreate an item because an update fails. Inspect the
@@ -14,6 +20,9 @@ App ID is 108600 and Mod ID is B47ANCEDMedicalChecks.
 
 Prepare an exact committed-source snapshot with LF text, run scripts/build.py,
 then scripts/package.py --development and scripts/check_versions.py --release.
+The development ZIP is sufficient for the version gate in a clean checkout; any
+additional ZIP in dist/*-current/ is also checked when present. Preserve published
+package hashes and receipts even when later metadata or test changes are merged.
 Keep prior packages and provenance immutable. Stage only src/B47ANCEDMedicalChecks
 under Contents/mods/B47ANCEDMedicalChecks; compare all staged bytes to the snapshot.
 Preserve the supplied thumbnail.png as original artwork. SteamCMD rejected the

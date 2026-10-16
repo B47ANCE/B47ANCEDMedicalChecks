@@ -144,3 +144,37 @@ No game/server was launched or modified. Subscription/download, rendering and
 actual player-hosted/dedicated behavior remain NOT TESTED. Public-page browser
 rendering was unavailable; public API metadata verification passed. Distribution
 evidence does not change G7 BLOCKED / NOT TESTED or stable G8 BLOCKED.
+
+## PR #8 review — 2026-10-16
+
+[TESTED - offline Windows/Python/Lupa] A clean-fixture release check reproduced
+an inventory defect: the documented development package command generated only
+dist/lua-only-current/, but two separate required artifact rules demanded a
+Workshop copy as well. The added regression failed before correction with
+No current package matches dist/workshop-current/*.zip. One current ZIP family,
+dist/*-current/*.zip, now accepts the development output alone and continues to
+reject stale Workshop copies. No archive is moved, replaced or recreated.
+
+Exact checks: `python scripts/test.py Structure.test_release_check_accepts_development_zip_and_rejects_stale_workshop_zip`
+PASS after failure before the inventory fix; `python scripts/build.py` PASS:
+85 run, 84 passed, one historical-preservation fixture skipped.
+`python scripts/check_versions.py --release`, `python scripts/package.py`
+(input plan only), and `git diff --check` PASS. Canonical description rendering
+was checked with Build-WorkshopDescription.py --check. Direct comparisons verify
+all 71 published runtime hashes against both their recorded source commit and
+current Git source, ZIP CRC/member/path/case/hash integrity, package/source-tar/
+preview/description/changenote hashes, and the unchanged immutable receipt.
+No runtime/artwork/version change or Workshop upload occurred during review.
+
+[VERIFIED - current Steam API metadata] Item 3820690174 remains public under
+App ID 108600 with the expected title and recorded content manifest. Its current
+description differs from the exact text verified at publication time. The initial
+all-fields live comparison therefore did not pass description equality; the
+follow-up confirms text drift with unchanged content identity. Those live edits
+are preserved, and future publishing instructions require comparison/reconciliation.
+The original receipt remains an accurate upload-time record, not a current-page
+text assertion. No later page edit is copied over or silently overwritten.
+
+Player-hosted/dedicated multiplayer, subscription/download and in-game rendering
+remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. Source metadata/test
+correction only: published 0.3.0-dev.5 and its immutable package remain unchanged.

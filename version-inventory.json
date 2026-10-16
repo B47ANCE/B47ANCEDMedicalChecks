@@ -58,21 +58,7 @@
   "packaging": {
     "artifacts": [
       {
-        "glob": "dist/lua-only-current/*.zip",
-        "pattern": "B47ANCEDMedicalChecks-development-(?P<version>.+)\\.zip",
-        "zip_members": [
-          {
-            "member": "B47ANCEDMedicalChecks/VERSION",
-            "pattern": "^(?P<version>\\S+)$"
-          },
-          {
-            "member": "B47ANCEDMedicalChecks/Contents/mods/B47ANCEDMedicalChecks/42/mod.info",
-            "pattern": "^modversion=(?P<version>\\S+)$"
-          }
-        ]
-      },
-      {
-        "glob": "dist/workshop-current/*.zip",
+        "glob": "dist/*-current/*.zip",
         "pattern": "B47ANCEDMedicalChecks-development-(?P<version>.+)\\.zip",
         "zip_members": [
           {
