@@ -49,6 +49,10 @@
     {
       "path": "docs/BRANDING.md",
       "pattern": "^Current authoring version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/COMPATIBILITY.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

@@ -48,7 +48,7 @@ TOOLTIPS={
 for key,(label,choices) in options.items():
  prefix='Sandbox_B47MC_'+key
  SANDBOX[prefix]=label
- SANDBOX[prefix+'_tooltip']=TOOLTIPS[key]
+ SANDBOX[prefix+'_tooltip']=TOOLTIPS[key]+' Inactive while Health Care is enabled.'
  for i,choice in enumerate(choices,1): SANDBOX[prefix+'_option'+str(i)]=choice
 def main():
  for language in LOCALES:

@@ -1,6 +1,6 @@
 # Cooperative dedicated-server test handoff
 
-Project Version: 0.3.0-dev.5
+Project Version: 0.3.0-dev.6
 
 Offline: python scripts/build.py with requirements-dev.txt; optional research-tool
 fixtures use python -m unittest discover -s tests -p test_audit_medical_source.py with
@@ -45,3 +45,18 @@ Every actual row is currently NOT TESTED. Record exact source/package/class hash
 roles, settings, results and anonymized logs. Repeat the applicable scenarios on
 player-hosted multiplayer and record that result separately from dedicated tests.
 G7 and stable G8 remain BLOCKED until their required runtime evidence exists.
+
+## Health Care combinations
+
+For both player-hosted and dedicated tests, record the exact enabled mod IDs and
+Health Care version. Begin with disposable profiles and matching client/server mod
+sets. Test Medical Checks alone and with unrelated mods: prompts, policies,
+preferences, revocation, reconnect and restart must retain their prior behavior.
+Then enable B47ANCEDHealthCare and fully restart server/clients. Medical Checks
+must add no settings context entry, prompt, wrapper or server handlers and must
+leave its existing files unchanged; Health Care must own the replacement features.
+Repeat with both script orders where the test setup supports it. Disable Health
+Care, restart, and verify Medical Checks resumes with its original preferences and
+approvals. Verify its inactive sandbox tooltips and console notice. Do not infer
+Health Care feature parity from silence in Medical Checks. All these runtime
+combinations remain NOT TESTED; source/offline results are not G7 evidence.

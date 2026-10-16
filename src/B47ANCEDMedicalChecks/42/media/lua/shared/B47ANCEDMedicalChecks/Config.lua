@@ -1,7 +1,20 @@
 B47MC = B47MC or {}
-local C={version="0.3.0-dev.5",module="B47ANCEDMedicalChecks",schema=2,protocol=3,
+local C={version="0.3.0-dev.6",module="B47ANCEDMedicalChecks",schema=2,protocol=3,
     maxIdentifier=128,maxAccounts=4096,maxGrants=128,maxBytes=2097152}
 B47MC.Config=C
+-- Fixed interoperability identity, not a configurable gameplay policy.
+C.healthCareId="B47ANCEDHealthCare"
+function C.runtimeEnabled()
+    if type(getActivatedMods)~="function" then return false,"active mod list unavailable" end
+    local mods=getActivatedMods()
+    if not mods then return false,"active mod list unavailable" end
+    for i=0,mods:size()-1 do
+        local id=mods:get(i)
+        -- Match only the exact identity, allowing a leading mod-ID separator.
+        if id==C.healthCareId or id=="\\"..C.healthCareId then return false,"Health Care enabled" end
+    end
+    return true
+end
 local function enum(v,default,count)
     if type(v)=="number" and v==math.floor(v) and v>=1 and v<=count then return v end
     return default

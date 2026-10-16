@@ -1,6 +1,6 @@
 # Version and artifact inventory
 
-Project Version: 0.3.0-dev.5
+Project Version: 0.3.0-dev.6
 
 Root VERSION is canonical. Baseline main 85e29ca is 0.2.0-dev.3. This additive
 cooperative feature is a 0.x MINOR development iteration to 0.3.0-dev.2. PR #4 review advances 0.3.0-dev.1 to 0.3.0-dev.2 for PATCH-compatible
@@ -33,3 +33,10 @@ Workshop publication copy. scripts/package.py --development may produce the sole
 current ZIP in a clean checkout. Every additional matched ZIP is still checked for
 canonical version and required members; a stale Workshop copy fails. No output is
 deleted or moved. --release validates package versions, not stable-release G8.
+
+0.3.0-dev.5 -> 0.3.0-dev.6 is a PATCH-compatible duplicate-feature prevention
+update for the owner-specified Health Care relationship. Medical Checks remains
+standalone; co-enabling Health Care makes it inactive. Public Mod/Workshop IDs,
+protocol 3, schema 2 and existing sandbox identifiers/defaults/bounds are unchanged.
+No current 0.3.0-dev.6 artifact is generated or published. The immutable .5
+publication receipt remains pinned to its actual .5 source, package and evidence.

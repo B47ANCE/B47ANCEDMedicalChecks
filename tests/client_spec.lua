@@ -22,6 +22,7 @@ local function class()
 end
 local function setup(client)
     local f={sent={},time=1000,vanillaActions=0,performed=0,stopped=0}
+    function getActivatedMods() return {size=function() return 0 end} end
     Events={}
     for _,name in ipairs({"OnGameStart","OnCreatePlayer","OnServerCommand","OnFillWorldObjectContextMenu","OnTick","OnDisconnect","RequestMedicalCheck","AcceptedMedicalCheck"}) do
         local ev={callbacks={}}

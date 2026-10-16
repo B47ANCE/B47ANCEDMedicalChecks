@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0-dev.6]
+
+Keep Medical Checks standalone and defer its runtime to Health Care (B47ANCEDHealthCare) when that mod is active. Check the engine active-mod list before registering client hooks/server handlers or opening storage. Preserve saved files and standalone behavior. Health Care feature absorption remains planned; no data import is added. Offline compatibility fixtures added; actual combined multiplayer remains NOT TESTED.
+
 ## [0.3.0-dev.5]
 
 Simplify player-facing documentation, mod description, prompts and settings text. Replace repeated security warnings with feature descriptions and option-specific tooltips. Keep gameplay behavior, saved data, configuration identifiers and artwork unchanged. Multiplayer runtime remains NOT TESTED.
