@@ -1,6 +1,6 @@
 # Version and artifact inventory
 
-Project Version: 0.3.0-dev.6
+Project Version: 0.3.0-dev.7
 
 Root VERSION is canonical. Baseline main 85e29ca is 0.2.0-dev.3. This additive
 cooperative feature is a 0.x MINOR development iteration to 0.3.0-dev.2. PR #4 review advances 0.3.0-dev.1 to 0.3.0-dev.2 for PATCH-compatible
@@ -42,3 +42,8 @@ The initial implementation created no .6 artifact; after explicit merge/publish
 authorization, merged source 10702b7 was packaged and published to existing item
 3820690174. PUBLICATION-0.3.0-dev.6.json binds that exact distribution. The immutable
 .5 receipt remains pinned to its original .5 source, package and evidence.
+
+0.3.0-dev.6 -> 0.3.0-dev.7 is a PATCH-compatible validation and documentation
+checkpoint with client controller/focus/viewport fixes. Gameplay behavior, public identifiers, protocol 3, schema 2,
+sandbox settings and supplied artwork are preserved. The published .6 distribution
+and its receipt remain historical and unchanged; this iteration does not publish.

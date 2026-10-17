@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.0-dev.7]
+
+Fix missing settings controller navigation, focus restoration across prompts/close/disconnect, and settings placement in smaller split-screen viewports. Add isolated server/three-client workflow regression coverage, Lua 5.1/5.4 host selection, read-only offline CI and a repeatable runtime test record. Correct publication-report scope and require explicit confirmation before every Steam desktop restart. Preserve protocol 3, schema 2, sandbox settings, artwork and published artifacts. Actual hosted/dedicated multiplayer remains NOT TESTED.
+
 ## [0.3.0-dev.6]
 
 Keep Medical Checks standalone and defer its runtime to Health Care (B47ANCEDHealthCare) when that mod is active. Check the engine active-mod list before registering client hooks/server handlers or opening storage. Preserve saved files and standalone behavior. Health Care feature absorption remains planned; no data import is added. Offline compatibility fixtures added; actual combined multiplayer remains NOT TESTED.

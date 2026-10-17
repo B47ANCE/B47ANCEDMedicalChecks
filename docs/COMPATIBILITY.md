@@ -1,6 +1,6 @@
 # Health Care compatibility
 
-Project Version: 0.3.0-dev.6
+Project Version: 0.3.0-dev.7
 
 Medical Checks remains an independent standalone project and Workshop item
 3820690174. The owner plans to absorb all of its features into Health Care,
@@ -46,13 +46,16 @@ LuaManager$GlobalObject.getActivatedMods BCI 0-6 returns ZomboidFileSystem.getMo
 Vanilla client ISPauseModListUI.lua lines 19-21 demonstrates size()/get(i).
 See health-care-api-evidence.json for source hashes. No direct vanilla server Lua
 caller was found in the bounded search; dedicated startup timing/availability is
-a runtime gate. Health Care is not installed locally, and its implementation was
-not inspected, copied or changed. Its identity was supplied directly by the owner.
+a runtime gate. At the .6 source audit Health Care code was not available locally;
+this iteration does not inspect, copy or change its implementation. Its identity
+was supplied directly by the owner.
 
 [TESTED - offline Lua fixtures] Standalone, unrelated/near-match IDs, the exact
 Health Care ID, leading separator, incorrect Workshop-number use, missing API/list,
 client modules before UI imports, and headless server before events/storage are
 covered. Existing standalone consent/storage/UI regressions still run.
+The .7 isolated-state harness also covers both mod-list orders with one mocked
+server and three mocked clients; no Medical Checks events or files are created.
 [RUNTIME GATE] Actual player-hosted/dedicated standalone and co-enabled behavior,
 real script order and Health Care feature parity are NOT TESTED. G7 BLOCKED / NOT
 TESTED; stable G8 BLOCKED. No deployment or publication is part of this change.

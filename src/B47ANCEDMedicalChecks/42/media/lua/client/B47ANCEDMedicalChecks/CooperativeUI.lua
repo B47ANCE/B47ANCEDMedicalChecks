@@ -15,7 +15,10 @@ local function modal(player,text,yesno,callback)
     local height=math.max(200,math.min(320,getPlayerScreenHeight(n)-60))
     local window=ISModalRichText:new(getPlayerScreenLeft(n)+20,getPlayerScreenTop(n)+20,width,height,text,yesno,nil,callback,n)
     window:initialise();window:addToUIManager();window:bringToTop()
-    if JoypadState and JoypadState.players[n+1] then setJoypadFocus(n,window) end
+    if JoypadState and JoypadState.players[n+1] then
+        window.prevFocus=JoypadState.players[n+1].focus
+        setJoypadFocus(n,window)
+    end
     return window
 end
 local function close(window) if window then window:destroy() end end

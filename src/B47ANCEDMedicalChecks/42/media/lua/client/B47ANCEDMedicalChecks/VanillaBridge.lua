@@ -33,7 +33,7 @@ local function menu(index,context,worldobjects,test)
 end
 local function disconnect()
     CooperativeUI.disconnect()
-    for _,window in pairs(Client.windows) do window:removeFromUIManager() end
+    for _,window in pairs(Client.windows) do window:close() end
     Client.windows={};Client.snapshots={}
 end
 Events.OnServerCommand.Add(onServerCommand)

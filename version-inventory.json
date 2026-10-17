@@ -53,6 +53,10 @@
     {
       "path": "docs/COMPATIBILITY.md",
       "pattern": "^Project Version: (?P<version>\\S+)$"
+    },
+    {
+      "path": "docs/RUNTIME_TEST_RECORD.md",
+      "pattern": "^Project Version: (?P<version>\\S+)$"
     }
   ],
   "changelog": {

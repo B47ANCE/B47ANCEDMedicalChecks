@@ -1,0 +1,57 @@
+{
+  "status": "VERIFIED installed source only; actual UI/controller/MP NOT TESTED",
+  "game_version": "42.21",
+  "steam_build": "25485521",
+  "observed_on": "2026-10-16",
+  "scope": "Read-only vanilla UI Lua inspection; no third-party code or game changes",
+  "evidence": [
+    {
+      "path": "media/lua/client/ISUI/ISCollapsableWindowJoypad.lua",
+      "sha256": "e5947e25337384f3ed0b8bebaf7057029605995b348a8c2cf3f8da3cb0890292",
+      "lines": [
+        4,
+        15
+      ],
+      "statement": "ISPanelJoypad base, copied collapsable-window methods and constructor"
+    },
+    {
+      "path": "media/lua/client/ISUI/ISPanelJoypad.lua",
+      "sha256": "8e7a2afbe11bb826bd3a2b8e08501790adba772171fd5e747af6cc520a60f060",
+      "lines": [
+        127,
+        310,
+        367
+      ],
+      "statement": "Navigation rows, visible children, combo/button dispatch and B collapse handling"
+    },
+    {
+      "path": "media/lua/client/ISUI/ISMakeUpUI.lua",
+      "sha256": "963cdccd9f9c2afd02b43c9f8de8a5147104c6b2424899c5cf0725ee7fcde990",
+      "lines": [
+        334,
+        346,
+        364
+      ],
+      "statement": "Vanilla controller focus, B-before-close and previous-focus restoration convention"
+    },
+    {
+      "path": "media/lua/client/ISUI/ISModalRichText.lua",
+      "sha256": "ef25cda5a02a298019f8b0a13ed13c0d989e13b4e5c12469a441da0e88c80e4c",
+      "lines": [
+        70,
+        162
+      ],
+      "statement": "destroy restores prevFocus; constructor accepts local player index"
+    },
+    {
+      "path": "media/lua/client/ISUI/ISScrollingListBox.lua",
+      "sha256": "380d222414d16ab40b830abe9d016f49f1fd2d07d0067a5879db22f89e5c796b",
+      "lines": [
+        17,
+        661,
+        686
+      ],
+      "statement": "List parent focus entry/return and navigation behavior"
+    }
+  ]
+}

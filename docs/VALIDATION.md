@@ -1,8 +1,71 @@
-# Cooperative validation â€” 2026-10-14
+# Validation evidence
 
-Project Version: 0.3.0-dev.6
+Project Version: 0.3.0-dev.7
 
-## Current Health Care compatibility iteration — 2026-10-16
+## Current UI and validation follow-up - 2026-10-16
+
+Baseline main 04ee998e718089b76073335d0bf085a51f134192, version 0.3.0-dev.6.
+Target 0.3.0-dev.7: PATCH-compatible client UI/focus/viewport fixes, isolated-state
+workflow regressions, read-only offline CI and corrected publication instructions.
+No server decision/storage code, protocol/schema, sandbox option, translation text,
+artwork or published artifact changes. The .6 publication remains recorded in its
+immutable receipt; this .7 candidate is not packaged, deployed or published.
+
+[VERIFIED source] Installed 42.21 / Steam build 25485521 vanilla UI definitions
+and call patterns are pinned in ui-api-evidence.json. The former settings class
+had no joypad navigation rows/focus acquisition; its +60 placement exceeded the
+existing viewport allowance at 640x360. Settings now use the vanilla joypad class,
+combo/list/button rows, B-before-close behavior and previous-focus restoration.
+Prompts preserve their previous focus; disconnect closes settings through their
+focus-aware close path. Source inspection is not an observed in-game defect.
+
+[TESTED - offline Windows / Python 3.12 / Lupa 2.6]
+
+```powershell
+# requirements-dev.txt; dependencies supplied by the existing ignored .venv-test
+python scripts/build.py
+$env:B47MC_TEST_LUA = 'lua51'
+python scripts/build.py
+Remove-Item Env:B47MC_TEST_LUA
+python -m unittest discover -s tests -p test_audit_medical_source.py -v
+python scripts/package.py
+python scripts/check_versions.py
+git diff --check
+```
+
+Each Lua host (default lua54, alternate lua51): 116 run, 115 passed, one skipped.
+The skip is the undistributed local historical-preservation manifest. Two optional
+Python/Jawa research-tool fixtures also pass. Five new focused UI fixtures cover
+controller slot/focus/close, expanded-combo B handling, prompt focus return,
+640x360 viewport bounds and disconnect focus release. Four selected regressions
+were separately run with the corresponding original main module loaded instead:
+controller focus, viewport bounds, modal focus return and disconnect release all
+fail before the fix and pass after it on the offline host.
+
+Fourteen new integration tests copy serialized payloads between one server and
+three isolated client Lua states using the real mod modules, with mocked events,
+UI, accounts, clock, transport and file adapters. They cover directional approvals,
+all policies, denial/expiry, individual and in-flight revocation, duplicate/lost
+messages, persistent reconnect/restart, both session disconnect directions, failed
+writes, damaged/missing revocation slots, movement and both Health Care mod orders.
+No network sockets, actual game files or real accounts are involved. Those mock
+results do not verify native serialization, vanilla eligibility or file durability.
+
+CI uses Ubuntu 24.04 / Python 3.12 / both Lupa hosts, SHA-pinned official checkout
+and setup-python actions, contents:read and no persisted checkout credentials.
+It performs offline checks and package-input planning only. Actual GitHub run
+results are attached to the PR; declaring this workflow is not a CI pass or branch
+protection change. No Steam/SFTP secrets, server access or deployment steps exist.
+
+[RUNTIME GATE] User will run the three-player tests and provide observations/logs.
+RUNTIME_TEST_RECORD.md is an unexecuted template, not a result. Hosted/dedicated
+behavior, actual controller/rendering, vanilla treatment comparison, startup timing,
+file API durability and Health Care feature parity are NOT TESTED. G7 BLOCKED /
+NOT TESTED; stable G8 BLOCKED. English fallback remains the supported 29-locale
+policy; native-language translations and Health Care feature absorption remain
+separate optional/future work. No game/server launch, upload or live deployment.
+
+## Historical Health Care compatibility iteration — 2026-10-16
 
 Baseline main bb9562a45485e73123e292c64623af809e52eb27, version 0.3.0-dev.5.
 Target 0.3.0-dev.6: PATCH-compatible startup guard for owner-specified Mod ID

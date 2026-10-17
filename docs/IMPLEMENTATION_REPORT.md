@@ -1,8 +1,14 @@
 # Medical Checks implementation report
 
-Project Version: 0.3.0-dev.6
+Project Version: 0.3.0-dev.7
 
-Current compatibility update: Medical Checks remains standalone and defers to
+Current validation/UI update: settings use vanilla controller navigation, return
+focus when closed/disconnected, retain focus across examination prompts and fit a
+640x360 split-screen viewport in offline layout fixtures. The test harness routes
+messages across isolated server/three-client Lua states. These are mocked host
+tests, not rendered UI, native packets, player-hosted or dedicated-server evidence.
+
+Medical Checks remains standalone and defers to
 Health Care when B47ANCEDHealthCare is active. Config checks the engine list;
 Authority, VanillaBridge, PreferencesUI and CooperativeUI return before runtime
 registration or UI/storage imports. No Health Care code is required or changed.
@@ -29,6 +35,8 @@ The supplied thumbnail, mod icon and poster remain byte-for-byte unchanged.
 
 Validation commands and results are recorded in VALIDATION.md. Current actual
 player-hosted/dedicated behavior, both-mod compatibility and visual rendering are NOT TESTED.
-G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. No packaging, deployment, game/server
-launch or Workshop publication occurred. Historical audits, Java research and prior
+G7 BLOCKED / NOT TESTED; stable G8 BLOCKED. This .7 iteration did not package,
+deploy, launch a game/server or publish. The earlier .6 build was packaged and
+published after explicit owner authorization; PUBLICATION-0.3.0-dev.6.json records
+that distribution only. Historical audits, Java research and prior
 reports retain their original evidence and are not promoted to current runtime proof.

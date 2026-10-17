@@ -1,6 +1,6 @@
 local C=require "B47ANCEDMedicalChecks/Config"
 if not C.runtimeEnabled() then return end
-require "ISUI/ISCollapsableWindow"
+require "ISUI/ISCollapsableWindowJoypad"
 require "ISUI/ISComboBox"
 require "ISUI/ISButton"
 require "ISUI/ISScrollingListBox"
@@ -13,9 +13,9 @@ function Client.send(player,command,args)
     sendClientCommand(player,C.module,command,args)
 end
 local function text(key) return getText("UI_B47MC_"..key) end
-local Window=ISCollapsableWindow:derive("B47MCPreferencesWindow")
+local Window=ISCollapsableWindowJoypad:derive("B47MCPreferencesWindow")
 function Window:createChildren()
-    ISCollapsableWindow.createChildren(self)
+    ISCollapsableWindowJoypad.createChildren(self)
     local pad=12
     local line=getTextManager():getFontHeight(UIFont.Small)+8
     self.status=ISLabel:new(pad,36,line,text("Loading"),1,1,1,1,UIFont.Small,true)
@@ -32,6 +32,8 @@ function Window:createChildren()
     self:addChild(self.explanation)
     self.list=ISScrollingListBox:new(pad,56+line*4,self.width-pad*2,self.height-(56+line*4)-64)
     self.list:initialise(); self.list:instantiate(); self.list.itemheight=line
+    self.list.joypadParent=self
+    self.list.stealJoypadFocusFromParent=false
     self:addChild(self.list)
     local y=self.height-50
     self.revoke=ISButton:new(pad,y,self.width/2-pad-3,28,text("Revoke"),self,Window.onRevoke)
@@ -39,7 +41,32 @@ function Window:createChildren()
     self.revoke:setEnable(false)
     self.refreshButton=ISButton:new(self.width/2+3,y,self.width/2-pad-3,28,text("Refresh"),self,Window.onRefresh)
     self.refreshButton:initialise(); self:addChild(self.refreshButton)
+    self:insertNewLineOfButtons(self.preference)
+    self:insertNewLineOfButtons(self.list)
+    self:insertNewLineOfButtons(self.revoke,self.refreshButton)
     self:apply(Client.snapshots[self.player:getOnlineID()])
+end
+function Window:onGainJoypadFocus(joypadData)
+    ISCollapsableWindowJoypad.onGainJoypadFocus(self,joypadData)
+    self.drawJoypadFocus=true
+    self.joypadIndexY=1;self.joypadIndex=1
+    self.joypadButtons=self.joypadButtonsY[1]
+    self.joypadButtons[1]:setJoypadFocused(true,joypadData)
+end
+function Window:onJoypadDown(button,joypadData)
+    local children=self:getVisibleChildren(self.joypadIndexY)
+    local child=children[self.joypadIndex]
+    if button==Joypad.BButton and not (child and child.isCombobox and child.expanded) then
+        self:close();return
+    end
+    ISCollapsableWindowJoypad.onJoypadDown(self,button,joypadData)
+end
+function Window:close()
+    ISCollapsableWindowJoypad.close(self)
+    self:removeFromUIManager()
+    local n=self.player:getPlayerNum()
+    local joypad=JoypadState and JoypadState.players[n+1]
+    if joypad and (joypad.focus==self or joypad.focus==self.list) then setJoypadFocus(n,self.prevFocus) end
 end
 function Window:apply(snapshot)
     self.snapshot=snapshot
@@ -75,7 +102,7 @@ function Window:new(player)
     local n=player:getPlayerNum()
     local width=math.min(math.max(620,getTextManager():MeasureStringX(UIFont.Small,text("Draft"))+32),math.max(280,getPlayerScreenWidth(n)-40))
     local height=math.min(math.max(430,(getTextManager():getFontHeight(UIFont.Small)+8)*4+200),math.max(320,getPlayerScreenHeight(n)-40))
-    local n=ISCollapsableWindow.new(self,getPlayerScreenLeft(player:getPlayerNum())+60,getPlayerScreenTop(player:getPlayerNum())+60,width,height)
+    local n=ISCollapsableWindowJoypad.new(self,getPlayerScreenLeft(player:getPlayerNum())+20,getPlayerScreenTop(player:getPlayerNum())+20,width,height)
     n.player=player; n.title=text("Settings"); n.resizable=false
     return n
 end
@@ -86,6 +113,12 @@ function Client.open(player)
         window=Window:new(player); window:initialise(); window:instantiate(); Client.windows[id]=window
     end
     window:addToUIManager(); window:setVisible(true); window:bringToTop()
+    local n=player:getPlayerNum()
+    local joypad=JoypadState and JoypadState.players[n+1]
+    if joypad then
+        if joypad.focus~=window and joypad.focus~=window.list then window.prevFocus=joypad.focus end
+        setJoypadFocus(n,window)
+    end
     Client.send(player,"Snapshot")
 end
 return Client

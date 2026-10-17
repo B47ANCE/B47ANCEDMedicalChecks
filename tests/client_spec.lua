@@ -1,77 +1,5 @@
 -- Focused UI lifecycle mocks, not rendered UI or engine proof.
-local function class()
-    local c={};c.__index=c
-    function c:derive() local n={};n.__index=n;return setmetatable(n,{__index=self}) end
-    function c:new(x,y,w,h) return setmetatable({x=x,y=y,width=w or 500,height=h or 400,items={},selected=1,children={},options={}},self) end
-    function c:initialise() end
-    function c:instantiate() if self.createChildren then self:createChildren() end end
-    function c:createChildren() end
-    function c:addChild(child) self.children[#self.children+1]=child end
-    function c:addToUIManager() self.visible=true end
-    function c:removeFromUIManager() self.visible=false end
-    function c:bringToTop() end
-    function c:setVisible(v) self.visible=v end
-    function c:setEnabled(v) self.enabled=v end
-    function c:setEnable(v) self.enabled=v end
-    function c:setName(v) self.name=v end
-    function c:destroy() self.visible=false end
-    function c:addOption(v) self.options[#self.options+1]=v end
-    function c:clear() self.items={} end
-    function c:addItem(label,item) self.items[#self.items+1]={text=label,item=item} end
-    return c
-end
-local function setup(client)
-    local f={sent={},time=1000,vanillaActions=0,performed=0,stopped=0}
-    function getActivatedMods() return {size=function() return 0 end} end
-    Events={}
-    for _,name in ipairs({"OnGameStart","OnCreatePlayer","OnServerCommand","OnFillWorldObjectContextMenu","OnTick","OnDisconnect","RequestMedicalCheck","AcceptedMedicalCheck"}) do
-        local ev={callbacks={}}
-        function ev.Add(cb) ev.callbacks[#ev.callbacks+1]=cb end
-        function ev.Remove(cb) for i,v in ipairs(ev.callbacks) do if v==cb then table.remove(ev.callbacks,i);return end end end
-        function ev.fire(...) for _,cb in ipairs(ev.callbacks) do cb(...) end end
-        Events[name]=ev
-    end
-    for _,name in ipairs({"ISCollapsableWindow","ISComboBox","ISButton","ISScrollingListBox","ISLabel","ISModalDialog","ISModalRichText"}) do _G[name]=class() end
-    local modalNew=ISModalRichText.new
-    f.modals={}
-    function ISModalRichText:new(x,y,w,h,text,yesno,target,onclick,player)
-        local o=modalNew(self,x,y,w,h);o.text=text;o.onclick=onclick;o.target=target
-        f.modals[#f.modals+1]=o;return o
-    end
-    UIFont={Small=1}
-    function getText(key,name) return key..(name and (":"..name) or "") end
-    function getTextManager() return {getFontHeight=function() return 16 end,MeasureStringX=function(_,_,s) return #s*7 end} end
-    function isClient() return client~=false end
-    function getTimestampMs() return f.time end
-    function getPlayerScreenLeft() return 0 end
-    function getPlayerScreenTop() return 0 end
-    function getPlayerScreenWidth() return 1280 end
-    function getPlayerScreenHeight() return 720 end
-    f.player={id=1}; f.patient={id=2}
-    function f.player:getOnlineID() return self.id end
-    function f.player:getPlayerNum() return 0 end
-    function f.patient:getOnlineID() return self.id end
-    function f.patient:getBodyDamageRemote() return {RestoreToFullHealth=function() f.cacheCleared=true end} end
-    function getSpecificPlayer() return f.player end
-    function getNumActivePlayers() return 1 end
-    function getPlayerByOnlineID(id) if id==2 then return f.patient end end
-    function sendClientCommand(player,module,command,args) f.sent[#f.sent+1]={player=player,command=command,args=args} end
-    ISWorldObjectContextMenu={onMedicalCheck=function() f.originalCalled=true end}
-    function ISWorldObjectContextMenu.setTest() f.menuTest=true;return true end
-    ISHealthPanel={canPerformMedicalCheck=function() return true end,ReceiveMedicalCheckRequest=function() end,
-        AcceptedMedicalCheck=function() f.vanillaActions=f.vanillaActions+1 end,
-        tryStopReceivingBodyDamageUpdates=function(panel) panel.otherPlayer=nil end}
-    ISBaseTimedAction={perform=function() f.baseCompleted=true end}
-    ISMedicalCheckAction={HealthWindows={},perform=function() f.performed=f.performed+1 end,stop=function() f.stopped=f.stopped+1 end}
-    function ISMedicalCheckAction.getHealthWindowForPlayer(p) return ISMedicalCheckAction.HealthWindows[p] end
-    Events.RequestMedicalCheck.Add(ISHealthPanel.ReceiveMedicalCheckRequest)
-    Events.AcceptedMedicalCheck.Add(ISHealthPanel.AcceptedMedicalCheck)
-    for _,name in ipairs({"ISUI/ISCollapsableWindow","ISUI/ISComboBox","ISUI/ISButton","ISUI/ISScrollingListBox","ISUI/ISLabel","ISUI/ISModalDialog","ISUI/ISModalRichText","ISUI/ISWorldObjectContextMenu","XpSystem/ISUI/ISHealthPanel","TimedActions/ISMedicalCheckAction"}) do package.loaded[name]=true end
-    require "B47ANCEDMedicalChecks/VanillaBridge"
-    Events.OnGameStart.fire()
-    function f:server(command,args) args.player=args.player or 1;Events.OnServerCommand.fire("B47ANCEDMedicalChecks",command,args) end
-    return f
-end
+local setup=require "client_fixture"
 
 local specs={}
 local function snapshot(serial)
@@ -190,5 +118,39 @@ function specs.disabled_fallback_rejects_replaced_patient_object()
  f.patient={id=2,getOnlineID=function() return 2 end}
  f:server("CoopResult",{protocol=3,nonce=nonce,reason="Disabled"})
  assert(not f.originalCalled and f.vanillaActions==0)
+end
+function specs.controller_settings_focus_and_close_restore_previous_focus()
+ local f=setup(true,{controller=true,slot=1})
+ B47MC.Client.open(f.player)
+ local window=B47MC.Client.windows[1]
+ assert(JoypadState.players[2].focus==window and window.preference.joypadFocused)
+ assert(#window.joypadButtonsY==3 and window.joypadButtonsY[2][1]==window.list)
+ assert(window.list.joypadParent==window and window.list.stealJoypadFocusFromParent==false)
+ window:onJoypadDown(Joypad.BButton,JoypadState.players[2])
+ assert(not window.visible and JoypadState.players[2].focus==f.previousFocus)
+end
+function specs.controller_back_collapses_combo_before_closing_settings()
+ local f=setup(true,{controller=true});B47MC.Client.open(f.player)
+ local window=B47MC.Client.windows[1];window.preference.expanded=true
+ window:onJoypadDown(Joypad.BButton,JoypadState.players[1])
+ assert(window.visible and not window.preference.expanded and JoypadState.players[1].focus==window)
+end
+function specs.prompt_returns_controller_focus_to_settings()
+ local f=setup(true,{controller=true});B47MC.Client.open(f.player)
+ local window=B47MC.Client.windows[1]
+ f:server("CoopPrompt",{protocol=3,id=6,examiner="other",timeout=30,remember=true})
+ assert(JoypadState.players[1].focus==f.modals[1])
+ f:server("CoopClose",{protocol=3,id=6})
+ assert(JoypadState.players[1].focus==window)
+end
+function specs.settings_fit_small_split_screen_viewport()
+ local f=setup(true,{width=640,height=360,left=640,top=360,slot=1});B47MC.Client.open(f.player)
+ local w=B47MC.Client.windows[1]
+ assert(w.x>=640 and w.y>=360 and w.x+w.width<=1280 and w.y+w.height<=720)
+end
+function specs.disconnect_releases_controller_settings_focus()
+ local f=setup(true,{controller=true});B47MC.Client.open(f.player)
+ Events.OnDisconnect.fire()
+ assert(JoypadState.players[1].focus==f.previousFocus)
 end
 return specs
