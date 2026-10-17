@@ -52,6 +52,15 @@
         686
       ],
       "statement": "List parent focus entry/return and navigation behavior"
+    },
+    {
+      "path": "media/lua/client/ISUI/Gamepad/JoyPadSetup.lua",
+      "sha256": "1e34303e5328b791daf0cd3b1f3ab84b85bbe7636e3ddb980baa4a1fecc7407e",
+      "lines": [
+        546,
+        608
+      ],
+      "statement": "setJoypadFocus assigns per-slot control; updateJoypadFocus dispatches focus callbacks only when focus changes"
     }
   ]
 }

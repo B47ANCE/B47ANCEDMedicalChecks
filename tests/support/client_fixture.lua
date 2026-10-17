@@ -56,8 +56,9 @@ local function setup(client, options)
     end
     function setJoypadFocus(slot,window)
         local data=JoypadState.players[slot+1]
+        local changed=data.focus~=window
         data.focus=window
-        if window and window.onGainJoypadFocus then window:onGainJoypadFocus(data) end
+        if changed and window and window.onGainJoypadFocus then window:onGainJoypadFocus(data) end
     end
     local modalNew=ISModalRichText.new
     f.modals={}

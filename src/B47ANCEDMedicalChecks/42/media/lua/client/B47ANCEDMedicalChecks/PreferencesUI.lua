@@ -7,6 +7,15 @@ require "ISUI/ISScrollingListBox"
 require "ISUI/ISLabel"
 B47MC.Client=B47MC.Client or {snapshots={},windows={}}
 local Client=B47MC.Client
+Client.focusWindows=Client.focusWindows or {}
+function Client.detachFocus(window)
+    for other in pairs(Client.focusWindows) do
+        if other.prevFocus==window or (window.list and other.prevFocus==window.list) then
+            other.prevFocus=window.prevFocus
+        end
+    end
+    Client.focusWindows[window]=nil
+end
 function Client.send(player,command,args)
     if not isClient() or not player then return end
     args=args or {};args.protocol=C.protocol
@@ -62,6 +71,7 @@ function Window:onJoypadDown(button,joypadData)
     ISCollapsableWindowJoypad.onJoypadDown(self,button,joypadData)
 end
 function Window:close()
+    Client.detachFocus(self)
     ISCollapsableWindowJoypad.close(self)
     self:removeFromUIManager()
     local n=self.player:getPlayerNum()
@@ -117,6 +127,7 @@ function Client.open(player)
     local joypad=JoypadState and JoypadState.players[n+1]
     if joypad then
         if joypad.focus~=window and joypad.focus~=window.list then window.prevFocus=joypad.focus end
+        Client.focusWindows[window]=true
         setJoypadFocus(n,window)
     end
     Client.send(player,"Snapshot")

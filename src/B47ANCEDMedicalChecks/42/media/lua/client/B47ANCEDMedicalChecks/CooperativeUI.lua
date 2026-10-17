@@ -5,6 +5,17 @@ local Client=require "B47ANCEDMedicalChecks/PreferencesUI"
 require "ISUI/ISModalRichText"
 require "XpSystem/ISUI/ISHealthPanel"
 local UI={awaiting={},prompts={},closed={},notices={},nonce=0}
+local Modal=ISModalRichText:derive("B47MCExaminationModal")
+function Modal:destroy()
+    if self.b47mcClosed then return end
+    self.b47mcClosed=true
+    Client.detachFocus(self)
+    local joypad=JoypadState and JoypadState.players[self.player+1]
+    -- Vanilla destroy always restores prevFocus, including for a background window.
+    -- Keep the current foreground focus while unlinking this closed return target.
+    if joypad and joypad.focus~=self then self.prevFocus=joypad.focus end
+    ISModalRichText.destroy(self)
+end
 local function integer(v) return type(v)=="number" and v==math.floor(v) and v>=1 and v<=2147483647 end
 local function localPlayer(id)
     for i=0,getNumActivePlayers()-1 do local p=getSpecificPlayer(i);if p and p:getOnlineID()==id then return p end end
@@ -13,10 +24,11 @@ local function modal(player,text,yesno,callback)
     local n=player:getPlayerNum()
     local width=math.max(280,math.min(560,getPlayerScreenWidth(n)-40))
     local height=math.max(200,math.min(320,getPlayerScreenHeight(n)-60))
-    local window=ISModalRichText:new(getPlayerScreenLeft(n)+20,getPlayerScreenTop(n)+20,width,height,text,yesno,nil,callback,n)
+    local window=Modal:new(getPlayerScreenLeft(n)+20,getPlayerScreenTop(n)+20,width,height,text,yesno,nil,callback,n)
     window:initialise();window:addToUIManager();window:bringToTop()
     if JoypadState and JoypadState.players[n+1] then
         window.prevFocus=JoypadState.players[n+1].focus
+        Client.focusWindows[window]=true
         setJoypadFocus(n,window)
     end
     return window

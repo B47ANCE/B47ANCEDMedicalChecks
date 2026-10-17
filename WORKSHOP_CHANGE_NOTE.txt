@@ -2,5 +2,5 @@
 
 [h2]Controller and validation follow-up[/h2]
 Add controller navigation and focus restoration to Medical Checks settings. Keep settings within smaller split-screen viewports. Add offline server/three-client workflow tests for approvals, revocation, reconnects, restarts and message ordering.
-Policies, approval storage, treatment mechanics and Health Care priority remain unchanged. This development candidate has not been uploaded by this iteration.
+Fix overlapping prompt focus so closing an older window cannot steal focus or restore a hidden Medical Checks window. Policies, approval storage, treatment mechanics and Health Care priority remain unchanged.
 MP testing build - dedicated multiplayer NOT TESTED

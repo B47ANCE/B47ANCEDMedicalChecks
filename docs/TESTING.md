@@ -70,9 +70,9 @@ player-hosted multiplayer and record that result separately from dedicated tests
 G7 and stable G8 remain BLOCKED until their required runtime evidence exists.
 Copy RUNTIME_TEST_RECORD.md to an ignored local evidence directory for each run.
 Complete hosted and dedicated records separately and preserve raw logs locally;
-only reviewable anonymized summaries belong in Git. The .7 candidate is not a
-Workshop upload: record which exact source/package is actually installed before
-testing and never use older .6 subscription results as proof for .7 UI changes.
+only reviewable anonymized summaries belong in Git. Record which exact
+source/package is actually installed before testing, including after any authorized
+Workshop update; never use older .6 subscription results as proof for .7 UI changes.
 
 ## Health Care combinations
 
@@ -98,6 +98,11 @@ the combo before closing the window on the next B. Closing via B/title button an
 disconnecting must release settings focus. While settings own focus, receive an
 examination prompt and answer or let it expire: focus should return to settings.
 Repeat on the first local slot and confirm no focus is assigned to the other slot.
+Receive overlapping prompts, let the older background prompt expire, then close
+the newer prompt. Focus must stay on the newer prompt until it closes and then
+return to a visible target. Close settings with the mouse while a prompt owns
+controller focus: closing that prompt must not restore the hidden settings window.
+Repeat disconnect with multiple prompts open; no closed focus target should remain.
 
 At a 640x360 per-player viewport, the initial settings rectangle must remain within
 that player's screen. Inspect text/list/button clipping with small/large fonts,

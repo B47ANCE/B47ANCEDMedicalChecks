@@ -34,7 +34,7 @@ end
 local function disconnect()
     CooperativeUI.disconnect()
     for _,window in pairs(Client.windows) do window:close() end
-    Client.windows={};Client.snapshots={}
+    Client.windows={};Client.snapshots={};Client.focusWindows={}
 end
 Events.OnServerCommand.Add(onServerCommand)
 Events.OnFillWorldObjectContextMenu.Add(menu)

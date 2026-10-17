@@ -2,14 +2,41 @@
 
 Project Version: 0.3.0-dev.7
 
-## Current UI and validation follow-up - 2026-10-16
+## PR #11 review and publication preflight - 2026-10-16
+
+Review baseline 607a24c4706b46ccf116986de7fd66828900f115. Version remains
+0.3.0-dev.7: compatible corrections within the unpublished iteration, protocol 3 /
+schema 2 unchanged. Installed ISModalRichText.destroy restores prevFocus even for
+background windows; the original focus links retained windows after closure.
+Four new offline regressions reproduce foreground focus theft, restoration of hidden
+settings, incomplete multi-window disconnect cleanup and repeated destroy effects.
+All four fail before the correction. Only Medical Checks' local modal subclass and
+client-owned return links change; vanilla/global UI and server gameplay do not.
+
+[TESTED - offline Windows/Python 3.12/Lupa 2.6] On each Lua host, the complete
+`python scripts/build.py` suite runs 120 tests: 119 pass, one undistributed historical
+fixture skips. Alternate host uses `$env:B47MC_TEST_LUA='lua51'`. Version consistency,
+package-input planning and whitespace checks pass. Updated GitHub CI results are
+bound to the final reviewed PR SHA rather than the earlier 607a24c run.
+CI now fetches two commits and checks HEAD^..HEAD, so its whitespace check examines
+the committed PR/test-merge diff rather than an always-clean checkout worktree.
+The live existing public Workshop item 3820690174/App 108600 was queried read-only;
+its description matches the canonical owner-preserved BBCode exactly. The upload
+helper was inspected and has no Steam desktop restart or game/server launch stage.
+The owner's explicit request authorizes merge and an MP test upload after all
+applicable checks pass; upload results/commit/hashes are separate provenance.
+
+[RUNTIME GATE] Hosted/dedicated MP, actual rendering/controller behavior and native
+file/network behavior remain NOT TESTED. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.
+
+## Initial UI and validation follow-up - 2026-10-16
 
 Baseline main 04ee998e718089b76073335d0bf085a51f134192, version 0.3.0-dev.6.
 Target 0.3.0-dev.7: PATCH-compatible client UI/focus/viewport fixes, isolated-state
 workflow regressions, read-only offline CI and corrected publication instructions.
 No server decision/storage code, protocol/schema, sandbox option, translation text,
 artwork or published artifact changes. The .6 publication remains recorded in its
-immutable receipt; this .7 candidate is not packaged, deployed or published.
+immutable receipt; the initial 607a24c phase did not package, deploy or publish.
 
 [VERIFIED source] Installed 42.21 / Steam build 25485521 vanilla UI definitions
 and call patterns are pinned in ui-api-evidence.json. The former settings class

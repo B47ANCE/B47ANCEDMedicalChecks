@@ -85,6 +85,11 @@ it when the window/list owns focus. Prompts capture previous focus for vanilla
 ISModalRichText.destroy to restore. A 20-pixel viewport inset matches the existing
 width/height allowance. See ui-api-evidence.json for installed vanilla references.
 Offline fixtures cover intent/focus/layout arithmetic, not controller rendering.
+Mod-owned controller windows keep a bounded set of return-focus links. Closing a
+window unlinks it (and a settings list) from other Medical Checks return targets.
+The local modal subclass preserves current foreground focus on background closure
+and ignores repeated destruction, then delegates normal cleanup to vanilla. This
+does not replace any global vanilla UI method or manage other mods' focus state.
 
 Historical decisions/source findings are retained in Git at 85e29ca and research
 reports pinned to their original revisions; pre-feature reports also have local

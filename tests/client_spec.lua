@@ -153,4 +153,37 @@ function specs.disconnect_releases_controller_settings_focus()
  Events.OnDisconnect.fire()
  assert(JoypadState.players[1].focus==f.previousFocus)
 end
+function specs.background_prompt_expiry_keeps_newer_prompt_focus()
+ local f=setup(true,{controller=true})
+ f:server("CoopPrompt",{protocol=3,id=11,examiner="one",timeout=5,remember=false})
+ f:server("CoopPrompt",{protocol=3,id=12,examiner="two",timeout=30,remember=false})
+ local newer=f.modals[2]
+ f.time=7000;Events.OnTick.fire()
+ assert(JoypadState.players[1].focus==newer and newer.visible)
+ f:server("CoopClose",{protocol=3,id=12})
+ assert(JoypadState.players[1].focus==f.previousFocus)
+end
+function specs.closing_settings_behind_prompt_removes_hidden_focus_target()
+ local f=setup(true,{controller=true});B47MC.Client.open(f.player)
+ f:server("CoopPrompt",{protocol=3,id=11,examiner="one",timeout=30,remember=false})
+ B47MC.Client.windows[1]:close()
+ assert(JoypadState.players[1].focus==f.modals[1])
+ f:server("CoopClose",{protocol=3,id=11})
+ assert(JoypadState.players[1].focus==f.previousFocus)
+end
+function specs.disconnect_unlinks_multiple_prompt_focus_targets()
+ local f=setup(true,{controller=true});B47MC.Client.open(f.player)
+ for id=11,12 do f:server("CoopPrompt",{protocol=3,id=id,examiner="one",timeout=30,remember=false}) end
+ Events.OnDisconnect.fire()
+ assert(JoypadState.players[1].focus==f.previousFocus)
+end
+function specs.repeated_prompt_destroy_does_not_steal_restored_focus()
+ local f=setup(true,{controller=true})
+ f:server("CoopPrompt",{protocol=3,id=11,examiner="one",timeout=30,remember=false})
+ local older=f.modals[1]
+ f:server("CoopClose",{protocol=3,id=11})
+ f:server("CoopPrompt",{protocol=3,id=12,examiner="two",timeout=30,remember=false})
+ older:destroy()
+ assert(JoypadState.players[1].focus==f.modals[2])
+end
 return specs

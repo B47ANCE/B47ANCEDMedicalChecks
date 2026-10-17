@@ -46,4 +46,6 @@ authorization, merged source 10702b7 was packaged and published to existing item
 0.3.0-dev.6 -> 0.3.0-dev.7 is a PATCH-compatible validation and documentation
 checkpoint with client controller/focus/viewport fixes. Gameplay behavior, public identifiers, protocol 3, schema 2,
 sandbox settings and supplied artwork are preserved. The published .6 distribution
-and its receipt remain historical and unchanged; this iteration does not publish.
+and its receipt remain historical and unchanged. PR #11 review retains the same
+unpublished development version for compatible focus corrections. Actual uploads
+require explicit authorization and separate provenance; distribution is not G7.
