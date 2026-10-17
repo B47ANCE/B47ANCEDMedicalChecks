@@ -51,6 +51,18 @@ G7 BLOCKED / NOT TESTED; stable G8 BLOCKED until required runtime evidence exist
 Verify SteamCMD success, the assigned ID, App ID, public visibility, title and
 canonical description through Steam's published-file API or public page. Record
 the publication result separately from subscription/download/runtime verification.
-After a confirmed upload, gracefully restart the verified Steam desktop client
-under the owner's standing preference. Do not launch a game/server, deploy locally
-or change server files as part of publication.
+After a confirmed upload, ask whether to restart the Steam desktop client and wait
+for an explicit affirmative reply for that specific restart. There is no standing
+restart approval: a publish request, a prior restart or a saved command approval
+does not authorize it. If declined or unanswered, leave Steam unchanged and report
+upload success separately. Inspect uploader wrappers before invoking them and skip
+any automatic Steam shutdown/start stage until that confirmation arrives.
+
+Only after confirmation, discover the running client's executable (or use verified
+local installation evidence), request graceful shutdown through that executable,
+wait with a bounded timeout and start the same executable with a hidden launch
+window. If already closed, start it once. Never force-kill Steam/game processes,
+restart after an unverified upload, or retry an unsuccessful shutdown indefinitely.
+Verify the client process starts; report upload and restart outcomes separately.
+Do not launch a game/server, deploy locally or change server files as part of
+publication. A restart does not prove a Workshop download or multiplayer behavior.

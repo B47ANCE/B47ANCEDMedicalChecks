@@ -1,11 +1,11 @@
 # Cooperative workflow architecture
 
-Project Version: 0.3.0-dev.6
+Project Version: 0.3.0-dev.7
 
 The server owns examination request decisions, saved preferences and remembered
 examiners. Clients present prompts and call the original vanilla examination
 callback after the server completes the request. Snapshot protocol fields remain
-unchanged; this wording iteration adds no authorization or packet hooks.
+unchanged; the current UI/test iteration adds no authorization or packet hooks.
 
 Before any handlers or UI are installed, the shared active-mod-list check defers
 to Health Care (B47ANCEDHealthCare). In that configuration, Medical Checks leaves
@@ -76,6 +76,20 @@ Both server and client handlers are registered once. Rich-text account labels ar
 sanitized for angle-bracket markup. First Aid duration and treatment restrictions
 remain in vanilla. Rendering, controller focus, split-screen, file API behavior and
 actual dedicated synchronization are runtime gates.
+
+Settings now derive from vanilla ISCollapsableWindowJoypad, with navigation rows
+for the preference, examiner list and revoke/refresh buttons. B closes an expanded
+combo first, then the window; leaving the list returns to its parent. Opening the
+window captures the local slot's previous focus, and closing/disconnecting restores
+it when the window/list owns focus. Prompts capture previous focus for vanilla
+ISModalRichText.destroy to restore. A 20-pixel viewport inset matches the existing
+width/height allowance. See ui-api-evidence.json for installed vanilla references.
+Offline fixtures cover intent/focus/layout arithmetic, not controller rendering.
+Mod-owned controller windows keep a bounded set of return-focus links. Closing a
+window unlinks it (and a settings list) from other Medical Checks return targets.
+The local modal subclass preserves current foreground focus on background closure
+and ignores repeated destruction, then delegates normal cleanup to vanilla. This
+does not replace any global vanilla UI method or manage other mods' focus state.
 
 Historical decisions/source findings are retained in Git at 85e29ca and research
 reports pinned to their original revisions; pre-feature reports also have local

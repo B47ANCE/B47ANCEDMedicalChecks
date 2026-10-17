@@ -1,5 +1,5 @@
 B47MC = B47MC or {}
-local C={version="0.3.0-dev.6",module="B47ANCEDMedicalChecks",schema=2,protocol=3,
+local C={version="0.3.0-dev.7",module="B47ANCEDMedicalChecks",schema=2,protocol=3,
     maxIdentifier=128,maxAccounts=4096,maxGrants=128,maxBytes=2097152}
 B47MC.Config=C
 -- Fixed interoperability identity, not a configurable gameplay policy.

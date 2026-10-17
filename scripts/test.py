@@ -6,17 +6,12 @@ import re
 import unittest
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'.venv-test'))
-from lupa import LuaRuntime
 sys.path.insert(0,str(ROOT/'scripts'))
+from lua_runtime import runtime, LUA
 from preflight import check
 import package as packaging
 import io
 import zipfile
-LUA=ROOT/'src/B47ANCEDMedicalChecks/42/media/lua'
-def runtime():
- vm=LuaRuntime(unpack_returned_tuples=True)
- vm.globals().package.path=';'.join((LUA/s/'?.lua').as_posix() for s in ['shared','server','client'])+';'+vm.globals().package.path
- return vm
 class Scenarios(unittest.TestCase): pass
 for filename in ['engine_spec.lua','client_spec.lua','server_spec.lua','cooperative_spec.lua','compatibility_spec.lua']:
  specs=runtime().execute((ROOT/'tests'/filename).read_text(encoding='utf-8'))
@@ -93,4 +88,8 @@ class Structure(unittest.TestCase):
   for name,digest in json.loads(manifest.read_text()).items():
    path=h/name if (h/name).exists() else ROOT/name
    self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(),digest,name)
+def load_tests(loader, tests, pattern):
+ tests.addTests(loader.discover(str(ROOT/'tests'),pattern='test_workflow_integration.py'))
+ return tests
+
 if __name__=='__main__': unittest.main(verbosity=2)

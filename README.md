@@ -1,6 +1,6 @@
 # B47ANCE'd Medical Checks
 
-Project Version: 0.3.0-dev.6
+Project Version: 0.3.0-dev.7
 
 Medical examination approval prompts and remembered examiner choices for Project
 Zomboid Build 42.21 multiplayer. Canonical Mod ID: `B47ANCEDMedicalChecks`.
@@ -28,6 +28,9 @@ Server and clients need matching versions. See [installation](docs/INSTALLATION.
 [implementation report](docs/IMPLEMENTATION_REPORT.md), and [test instructions](docs/TESTING.md).
 Player-hosted and dedicated multiplayer are intended targets; actual multiplayer
 runtime is **NOT TESTED**. G7 BLOCKED / NOT TESTED; stable G8 BLOCKED.
+The current development candidate adds controller navigation/focus and small
+split-screen placement fixes with offline regression coverage. Use the
+[runtime test record](docs/RUNTIME_TEST_RECORD.md) for the remaining in-game checks.
 
 [Public source repository](https://github.com/B47ANCE/B47ANCEDMedicalChecks).
 Project thumbnail: supplied Medical Checks artwork in [thumbnail.png](thumbnail.png).

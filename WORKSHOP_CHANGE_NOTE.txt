@@ -1,6 +1,6 @@
-[b]Version 0.3.0-dev.6[/b]
+[b]Version 0.3.0-dev.7[/b]
 
-[h2]Health Care compatibility[/h2]
-Medical Checks remains a standalone mod. When Health Care (B47ANCEDHealthCare) is enabled, Medical Checks leaves its examination hooks and server handlers inactive to avoid duplicate features.
-Saved Medical Checks preferences and approvals are preserved. Health Care integration and any data migration are separate work.
+[h2]Controller and validation follow-up[/h2]
+Add controller navigation and focus restoration to Medical Checks settings. Keep settings within smaller split-screen viewports. Add offline server/three-client workflow tests for approvals, revocation, reconnects, restarts and message ordering.
+Fix overlapping prompt focus so closing an older window cannot steal focus or restore a hidden Medical Checks window. Policies, approval storage, treatment mechanics and Health Care priority remain unchanged.
 MP testing build - dedicated multiplayer NOT TESTED
